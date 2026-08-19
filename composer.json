@@ -1,0 +1,12 @@
+{
+  "name": "luxehaven/real-estate",
+  "description": "LuxeHaven Luxury Real Estate Portal",
+  "autoload": {
+    "psr-4": {
+      "App\\Controllers\\": "controllers/",
+      "App\\Models\\": "models/",
+      "App\\Helpers\\": "helpers/",
+      "App\\Routes\\": "routes/"
+    }
+  }
+}

@@ -1,0 +1,10 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    
+    # Stop processing if file or directory exists
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    
+    # Redirect to index.php with the path relative to the current subdirectory
+    RewriteRule ^(.*)$ index.php [L,QSA]
+</IfModule>

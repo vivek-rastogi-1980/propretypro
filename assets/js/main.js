@@ -646,6 +646,10 @@ $(document).ready(function () {
                             <span>Westin Green</span>
                             <span class="theme-preview-circle theme-preview-green"></span>
                         </button>
+                        <button class="theme-option-btn ${activeTheme === 'sand-beige' ? 'active' : ''}" data-theme="sand-beige">
+                            <span>Sand & Taupe</span>
+                            <span class="theme-preview-circle theme-preview-sand"></span>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -682,12 +686,14 @@ $(document).ready(function () {
 
         function applyFrontendTheme(theme) {
             // Remove previous theme classes
-            $('html').removeClass('theme-blue-white theme-green');
+            $('html').removeClass('theme-blue-white theme-green theme-sand-beige');
             
             if (theme === 'blue-white') {
                 $('html').addClass('theme-blue-white');
             } else if (theme === 'green') {
                 $('html').addClass('theme-green');
+            } else if (theme === 'sand-beige') {
+                $('html').addClass('theme-sand-beige');
             }
         }
     }

@@ -1301,6 +1301,20 @@ html.theme-green {
     /* Light Green */
 }
 
+/* --- 3. Sand & Taupe Theme Variables & Base Style --- */
+html.theme-sand-beige {
+    --primary-dark: #F4EFEA;
+    /* Soft warm sand background */
+    --primary-light: #FFFFFF;
+    /* Pure white */
+    --gold-accent: #705C4F;
+    /* Deep Taupe/Bronze Accent */
+    --gold-accent-hover: #544439;
+    /* Darker Bronze/Taupe */
+    --blue-glow: #A39081;
+    /* Soft Latte Glow */
+}
+
 /* --- General Font / Text Muted overrides --- */
 html.theme-blue-white .text-light-muted {
     color: #64748B !important;
@@ -1312,17 +1326,24 @@ html.theme-green .text-light-muted {
     /* Muted warm gray-brown */
 }
 
+html.theme-sand-beige .text-light-muted {
+    color: #8A7E74 !important;
+    /* Muted warm sand-taupe */
+}
+
 /* --- Common Light Theme Rules for Frontend --- */
 html.theme-blue-white,
-html.theme-green {
+html.theme-green,
+html.theme-sand-beige {
     background-color: var(--primary-dark) !important;
 }
 
 html.theme-blue-white body,
-html.theme-green body {
+html.theme-green body,
+html.theme-sand-beige body {
     background-color: var(--primary-dark) !important;
-    color: #1E293B !important;
-    /* Dark text */
+    color: #3A322C !important;
+    /* Dark warm coffee/charcoal-brown text */
 }
 
 html.theme-green body {
@@ -1355,6 +1376,18 @@ html.theme-green .navbar-brand {
     /* Deep Forest Green */
 }
 
+html.theme-sand-beige h1,
+html.theme-sand-beige h2,
+html.theme-sand-beige h3,
+html.theme-sand-beige h4,
+html.theme-sand-beige h5,
+html.theme-sand-beige h6,
+html.theme-sand-beige .text-white,
+html.theme-sand-beige .navbar-brand {
+    color: #4A3E36 !important;
+    /* Deep Warm Coffee/Bronze */
+}
+
 /* Card Overrides */
 html.theme-blue-white .glass-card-luxury,
 html.theme-blue-white .glass-card-dark,
@@ -1375,9 +1408,20 @@ html.theme-green .glass-floating-badge {
     box-shadow: 0 20px 40px rgba(45, 80, 22, 0.05) !important;
 }
 
+html.theme-sand-beige .glass-card-luxury,
+html.theme-sand-beige .glass-card-dark,
+html.theme-sand-beige .property-luxury-card,
+html.theme-sand-beige .glass-floating-badge {
+    background: #FFFFFF !important;
+    border: 1px solid #EADEC9 !important;
+    /* Soft sand-beige border */
+    box-shadow: 0 20px 40px rgba(110, 90, 75, 0.05) !important;
+}
+
 /* Ensure header/navbar is always darker and shiny (glossy) on all themes */
 html.theme-blue-white .glass-nav,
-html.theme-green .glass-nav {
+html.theme-green .glass-nav,
+html.theme-sand-beige .glass-nav {
     background: linear-gradient(to bottom, rgba(15, 23, 42, 0.96) 0%, rgba(2, 4, 10, 0.92) 100%) !important;
     backdrop-filter: blur(25px) saturate(220%) !important;
     -webkit-backdrop-filter: blur(25px) saturate(220%) !important;
@@ -1386,19 +1430,22 @@ html.theme-green .glass-nav {
 }
 
 html.theme-blue-white .glass-nav.nav-scrolled,
-html.theme-green .glass-nav.nav-scrolled {
+html.theme-green .glass-nav.nav-scrolled,
+html.theme-sand-beige .glass-nav.nav-scrolled {
     background: rgba(1, 2, 5, 0.99) !important;
     border-bottom: 1px solid rgba(255, 255, 255, 0.25) !important;
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25), 0 15px 50px rgba(0, 0, 0, 0.75) !important;
 }
 
 html.theme-blue-white .nav-link-luxury,
-html.theme-green .nav-link-luxury {
+html.theme-green .nav-link-luxury,
+html.theme-sand-beige .nav-link-luxury {
     color: #E2E8F0 !important;
 }
 
 html.theme-blue-white .navbar-brand,
-html.theme-green .navbar-brand {
+html.theme-green .navbar-brand,
+html.theme-sand-beige .navbar-brand {
     color: #FFFFFF !important;
 }
 
@@ -1422,6 +1469,16 @@ html.theme-green .nav-link-luxury::after {
     background-color: #81C784 !important;
 }
 
+html.theme-sand-beige .nav-link-luxury:hover,
+html.theme-sand-beige .nav-link-luxury.active {
+    color: #DCD0C4 !important;
+    /* Soft light beige/latte for dark background hover */
+}
+
+html.theme-sand-beige .nav-link-luxury::after {
+    background-color: #DCD0C4 !important;
+}
+
 /* Background Utility Classes */
 html.theme-blue-white .bg-dark-deep,
 html.theme-blue-white .bg-black,
@@ -1436,6 +1493,13 @@ html.theme-green .section-dark-luxe {
     /* Soft pale green */
 }
 
+html.theme-sand-beige .bg-dark-deep,
+html.theme-sand-beige .bg-black,
+html.theme-sand-beige .section-dark-luxe {
+    background-color: #F4EFEA !important;
+    /* Soft warm sand */
+}
+
 /* Warning / Accent text color overrides on light themes */
 html.theme-blue-white .text-warning {
     color: #1D4ED8 !important;
@@ -1445,6 +1509,11 @@ html.theme-blue-white .text-warning {
 html.theme-green .text-warning {
     color: #2D5016 !important;
     /* High contrast green */
+}
+
+html.theme-sand-beige .text-warning {
+    color: #705C4F !important;
+    /* High contrast bronze/taupe */
 }
 
 /* Text Gradients (remove transparent text-fills so it displays beautifully) */
@@ -1464,6 +1533,15 @@ html.theme-green .text-gold-gradient {
     -webkit-background-clip: unset !important;
     -webkit-text-fill-color: #2D5016 !important;
     color: #2D5016 !important;
+}
+
+html.theme-sand-beige .text-gradient-light,
+html.theme-sand-beige .text-gradient,
+html.theme-sand-beige .text-gold-gradient {
+    background: none !important;
+    -webkit-background-clip: unset !important;
+    -webkit-text-fill-color: #705C4F !important;
+    color: #705C4F !important;
 }
 
 /* Buttons */
@@ -1495,6 +1573,20 @@ html.theme-green .btn-premium::before {
     background: linear-gradient(135deg, #1E3A0B 0%, #3D6B1F 100%) !important;
 }
 
+html.theme-sand-beige .btn-premium {
+    background: linear-gradient(135deg, #705C4F 0%, #544439 100%) !important;
+    color: #FFFFFF !important;
+    box-shadow: 0 8px 24px rgba(110, 90, 75, 0.15) !important;
+}
+
+html.theme-sand-beige .btn-premium:hover {
+    box-shadow: 0 16px 32px rgba(110, 90, 75, 0.3) !important;
+}
+
+html.theme-sand-beige .btn-premium::before {
+    background: linear-gradient(135deg, #544439 0%, #3A3028 100%) !important;
+}
+
 /* Outline Buttons */
 html.theme-blue-white .btn-outline-gold {
     border-color: rgba(37, 99, 235, 0.4) !important;
@@ -1514,6 +1606,16 @@ html.theme-green .btn-outline-gold {
 html.theme-green .btn-outline-gold:hover {
     color: #FFFFFF !important;
     background-color: #2D5016 !important;
+}
+
+html.theme-sand-beige .btn-outline-gold {
+    border-color: rgba(110, 90, 75, 0.4) !important;
+    color: #705C4F !important;
+}
+
+html.theme-sand-beige .btn-outline-gold:hover {
+    color: #FFFFFF !important;
+    background-color: #705C4F !important;
 }
 
 /* Glass Buttons */
@@ -1537,6 +1639,17 @@ html.theme-green .btn-glass-light {
 html.theme-green .btn-glass-light:hover {
     border-color: #2D5016 !important;
     background: rgba(45, 80, 22, 0.1) !important;
+}
+
+html.theme-sand-beige .btn-glass-light {
+    background: rgba(110, 90, 75, 0.05) !important;
+    border: 1px solid rgba(110, 90, 75, 0.15) !important;
+    color: #705C4F !important;
+}
+
+html.theme-sand-beige .btn-glass-light:hover {
+    border-color: #705C4F !important;
+    background: rgba(110, 90, 75, 0.1) !important;
 }
 
 /* --- Cinematic Hero Slideshow Style --- */
@@ -1714,9 +1827,18 @@ html.theme-green .hero-main-swiper .video-overlay-tint {
     background: linear-gradient(to bottom, rgba(244, 249, 238, 0.2) 0%, rgba(244, 249, 238, 0.2) 60%, rgba(248, 250, 245, 0.98) 100%) !important;
 }
 
+html.theme-sand-beige .hero-main-swiper .video-overlay-tint {
+    background: linear-gradient(to bottom, rgba(244, 239, 234, 0.2) 0%, rgba(244, 239, 234, 0.2) 60%, rgba(248, 245, 240, 0.98) 100%) !important;
+}
+
 html.theme-blue-white .hero-content-col,
-html.theme-green .hero-content-col {
+html.theme-green .hero-content-col,
+html.theme-sand-beige .hero-content-col {
     color: #1E293B !important;
+}
+
+html.theme-sand-beige .hero-content-col {
+    color: #3A322C !important;
 }
 
 html.theme-blue-white .hero-content-col h1 {
@@ -1743,9 +1865,22 @@ html.theme-green .hero-content-col .text-light-muted {
     font-weight: 600 !important;
 }
 
+html.theme-sand-beige .hero-content-col h1 {
+    color: #4A3E36 !important;
+    text-shadow: 0 2px 20px rgba(255, 255, 255, 0.9), 0 1px 5px rgba(255, 255, 255, 0.9) !important;
+}
+
+html.theme-sand-beige .hero-content-col p.lead,
+html.theme-sand-beige .hero-content-col .text-light-muted {
+    color: #3A322C !important;
+    text-shadow: 0 2px 15px rgba(255, 255, 255, 0.95), 0 1px 3px rgba(255, 255, 255, 0.9) !important;
+    font-weight: 500 !important;
+}
+
 /* Light Theme overrides for Floating Thumbnails Panel */
 html.theme-blue-white .hero-thumbs-container,
-html.theme-green .hero-thumbs-container {
+html.theme-green .hero-thumbs-container,
+html.theme-sand-beige .hero-thumbs-container {
     background: rgba(255, 255, 255, 0.85) !important;
     border: 1px solid rgba(0, 0, 0, 0.08) !important;
     box-shadow: 0 30px 60px rgba(15, 23, 42, 0.15) !important;
@@ -1754,7 +1889,9 @@ html.theme-green .hero-thumbs-container {
 html.theme-blue-white .hero-prev-btn,
 html.theme-blue-white .hero-next-btn,
 html.theme-green .hero-prev-btn,
-html.theme-green .hero-next-btn {
+html.theme-green .hero-next-btn,
+html.theme-sand-beige .hero-prev-btn,
+html.theme-sand-beige .hero-next-btn {
     background: rgba(0, 0, 0, 0.03) !important;
     border-color: rgba(0, 0, 0, 0.08) !important;
     color: #0F172A !important;
@@ -1774,8 +1911,16 @@ html.theme-green .hero-next-btn:hover {
     border-color: #2D5016 !important;
 }
 
+html.theme-sand-beige .hero-prev-btn:hover,
+html.theme-sand-beige .hero-next-btn:hover {
+    background: #705C4F !important;
+    color: #FFFFFF !important;
+    border-color: #705C4F !important;
+}
+
 html.theme-blue-white .hero-swiper-fraction,
-html.theme-green .hero-swiper-fraction {
+html.theme-green .hero-swiper-fraction,
+html.theme-sand-beige .hero-swiper-fraction {
     color: #0F172A !important;
 }
 
@@ -1787,6 +1932,11 @@ html.theme-blue-white .swiper-slide-thumb-active .thumb-preview-box {
 html.theme-green .swiper-slide-thumb-active .thumb-preview-box {
     border-color: #2D5016 !important;
     box-shadow: 0 0 15px rgba(45, 80, 22, 0.3) !important;
+}
+
+html.theme-sand-beige .swiper-slide-thumb-active .thumb-preview-box {
+    border-color: #705C4F !important;
+    box-shadow: 0 0 15px rgba(110, 90, 75, 0.3) !important;
 }
 
 /* Animated Search Panel under Hero overrides */
@@ -1802,12 +1952,22 @@ html.theme-green .search-panel-wrapper {
     box-shadow: 0 20px 50px rgba(45, 80, 22, 0.06) !important;
 }
 
+html.theme-sand-beige .search-panel-wrapper {
+    background: #FFFFFF !important;
+    border: 1px solid #EADEC9 !important;
+    box-shadow: 0 20px 50px rgba(110, 90, 75, 0.08) !important;
+}
+
 html.theme-blue-white .search-panel-wrapper .form-label {
     color: #2563EB !important;
 }
 
 html.theme-green .search-panel-wrapper .form-label {
     color: #2D5016 !important;
+}
+
+html.theme-sand-beige .search-panel-wrapper .form-label {
+    color: #705C4F !important;
 }
 
 /* Hero badges overrides */
@@ -1821,6 +1981,12 @@ html.theme-green .hero-luxe-badge {
     background: rgba(45, 80, 22, 0.08) !important;
     color: #2D5016 !important;
     border: 1px solid rgba(45, 80, 22, 0.2) !important;
+}
+
+html.theme-sand-beige .hero-luxe-badge {
+    background: rgba(110, 90, 75, 0.08) !important;
+    color: #705C4F !important;
+    border: 1px solid rgba(110, 90, 75, 0.2) !important;
 }
 
 
@@ -1857,6 +2023,23 @@ html.theme-green .luxury-input-text-sm:focus,
 html.theme-green .form-control:focus {
     border-color: #2D5016 !important;
     box-shadow: 0 0 0 3px rgba(45, 80, 22, 0.15) !important;
+}
+
+html.theme-sand-beige .luxury-input,
+html.theme-sand-beige .luxury-input-text,
+html.theme-sand-beige .luxury-input-text-sm,
+html.theme-sand-beige .form-control {
+    background: #FFFFFF !important;
+    border: 1px solid #EADEC9 !important;
+    color: #3A322C !important;
+}
+
+html.theme-sand-beige .luxury-input:focus,
+html.theme-sand-beige .luxury-input-text:focus,
+html.theme-sand-beige .luxury-input-text-sm:focus,
+html.theme-sand-beige .form-control:focus {
+    border-color: #705C4F !important;
+    box-shadow: 0 0 0 3px rgba(110, 90, 75, 0.15) !important;
 }
 
 
@@ -1898,6 +2081,24 @@ html.theme-green .property-construction-tag {
     border-color: rgba(45, 80, 22, 0.25) !important;
 }
 
+html.theme-sand-beige .property-status-tag {
+    background: rgba(255, 255, 255, 0.9) !important;
+    color: #3A322C !important;
+    border-color: #EADEC9 !important;
+}
+
+html.theme-sand-beige .property-featured-tag {
+    background: #705C4F !important;
+    color: #FFFFFF !important;
+    box-shadow: 0 4px 12px rgba(110, 90, 75, 0.3) !important;
+}
+
+html.theme-sand-beige .property-construction-tag {
+    background: rgba(255, 255, 255, 0.9) !important;
+    color: #705C4F !important;
+    border-color: rgba(110, 90, 75, 0.25) !important;
+}
+
 /* Scrollbars overrides */
 html.theme-blue-white ::-webkit-scrollbar-track {
     background: #F1F5F9;
@@ -1921,6 +2122,18 @@ html.theme-green ::-webkit-scrollbar-thumb {
 
 html.theme-green ::-webkit-scrollbar-thumb:hover {
     background: #2D5016;
+}
+
+html.theme-sand-beige ::-webkit-scrollbar-track {
+    background: #F4EFEA;
+}
+
+html.theme-sand-beige ::-webkit-scrollbar-thumb {
+    background: #EADEC9;
+}
+
+html.theme-sand-beige ::-webkit-scrollbar-thumb:hover {
+    background: #705C4F;
 }
 
 /* Preloader custom overrides */
@@ -1956,6 +2169,22 @@ html.theme-green .preloader-bar-fill {
     background: #2D5016 !important;
 }
 
+html.theme-sand-beige #preloader {
+    background-color: #F4EFEA !important;
+}
+
+html.theme-sand-beige .preloader-logo-text {
+    color: #705C4F !important;
+}
+
+html.theme-sand-beige .preloader-bar {
+    background: rgba(110, 90, 75, 0.1) !important;
+}
+
+html.theme-sand-beige .preloader-bar-fill {
+    background: #705C4F !important;
+}
+
 /* Swiper navigation bullets */
 html.theme-blue-white .swiper-nav-luxe,
 html.theme-blue-white .swiper-pagination-bullet-active {
@@ -1967,6 +2196,12 @@ html.theme-green .swiper-nav-luxe,
 html.theme-green .swiper-pagination-bullet-active {
     color: #2D5016 !important;
     background: #2D5016 !important;
+}
+
+html.theme-sand-beige .swiper-nav-luxe,
+html.theme-sand-beige .swiper-pagination-bullet-active {
+    color: #705C4F !important;
+    background: #705C4F !important;
 }
 
 /* Play button pulse */
@@ -1990,6 +2225,16 @@ html.theme-green .play-btn-pulse::after {
     border-color: #2D5016 !important;
 }
 
+html.theme-sand-beige .play-btn-pulse {
+    background: #FFFFFF !important;
+    border-color: #705C4F !important;
+    color: #705C4F !important;
+}
+
+html.theme-sand-beige .play-btn-pulse::after {
+    border-color: #705C4F !important;
+}
+
 /* Footer style overrides (Keeping a dark sleek luxury footer for contrast is great, but let's make it match perfectly) */
 html.theme-blue-white .luxury-footer {
     background-color: #0F172A !important;
@@ -2001,6 +2246,11 @@ html.theme-green .luxury-footer {
     color: #C0CFB2 !important;
 }
 
+html.theme-sand-beige .luxury-footer {
+    background-color: #2C241E !important;
+    color: #C5BCB5 !important;
+}
+
 /* Enforce light colors for text elements in the footer to prevent leakage from global light theme styles */
 html.theme-blue-white .luxury-footer h1,
 html.theme-blue-white .luxury-footer h2,
@@ -2010,10 +2260,7 @@ html.theme-blue-white .luxury-footer h5,
 html.theme-blue-white .luxury-footer h6,
 html.theme-blue-white .luxury-footer .text-white,
 html.theme-blue-white .luxury-footer .brand-logo-footer,
-html.theme-blue-white .luxury-footer .navbar-brand {
-    color: #FFFFFF !important;
-}
-
+html.theme-blue-white .luxury-footer .navbar-brand,
 html.theme-green .luxury-footer h1,
 html.theme-green .luxury-footer h2,
 html.theme-green .luxury-footer h3,
@@ -2022,13 +2269,23 @@ html.theme-green .luxury-footer h5,
 html.theme-green .luxury-footer h6,
 html.theme-green .luxury-footer .text-white,
 html.theme-green .luxury-footer .brand-logo-footer,
-html.theme-green .luxury-footer .navbar-brand {
+html.theme-green .luxury-footer .navbar-brand,
+html.theme-sand-beige .luxury-footer h1,
+html.theme-sand-beige .luxury-footer h2,
+html.theme-sand-beige .luxury-footer h3,
+html.theme-sand-beige .luxury-footer h4,
+html.theme-sand-beige .luxury-footer h5,
+html.theme-sand-beige .luxury-footer h6,
+html.theme-sand-beige .luxury-footer .text-white,
+html.theme-sand-beige .luxury-footer .brand-logo-footer,
+html.theme-sand-beige .luxury-footer .navbar-brand {
     color: #FFFFFF !important;
 }
 
 /* Enforce accent gold for headings in both footer themes */
 html.theme-blue-white .luxury-footer .text-gold-accent,
-html.theme-green .luxury-footer .text-gold-accent {
+html.theme-green .luxury-footer .text-gold-accent,
+html.theme-sand-beige .luxury-footer .text-gold-accent {
     color: #F59E0B !important;
 }
 
@@ -2040,6 +2297,10 @@ html.theme-blue-white .luxury-footer .text-secondary {
 html.theme-green .luxury-footer p,
 html.theme-green .luxury-footer .text-secondary {
     color: #C0CFB2 !important;
+}
+html.theme-sand-beige .luxury-footer p,
+html.theme-sand-beige .luxury-footer .text-secondary {
+    color: #C5BCB5 !important;
 }
 
 /* Enforce appropriate link styles in footer */
@@ -2063,6 +2324,16 @@ html.theme-green .luxury-footer a.footer-link:hover {
     color: #FFFFFF !important;
 }
 
+html.theme-sand-beige .luxury-footer .footer-link,
+html.theme-sand-beige .luxury-footer a.footer-link {
+    color: #C5BCB5 !important;
+    transition: color 0.3s ease;
+}
+html.theme-sand-beige .luxury-footer .footer-link:hover,
+html.theme-sand-beige .luxury-footer a.footer-link:hover {
+    color: #FFFFFF !important;
+}
+
 html.theme-blue-white .social-circle-link {
     background: rgba(255, 255, 255, 0.03) !important;
     border-color: rgba(255, 255, 255, 0.08) !important;
@@ -2083,14 +2354,20 @@ html.theme-green .social-circle-link:hover {
     color: #FFFFFF !important;
 }
 
-/* Newsletter Input */
-html.theme-blue-white .newsletter-input {
-    background: rgba(255, 255, 255, 0.05) !important;
-    border-color: rgba(255, 255, 255, 0.1) !important;
+html.theme-sand-beige .social-circle-link {
+    background: rgba(255, 255, 255, 0.03) !important;
+    border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+html.theme-sand-beige .social-circle-link:hover {
+    background: #705C4F !important;
     color: #FFFFFF !important;
 }
 
-html.theme-green .newsletter-input {
+/* Newsletter Input */
+html.theme-blue-white .newsletter-input,
+html.theme-green .newsletter-input,
+html.theme-sand-beige .newsletter-input {
     background: rgba(255, 255, 255, 0.05) !important;
     border-color: rgba(255, 255, 255, 0.1) !important;
     color: #FFFFFF !important;
@@ -2117,22 +2394,14 @@ html.theme-green .amenity-checkbox-wrapper:hover {
     border-color: rgba(45, 80, 22, 0.2) !important;
 }
 
-/* Pagination overrides */
-html.theme-blue-white .pagination-luxury .page-link {
+html.theme-sand-beige .amenity-checkbox-wrapper {
     background: #FFFFFF !important;
-    border-color: #CBD5E1 !important;
-    color: #334155 !important;
+    border-color: #EADEC9 !important;
 }
 
-html.theme-blue-white .pagination-luxury .page-item.active .page-link {
-    background: #2563EB !important;
-    color: #FFFFFF !important;
-    border-color: #2563EB !important;
-}
-
-html.theme-blue-white .pagination-luxury .page-link:hover {
-    background: #F1F5F9 !important;
-    border-color: #2563EB !important;
+html.theme-sand-beige .amenity-checkbox-wrapper:hover {
+    background: rgba(110, 90, 75, 0.05) !important;
+    border-color: rgba(110, 90, 75, 0.2) !important;
 }
 
 /* Pagination overrides */
@@ -2170,10 +2439,28 @@ html.theme-green .pagination-luxury .page-link:hover {
     border-color: #2D5016 !important;
 }
 
+html.theme-sand-beige .pagination-luxury .page-link {
+    background: #FFFFFF !important;
+    border-color: #EADEC9 !important;
+    color: #3A322C !important;
+}
+
+html.theme-sand-beige .pagination-luxury .page-item.active .page-link {
+    background: #705C4F !important;
+    color: #FFFFFF !important;
+    border-color: #705C4F !important;
+}
+
+html.theme-sand-beige .pagination-luxury .page-link:hover {
+    background: #F4EFEA !important;
+    border-color: #705C4F !important;
+}
+
 
 /* --- Endorsements Section Overrides & Redesign --- */
 html.theme-blue-white .testimonials-swiper .glass-card-dark,
-html.theme-green .testimonials-swiper .glass-card-dark {
+html.theme-green .testimonials-swiper .glass-card-dark,
+html.theme-sand-beige .testimonials-swiper .glass-card-dark {
     transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s ease, border-color 0.3s;
 }
 
@@ -2189,6 +2476,12 @@ html.theme-green .testimonials-swiper .glass-card-dark:hover {
     border-color: #2D5016 !important;
 }
 
+html.theme-sand-beige .testimonials-swiper .glass-card-dark:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 30px 60px rgba(110, 90, 75, 0.08) !important;
+    border-color: #705C4F !important;
+}
+
 /* Quote icons inside testimonials */
 html.theme-blue-white .testimonials-swiper .fa-quote-left {
     color: #2563EB !important;
@@ -2197,6 +2490,11 @@ html.theme-blue-white .testimonials-swiper .fa-quote-left {
 
 html.theme-green .testimonials-swiper .fa-quote-left {
     color: #2D5016 !important;
+    opacity: 0.15 !important;
+}
+
+html.theme-sand-beige .testimonials-swiper .fa-quote-left {
+    color: #705C4F !important;
     opacity: 0.15 !important;
 }
 
@@ -2209,11 +2507,17 @@ html.theme-green .testimonials-pagination .swiper-pagination-bullet-active {
     background: #2D5016 !important;
 }
 
+html.theme-sand-beige .testimonials-pagination .swiper-pagination-bullet-active {
+    background: #705C4F !important;
+}
+
 /* Keep video review card text white against the dark video thumbnail background */
 html.theme-blue-white .video-testimonial-card .text-white,
 html.theme-green .video-testimonial-card .text-white,
+html.theme-sand-beige .video-testimonial-card .text-white,
 html.theme-blue-white .video-testimonial-card h6,
-html.theme-green .video-testimonial-card h6 {
+html.theme-green .video-testimonial-card h6,
+html.theme-sand-beige .video-testimonial-card h6 {
     color: #FFFFFF !important;
 }
 
@@ -2265,6 +2569,13 @@ html.theme-green .theme-switcher-btn {
     box-shadow: 0 10px 30px rgba(45, 80, 22, 0.15);
 }
 
+html.theme-sand-beige .theme-switcher-btn {
+    background: rgba(255, 255, 255, 0.8);
+    border-color: rgba(110, 90, 75, 0.2);
+    color: #705C4F;
+    box-shadow: 0 10px 30px rgba(110, 90, 75, 0.15);
+}
+
 .theme-switcher-panel {
     position: absolute;
     bottom: 75px;
@@ -2301,6 +2612,12 @@ html.theme-green .theme-switcher-panel {
     box-shadow: 0 20px 50px rgba(45, 80, 22, 0.12);
 }
 
+html.theme-sand-beige .theme-switcher-panel {
+    background: rgba(255, 255, 255, 0.95);
+    border-color: rgba(0, 0, 0, 0.08);
+    box-shadow: 0 20px 50px rgba(110, 90, 75, 0.12);
+}
+
 .theme-switcher-title {
     font-family: var(--font-serif);
     font-size: 11px;
@@ -2320,6 +2637,11 @@ html.theme-blue-white .theme-switcher-title {
 
 html.theme-green .theme-switcher-title {
     color: #2D5016;
+    border-bottom-color: rgba(0, 0, 0, 0.08);
+}
+
+html.theme-sand-beige .theme-switcher-title {
+    color: #705C4F;
     border-bottom-color: rgba(0, 0, 0, 0.08);
 }
 
@@ -2396,6 +2718,25 @@ html.theme-green .theme-option-btn.active {
     font-weight: 600;
 }
 
+html.theme-sand-beige .theme-option-btn {
+    background: #F4EFEA;
+    border-color: #EADEC9;
+    color: #5C524A;
+}
+
+html.theme-sand-beige .theme-option-btn:hover {
+    background: #EADEC9;
+    border-color: #705C4F;
+    color: #3A322C;
+}
+
+html.theme-sand-beige .theme-option-btn.active {
+    background: rgba(110, 90, 75, 0.08);
+    border-color: #705C4F;
+    color: #705C4F;
+    font-weight: 600;
+}
+
 .theme-preview-circle {
     width: 20px;
     height: 20px;
@@ -2415,5 +2756,10 @@ html.theme-green .theme-option-btn.active {
 
 .theme-preview-green {
     background: linear-gradient(135deg, #F8FAF5 50%, #2D5016 50%);
+    border-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+.theme-preview-sand {
+    background: linear-gradient(135deg, #F4EFEA 50%, #705C4F 50%);
     border-color: rgba(0, 0, 0, 0.1) !important;
 }

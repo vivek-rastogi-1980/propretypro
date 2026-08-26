@@ -23,6 +23,14 @@ $seoKeywords = !empty($metaKeywords) ? $metaKeywords : ($globalSettings['seo_met
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        (function() {
+            const theme = localStorage.getItem('frontend-theme') || 'dark';
+            if (theme !== 'dark') {
+                document.documentElement.classList.add('theme-' + theme);
+            }
+        })();
+    </script>
     
     <!-- Dynamic SEO and Meta Structure -->
     <title><?php echo htmlspecialchars($seoTitle); ?></title>

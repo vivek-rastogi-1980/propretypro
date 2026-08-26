@@ -144,6 +144,50 @@ $(document).ready(function () {
 
     // --- 5. Swiper Sliders Setup ---
     
+    // Full Screen Hero Slideshow
+    if (document.querySelector('.hero-main-swiper')) {
+        const heroThumbsSwiper = new Swiper('.hero-thumbs-swiper', {
+            spaceBetween: 12,
+            slidesPerView: 3,
+            freeMode: true,
+            watchSlidesProgress: true,
+        });
+
+        const heroMainSwiper = new Swiper('.hero-main-swiper', {
+            spaceBetween: 0,
+            effect: 'fade',
+            fadeEffect: {
+                crossFade: true
+            },
+            speed: 1200,
+            autoplay: {
+                delay: 6000,
+                disableOnInteraction: false,
+            },
+            thumbs: {
+                swiper: heroThumbsSwiper,
+            },
+            navigation: {
+                nextEl: '.hero-next-btn',
+                prevEl: '.hero-prev-btn',
+            },
+            on: {
+                init: function () {
+                    updateFraction(this);
+                },
+                slideChange: function () {
+                    updateFraction(this);
+                }
+            }
+        });
+
+        function updateFraction(swiper) {
+            const current = swiper.realIndex + 1;
+            const total = swiper.slides.length;
+            $('.hero-swiper-fraction').text(current + ' / ' + total);
+        }
+    }
+
     // Homepage Featured Carousel
     if (document.querySelector('.featured-swiper')) {
         new Swiper('.featured-swiper', {
@@ -574,8 +618,79 @@ $(document).ready(function () {
             updateThemeUI(newTheme);
         });
     } else {
-        // Ensure public frontend is always in its standard dark layout
+        // Ensure admin light theme class is not present on public pages
         $('html').removeClass('admin-light-theme');
+
+        // --- Frontend Theme Switcher ---
+        const activeTheme = localStorage.getItem('frontend-theme') || 'dark';
+        applyFrontendTheme(activeTheme);
+
+        // Append the Floating Theme Switcher HTML dynamically to the body
+        const switcherHTML = `
+            <div class="theme-switcher-wrapper">
+                <button class="theme-switcher-btn" id="theme-switcher-toggle" aria-label="Switch Theme">
+                    <i class="fa-solid fa-palette"></i>
+                </button>
+                <div class="theme-switcher-panel" id="theme-switcher-panel">
+                    <div class="theme-switcher-title">Select Theme</div>
+                    <div class="theme-options-list">
+                        <button class="theme-option-btn ${activeTheme === 'dark' ? 'active' : ''}" data-theme="dark">
+                            <span>Dark Luxe</span>
+                            <span class="theme-preview-circle theme-preview-dark"></span>
+                        </button>
+                        <button class="theme-option-btn ${activeTheme === 'blue-white' ? 'active' : ''}" data-theme="blue-white">
+                            <span>Blue & White</span>
+                            <span class="theme-preview-circle theme-preview-blue"></span>
+                        </button>
+                        <button class="theme-option-btn ${activeTheme === 'green' ? 'active' : ''}" data-theme="green">
+                            <span>Westin Green</span>
+                            <span class="theme-preview-circle theme-preview-green"></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        `;
+        $('body').append(switcherHTML);
+
+        // Toggle panel visibility
+        $(document).on('click', '#theme-switcher-toggle', function (e) {
+            e.stopPropagation();
+            $('#theme-switcher-panel').toggleClass('active');
+        });
+
+        // Close panel when clicking outside
+        $(document).on('click', function (e) {
+            if (!$(e.target).closest('.theme-switcher-wrapper').length) {
+                $('#theme-switcher-panel').removeClass('active');
+            }
+        });
+
+        // Handle option click
+        $(document).on('click', '.theme-option-btn', function () {
+            const selectedTheme = $(this).data('theme');
+            $('.theme-option-btn').removeClass('active');
+            $(this).addClass('active');
+            
+            applyFrontendTheme(selectedTheme);
+            localStorage.setItem('frontend-theme', selectedTheme);
+            
+            // Close panel with a slight delay for better transition feel
+            setTimeout(function () {
+                $('#theme-switcher-panel').removeClass('active');
+            }, 300);
+        });
+
+        function applyFrontendTheme(theme) {
+            // Remove previous theme classes
+            $('html').removeClass('theme-blue-white theme-green');
+            
+            if (theme === 'blue-white') {
+                $('html').addClass('theme-blue-white');
+            } else if (theme === 'green') {
+                $('html').addClass('theme-green');
+            }
+        }
     }
 
 });
+

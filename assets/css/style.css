@@ -1691,7 +1691,7 @@ html.theme-sand-beige .btn-glass-light:hover {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to bottom, rgba(3, 7, 18, 0.25) 0%, rgba(3, 7, 18, 0.25) 60%, rgba(11, 15, 25, 0.96) 100%);
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0.4) 60%, rgba(11, 15, 25, 0.96) 100%) !important;
     z-index: 1;
 }
 
@@ -1819,62 +1819,38 @@ html.theme-sand-beige .btn-glass-light:hover {
 }
 
 /* Light Theme overrides for Hero Slideshow */
+/* Light Theme overrides for Hero Slideshow - Fading black shadow overlay to light theme background */
 html.theme-blue-white .hero-main-swiper .video-overlay-tint {
-    background: linear-gradient(to bottom, rgba(241, 245, 249, 0.2) 0%, rgba(241, 245, 249, 0.2) 60%, rgba(248, 250, 252, 0.98) 100%) !important;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0.4) 60%, #F8FAFC 100%) !important;
 }
 
 html.theme-green .hero-main-swiper .video-overlay-tint {
-    background: linear-gradient(to bottom, rgba(244, 249, 238, 0.2) 0%, rgba(244, 249, 238, 0.2) 60%, rgba(248, 250, 245, 0.98) 100%) !important;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0.4) 60%, #F8FAF5 100%) !important;
 }
 
 html.theme-sand-beige .hero-main-swiper .video-overlay-tint {
-    background: linear-gradient(to bottom, rgba(244, 239, 234, 0.2) 0%, rgba(244, 239, 234, 0.2) 60%, rgba(248, 245, 240, 0.98) 100%) !important;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0.4) 60%, #F4EFEA 100%) !important;
 }
 
-html.theme-blue-white .hero-content-col,
-html.theme-green .hero-content-col,
-html.theme-sand-beige .hero-content-col {
-    color: #1E293B !important;
-}
-
-html.theme-sand-beige .hero-content-col {
-    color: #3A322C !important;
-}
-
-html.theme-blue-white .hero-content-col h1 {
-    color: #0F172A !important;
-    text-shadow: 0 2px 20px rgba(255, 255, 255, 0.9), 0 1px 5px rgba(255, 255, 255, 0.9) !important;
+/* Enforce high-legibility white text over dark cinematic overlay for all themes in hero */
+html.theme-blue-white .hero-content-col h1,
+html.theme-green .hero-content-col h1,
+html.theme-sand-beige .hero-content-col h1,
+.hero-content-col h1 {
+    color: #FFFFFF !important;
+    text-shadow: 0 2px 15px rgba(0, 0, 0, 0.6) !important;
 }
 
 html.theme-blue-white .hero-content-col p.lead,
-html.theme-blue-white .hero-content-col .text-light-muted {
-    color: #1E293B !important;
-    text-shadow: 0 2px 15px rgba(255, 255, 255, 0.95), 0 1px 3px rgba(255, 255, 255, 0.9) !important;
-    font-weight: 500 !important;
-}
-
-html.theme-green .hero-content-col h1 {
-    color: #2D5016 !important;
-    text-shadow: 0 2px 20px rgba(255, 255, 255, 0.9), 0 1px 5px rgba(255, 255, 255, 0.9) !important;
-}
-
+html.theme-blue-white .hero-content-col .text-light-muted,
 html.theme-green .hero-content-col p.lead,
-html.theme-green .hero-content-col .text-light-muted {
-    color: #2D5016 !important;
-    text-shadow: 0 2px 15px rgba(255, 255, 255, 0.95), 0 1px 3px rgba(255, 255, 255, 0.9) !important;
-    font-weight: 600 !important;
-}
-
-html.theme-sand-beige .hero-content-col h1 {
-    color: #4A3E36 !important;
-    text-shadow: 0 2px 20px rgba(255, 255, 255, 0.9), 0 1px 5px rgba(255, 255, 255, 0.9) !important;
-}
-
+html.theme-green .hero-content-col .text-light-muted,
 html.theme-sand-beige .hero-content-col p.lead,
-html.theme-sand-beige .hero-content-col .text-light-muted {
-    color: #3A322C !important;
-    text-shadow: 0 2px 15px rgba(255, 255, 255, 0.95), 0 1px 3px rgba(255, 255, 255, 0.9) !important;
-    font-weight: 500 !important;
+html.theme-sand-beige .hero-content-col .text-light-muted,
+.hero-content-col p.lead,
+.hero-content-col .text-light-muted {
+    color: rgba(255, 255, 255, 0.85) !important;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5) !important;
 }
 
 /* Light Theme overrides for Floating Thumbnails Panel */

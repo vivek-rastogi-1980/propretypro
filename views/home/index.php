@@ -28,7 +28,6 @@
                     <div class="container h-100 position-relative z-2 d-flex align-items-center">
                         <div class="row w-100">
                             <div class="col-lg-8 text-white select-none hero-content-col">
-                                <span class="badge hero-luxe-badge mb-3 animated-hero-item"><i class="fa-solid fa-gem text-warning me-2"></i>CURATED PORTFOLIO</span>
                                 <h1 class="display-2 font-cinzel fw-bold mb-4 animated-hero-item">
                                     <?php echo htmlspecialchars($slide['title']); ?>
                                 </h1>
@@ -39,10 +38,6 @@
                                     <a href="<?php echo BASE_URL . 'property/' . $slide['slug']; ?>" class="btn btn-premium px-5 py-3 d-inline-flex align-items-center justify-content-center">
                                         <span>Explore Listing</span><i class="fa-solid fa-arrow-right ms-3 text-warning"></i>
                                     </a>
-                                    <div class="hero-price-tag d-flex align-items-center ms-lg-4 mt-3 mt-sm-0">
-                                        <span class="text-light-muted me-2 small uppercase">OFFERED AT</span>
-                                        <span class="fs-3 fw-bold text-gradient font-cinzel">$<?php echo number_format($slide['price']); ?></span>
-                                    </div>
                                 </div>
                             </div>
                         </div>

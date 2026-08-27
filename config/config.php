@@ -17,6 +17,7 @@ define('DB_NAME', 'real_estate_db');
 define('DB_USER', 'root');
 define('DB_PASS', '');
 */
+
 // Base URL Auto-Detection
 $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || ($_SERVER['SERVER_PORT'] ?? 80) == 443) ? "https://" : "http://";
 $domainName = $_SERVER['HTTP_HOST'] ?? 'localhost';

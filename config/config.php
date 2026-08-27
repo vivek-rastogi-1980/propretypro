@@ -5,6 +5,7 @@
 
 // Database configuration
 
+/*
 define('DB_HOST', '127.0.0.1');
 define('DB_NAME', 'u288997229_propertypro');
 define('DB_USER', 'u288997229_propertypro');
@@ -15,6 +16,7 @@ define('DB_HOST', '127.0.0.1');
 define('DB_NAME', 'real_estate_db');
 define('DB_USER', 'root');
 define('DB_PASS', '');
+*/
 
 */
 // Base URL Auto-Detection

@@ -72,7 +72,15 @@ use App\Helpers\CSRFHelper;
                                         <img src="<?php echo BASE_URL . ($prop['image_path'] ?? 'assets/images/default_property.png'); ?>" class="w-100 h-100 object-fit-cover">
                                     </div>
                                     <div>
-                                        <div class="fw-bold text-white"><?php echo htmlspecialchars($prop['title']); ?></div>
+                                        <div class="fw-bold text-white d-flex align-items-center gap-2 flex-wrap">
+                                            <span><?php echo htmlspecialchars($prop['title']); ?></span>
+                                            <?php if ($prop['is_featured']): ?>
+                                                <span class="badge bg-primary text-white py-1 px-1.5" style="font-size: 9px;" title="Featured"><i class="fa-solid fa-star text-warning"></i></span>
+                                            <?php endif; ?>
+                                            <?php if ($prop['in_slider']): ?>
+                                                <span class="badge bg-warning text-dark py-1 px-1.5" style="font-size: 9px;" title="Slideshow"><i class="fa-solid fa-images"></i></span>
+                                            <?php endif; ?>
+                                        </div>
                                         <div class="text-secondary fs-xs"><i class="fa-solid fa-location-dot me-1 text-warning"></i><?php echo htmlspecialchars($prop['location']); ?></div>
                                     </div>
                                 </div>

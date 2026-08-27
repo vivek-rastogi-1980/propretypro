@@ -248,9 +248,13 @@ use App\Helpers\CSRFHelper;
                     <input class="form-check-input text-warning" type="checkbox" name="is_featured" value="1" id="isFeaturedSwitch" <?php echo (isset($old['is_featured']) && $old['is_featured'] == 1) ? 'checked' : ''; ?>>
                     <label class="form-check-label text-white small fw-bold" for="isFeaturedSwitch"><i class="fa-solid fa-award text-warning me-2"></i>Feature Listing</label>
                 </div>
-                <div class="form-check form-switch">
+                <div class="form-check form-switch me-4">
                     <input class="form-check-input text-warning" type="checkbox" name="is_published" value="1" id="isPublishedSwitch" <?php echo (!isset($old) || (isset($old['is_published']) && $old['is_published'] == 1)) ? 'checked' : ''; ?>>
                     <label class="form-check-label text-white small fw-bold" for="isPublishedSwitch"><i class="fa-solid fa-circle-check text-success me-2"></i>Publish Immediately</label>
+                </div>
+                <div class="form-check form-switch">
+                    <input class="form-check-input text-warning" type="checkbox" name="in_slider" value="1" id="inSliderSwitch" <?php echo (isset($old['in_slider']) && $old['in_slider'] == 1) ? 'checked' : ''; ?>>
+                    <label class="form-check-label text-white small fw-bold" for="inSliderSwitch"><i class="fa-solid fa-images text-warning me-2"></i>Show in Hero Slideshow</label>
                 </div>
             </div>
             <button type="submit" class="btn btn-gold-solid px-5 py-3 font-cinzel uppercase tracking-widest fw-bold">

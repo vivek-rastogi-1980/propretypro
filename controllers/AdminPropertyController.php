@@ -80,6 +80,7 @@ class AdminPropertyController extends Controller {
         $fullDescription = $_POST['full_description'] ?? '';
         $isFeatured = isset($_POST['is_featured']) ? 1 : 0;
         $isPublished = isset($_POST['is_published']) ? 1 : 0;
+        $inSlider = isset($_POST['in_slider']) ? 1 : 0;
 
         // New fields
         $reraNumber = $_POST['rera_number'] ?? '';
@@ -124,6 +125,8 @@ class AdminPropertyController extends Controller {
             'amenities' => $amenitiesJson,
             'is_featured' => $isFeatured,
             'is_published' => $isPublished,
+            'in_slider' => $inSlider,
+            'slider_image' => null,
             'rera_number' => ValidationHelper::cleanInput($reraNumber),
             'construction_status' => ValidationHelper::cleanInput($constructionStatus),
             'availability_status' => ValidationHelper::cleanInput($availabilityStatus),
@@ -307,6 +310,7 @@ class AdminPropertyController extends Controller {
         $fullDescription = $_POST['full_description'] ?? '';
         $isFeatured = isset($_POST['is_featured']) ? 1 : 0;
         $isPublished = isset($_POST['is_published']) ? 1 : 0;
+        $inSlider = isset($_POST['in_slider']) ? 1 : 0;
 
         // New fields
         $reraNumber = $_POST['rera_number'] ?? '';
@@ -409,6 +413,8 @@ class AdminPropertyController extends Controller {
             'amenities' => $amenitiesJson,
             'is_featured' => $isFeatured,
             'is_published' => $isPublished,
+            'in_slider' => $inSlider,
+            'slider_image' => $property['slider_image'] ?? null,
             'rera_number' => ValidationHelper::cleanInput($reraNumber),
             'construction_status' => ValidationHelper::cleanInput($constructionStatus),
             'availability_status' => ValidationHelper::cleanInput($availabilityStatus),
@@ -570,6 +576,25 @@ class AdminPropertyController extends Controller {
         }
 
         $this->json(['success' => false, 'message' => 'Failed to update featured image.'], 400);
+    }
+
+    /**
+     * AJAX endpoint: Set slider image
+     */
+    public function setSliderImage(): void {
+        CSRFHelper::verifyPost();
+
+        $propertyId = (int)($_POST['property_id'] ?? 0);
+        $imageId = (int)($_POST['image_id'] ?? 0);
+
+        if ($propertyId > 0 && $imageId > 0) {
+            $result = Property::setSliderImage($propertyId, $imageId);
+            if ($result) {
+                $this->json(['success' => true, 'message' => 'Slider image updated successfully.']);
+            }
+        }
+
+        $this->json(['success' => false, 'message' => 'Failed to update slider image.'], 400);
     }
 
     /**

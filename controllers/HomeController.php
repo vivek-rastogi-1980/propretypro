@@ -16,11 +16,13 @@ class HomeController extends Controller {
      * Homepage
      */
     public function index(): void {
+        $slider = Property::getSliderProperties();
         $featured = Property::getFeatured(6);
         $latest = Property::getLatest(6);
         $categories = Category::getAll();
 
         $this->render('home/index', [
+            'sliderProperties' => $slider,
             'featuredProperties' => $featured,
             'latestProperties' => $latest,
             'categories' => $categories

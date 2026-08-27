@@ -99,6 +99,7 @@ $router->post('admin/properties/delete/{id}', 'AdminPropertyController@delete');
 $router->post('admin/properties/duplicate/{id}', 'AdminPropertyController@duplicate');
 $router->post('admin/properties/delete-image', 'AdminPropertyController@deleteImage');
 $router->post('admin/properties/set-featured-image', 'AdminPropertyController@setFeaturedImage');
+$router->post('admin/properties/set-slider-image', 'AdminPropertyController@setSliderImage');
 
 // Admin Media Library
 $router->get('admin/media', 'AdminController@mediaLibrary');

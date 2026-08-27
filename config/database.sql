@@ -38,6 +38,8 @@ CREATE TABLE IF NOT EXISTS `properties` (
   `amenities` TEXT DEFAULT NULL, -- JSON array of amenities
   `is_featured` TINYINT(1) NOT NULL DEFAULT 0,
   `is_published` TINYINT(1) NOT NULL DEFAULT 1,
+  `in_slider` TINYINT(1) NOT NULL DEFAULT 0,
+  `slider_image` VARCHAR(255) DEFAULT NULL,
   `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE RESTRICT

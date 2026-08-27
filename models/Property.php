@@ -260,14 +260,14 @@ class Property extends Model {
                 full_description, amenities, is_featured, is_published,
                 rera_number, construction_status, availability_status, google_map_embed,
                 pdf_brochure, floor_plans, meta_title, meta_description,
-                meta_keywords, videos, three_sixty_tour_url
+                meta_keywords, videos, three_sixty_tour_url, in_slider, slider_image
             ) VALUES (
                 :title, :slug, :category_id, :status, :price, :location, 
                 :bedrooms, :bathrooms, :area, :short_description, 
                 :full_description, :amenities, :is_featured, :is_published,
                 :rera_number, :construction_status, :availability_status, :google_map_embed,
                 :pdf_brochure, :floor_plans, :meta_title, :meta_description,
-                :meta_keywords, :videos, :three_sixty_tour_url
+                :meta_keywords, :videos, :three_sixty_tour_url, :in_slider, :slider_image
             )
         ");
 
@@ -296,7 +296,9 @@ class Property extends Model {
             'meta_description' => $data['meta_description'] ?? null,
             'meta_keywords' => $data['meta_keywords'] ?? null,
             'videos' => $data['videos'] ?? null, // JSON string
-            'three_sixty_tour_url' => $data['three_sixty_tour_url'] ?? null
+            'three_sixty_tour_url' => $data['three_sixty_tour_url'] ?? null,
+            'in_slider' => $data['in_slider'] ?? 0,
+            'slider_image' => $data['slider_image'] ?? null
         ]);
 
         return (int)self::$db->lastInsertId();
@@ -334,7 +336,9 @@ class Property extends Model {
                 meta_description = :meta_description,
                 meta_keywords = :meta_keywords,
                 videos = :videos,
-                three_sixty_tour_url = :three_sixty_tour_url
+                three_sixty_tour_url = :three_sixty_tour_url,
+                in_slider = :in_slider,
+                slider_image = :slider_image
             WHERE id = :id
         ");
 
@@ -364,8 +368,31 @@ class Property extends Model {
             'meta_description' => $data['meta_description'] ?? null,
             'meta_keywords' => $data['meta_keywords'] ?? null,
             'videos' => $data['videos'] ?? null,
-            'three_sixty_tour_url' => $data['three_sixty_tour_url'] ?? null
+            'three_sixty_tour_url' => $data['three_sixty_tour_url'] ?? null,
+            'in_slider' => $data['in_slider'] ?? 0,
+            'slider_image' => $data['slider_image'] ?? null
         ]);
+    }
+
+    /**
+     * Retrieve properties to display in the hero slideshow
+     */
+    public static function getSliderProperties(): array {
+        self::initDB();
+        $stmt = self::$db->prepare("
+            SELECT p.*, c.name as category_name, 
+                   COALESCE(
+                       p.slider_image,
+                       (SELECT image_path FROM property_images WHERE property_id = p.id AND is_featured = 1 LIMIT 1),
+                       (SELECT image_path FROM property_images WHERE property_id = p.id ORDER BY id ASC LIMIT 1)
+                   ) as image_path
+            FROM properties p
+            JOIN categories c ON p.category_id = c.id
+            WHERE p.in_slider = 1 AND p.is_published = 1
+            ORDER BY p.id DESC
+        ");
+        $stmt->execute();
+        return $stmt->fetchAll();
     }
 
 
@@ -437,6 +464,25 @@ class Property extends Model {
             self::$db->rollBack();
             return false;
         }
+    }
+
+    /**
+     * Set a specific image path as the slider image
+     */
+    public static function setSliderImage(int $propertyId, int $imageId): bool {
+        self::initDB();
+        // Fetch the image path first
+        $stmt = self::$db->prepare("SELECT image_path FROM property_images WHERE id = :id AND property_id = :property_id");
+        $stmt->execute(['id' => $imageId, 'property_id' => $propertyId]);
+        $imagePath = $stmt->fetchColumn();
+        
+        if (!$imagePath) {
+            return false;
+        }
+
+        // Update the slider_image path on the property record
+        $stmt2 = self::$db->prepare("UPDATE properties SET slider_image = :image_path WHERE id = :id");
+        return $stmt2->execute(['image_path' => $imagePath, 'id' => $propertyId]);
     }
 
     /**

@@ -4,7 +4,7 @@
     <div class="swiper hero-main-swiper h-100 w-100 position-absolute top-0 start-0">
         <div class="swiper-wrapper">
             <?php 
-            $slides = !empty($featuredProperties) ? array_slice($featuredProperties, 0, 5) : [];
+            $slides = !empty($sliderProperties) ? $sliderProperties : (!empty($featuredProperties) ? array_slice($featuredProperties, 0, 5) : []);
             if (empty($slides)) {
                 // Fallback slides if no properties are found
                 $slides = [
@@ -19,7 +19,7 @@
                 ];
             }
             foreach ($slides as $slide):
-                $imgPath = str_starts_with($slide['image_path'], 'http') ? $slide['image_path'] : BASE_URL . $slide['image_path'];
+                $imgPath = !empty($slide['image_path']) && str_starts_with($slide['image_path'], 'http') ? $slide['image_path'] : (!empty($slide['image_path']) ? BASE_URL . $slide['image_path'] : BASE_URL . 'assets/images/default_property.png');
             ?>
                 <div class="swiper-slide position-relative">
                     <div class="hero-slide-bg" style="background-image: url('<?php echo $imgPath; ?>');"></div>
@@ -55,7 +55,7 @@
         <div class="swiper hero-thumbs-swiper">
             <div class="swiper-wrapper">
                 <?php foreach ($slides as $slide): 
-                    $imgPath = str_starts_with($slide['image_path'], 'http') ? $slide['image_path'] : BASE_URL . $slide['image_path'];
+                    $imgPath = !empty($slide['image_path']) && str_starts_with($slide['image_path'], 'http') ? $slide['image_path'] : (!empty($slide['image_path']) ? BASE_URL . $slide['image_path'] : BASE_URL . 'assets/images/default_property.png');
                 ?>
                     <div class="swiper-slide">
                         <div class="thumb-preview-box rounded-3 overflow-hidden position-relative border border-white border-opacity-10">

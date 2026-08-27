@@ -134,10 +134,14 @@ $videosList = json_decode($property['videos'], true) ?: [];
                                         <img src="<?php echo BASE_URL . $img['image_path']; ?>" class="w-100 h-100 object-fit-cover">
                                         <div class="admin-gallery-actions">
                                             <button type="button" class="btn btn-xs btn-primary admin-set-featured-img" data-property-id="<?php echo $property['id']; ?>" data-image-id="<?php echo $img['id']; ?>" data-action="<?php echo BASE_URL; ?>admin/properties/set-featured-image" title="Set Featured Thumbnail"><i class="fa-solid fa-star"></i></button>
+                                            <button type="button" class="btn btn-xs btn-warning admin-set-slider-img" data-property-id="<?php echo $property['id']; ?>" data-image-id="<?php echo $img['id']; ?>" data-action="<?php echo BASE_URL; ?>admin/properties/set-slider-image" title="Set Slider Image"><i class="fa-solid fa-images text-dark"></i></button>
                                             <button type="button" class="btn btn-xs btn-danger admin-delete-gallery-img" data-image-id="<?php echo $img['id']; ?>" data-action="<?php echo BASE_URL; ?>admin/properties/delete-image" title="Remove image"><i class="fa-solid fa-trash-can"></i></button>
                                         </div>
                                         <?php if ($img['is_featured'] == 1): ?>
-                                            <span class="admin-gallery-badge"><i class="fa-solid fa-star-sharp text-warning me-1"></i>Featured</span>
+                                            <span class="admin-gallery-badge bg-primary text-white"><i class="fa-solid fa-star text-warning me-1"></i>Featured</span>
+                                        <?php endif; ?>
+                                        <?php if ($img['image_path'] === $property['slider_image']): ?>
+                                            <span class="admin-gallery-badge bg-warning text-dark" style="top: 10px; left: 10px; right: auto;"><i class="fa-solid fa-images me-1"></i>Slider</span>
                                         <?php endif; ?>
                                     </div>
                                 </div>
@@ -326,9 +330,13 @@ $videosList = json_decode($property['videos'], true) ?: [];
                     <input class="form-check-input text-warning" type="checkbox" name="is_featured" value="1" id="isFeaturedSwitch" <?php echo ($property['is_featured'] == 1) ? 'checked' : ''; ?>>
                     <label class="form-check-label text-white small fw-bold" for="isFeaturedSwitch"><i class="fa-solid fa-award text-warning me-2"></i>Feature Listing</label>
                 </div>
-                <div class="form-check form-switch">
+                <div class="form-check form-switch me-4">
                     <input class="form-check-input text-warning" type="checkbox" name="is_published" value="1" id="isPublishedSwitch" <?php echo ($property['is_published'] == 1) ? 'checked' : ''; ?>>
                     <label class="form-check-label text-white small fw-bold" for="isPublishedSwitch"><i class="fa-solid fa-circle-check text-success me-2"></i>Published</label>
+                </div>
+                <div class="form-check form-switch">
+                    <input class="form-check-input text-warning" type="checkbox" name="in_slider" value="1" id="inSliderSwitch" <?php echo ($property['in_slider'] == 1) ? 'checked' : ''; ?>>
+                    <label class="form-check-label text-white small fw-bold" for="inSliderSwitch"><i class="fa-solid fa-images text-warning me-2"></i>Show in Hero Slideshow</label>
                 </div>
             </div>
             <button type="submit" class="btn btn-gold-solid px-5 py-3 font-cinzel uppercase tracking-widest fw-bold">

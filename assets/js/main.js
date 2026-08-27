@@ -564,6 +564,37 @@ $(document).ready(function () {
         });
     });
 
+    // Admin Action: Set Slider Image
+    $('.admin-set-slider-img').on('click', function (e) {
+        e.preventDefault();
+
+        const btn = $(this);
+        const propertyId = btn.data('property-id');
+        const imageId = btn.data('image-id');
+        const csrfToken = $('meta[name="csrf-token"]').attr('content');
+
+        $.ajax({
+            url: btn.data('action'),
+            method: 'POST',
+            data: {
+                property_id: propertyId,
+                image_id: imageId,
+                csrf_token: csrfToken
+            },
+            dataType: 'json',
+            success: function (response) {
+                if (response.success) {
+                    alert('Slider image updated successfully.');
+                    window.location.reload();
+                }
+            },
+            error: function (xhr) {
+                const response = xhr.responseJSON;
+                alert(response && response.message ? response.message : 'Failed to update slider image.');
+            }
+        });
+    });
+
     // Dynamic Slug Generator
     $('#property-title-input').on('blur', function() {
         const titleInput = $(this);

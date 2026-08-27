@@ -4,8 +4,6 @@
  */
 
 // Database configuration
-
-/*
 define('DB_HOST', '127.0.0.1');
 define('DB_NAME', 'u288997229_propertypro');
 define('DB_USER', 'u288997229_propertypro');

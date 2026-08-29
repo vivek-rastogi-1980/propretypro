@@ -4,13 +4,13 @@ use App\Helpers\CSRFHelper;
 
 <!-- Cinematic Header -->
 <section class="luxury-inner-hero position-relative d-flex align-items-center overflow-hidden">
-    <div class="inner-hero-bg" style="background-image: url('https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=80');"></div>
+    <div class="inner-hero-bg" style="background-image: url('<?php echo !empty($globalSettings['contact_hero_image']) ? BASE_URL . $globalSettings['contact_hero_image'] : 'https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=80'; ?>');"></div>
     <div class="video-overlay-tint"></div>
     
     <div class="container position-relative z-1 text-center py-5">
-        <span class="badge hero-luxe-badge mb-3"><i class="fa-solid fa-gem text-warning me-2"></i>CONCIERGE DESK</span>
-        <h1 class="display-3 font-cinzel text-white fw-bold">Connect with <span class="text-gold-gradient">LuxeHaven</span></h1>
-        <p class="lead text-light-muted mx-auto" style="max-width: 600px;">Schedule private helicopter viewings, charter tours, or off-market portfolios.</p>
+        <span class="badge hero-luxe-badge mb-3"><i class="fa-solid fa-gem text-warning me-2"></i><?php echo htmlspecialchars($globalSettings['contact_hero_badge'] ?? 'CONCIERGE DESK'); ?></span>
+        <h1 class="display-3 font-cinzel text-white fw-bold"><?php echo htmlspecialchars($globalSettings['contact_hero_title'] ?? 'Connect with Vigtez Reality'); ?></h1>
+        <p class="lead text-light-muted mx-auto" style="max-width: 600px;"><?php echo htmlspecialchars($globalSettings['contact_hero_desc'] ?? 'Schedule private helicopter viewings, charter tours, or off-market portfolios.'); ?></p>
     </div>
 </section>
 
@@ -20,10 +20,10 @@ use App\Helpers\CSRFHelper;
         <div class="row g-5">
             <!-- Contact info -->
             <div class="col-lg-5 scroll-reveal-left">
-                <span class="text-gold-accent uppercase tracking-widest fw-bold d-block mb-3 fs-xs"><i class="fa-solid fa-hotel me-2"></i>OUR CHANNELS</span>
-                <h2 class="display-6 font-cinzel text-white fw-bold mb-4">Acquisition <span class="text-gold-gradient">Inquiries</span></h2>
+                <span class="text-gold-accent uppercase tracking-widest fw-bold d-block mb-3 fs-xs"><i class="fa-solid fa-hotel me-2"></i><?php echo htmlspecialchars($globalSettings['contact_channels_badge'] ?? 'OUR CHANNELS'); ?></span>
+                <h2 class="display-6 font-cinzel text-white fw-bold mb-4"><?php echo htmlspecialchars($globalSettings['contact_channels_title'] ?? 'Acquisition Inquiries'); ?></h2>
                 <p class="text-light-muted mb-5 lh-lg">
-                    Connect with our luxury partners. For ultra-high-net-worth portfolio acquisitions or private valuations, please submit the form or contact our concierge line directly.
+                    <?php echo nl2br(htmlspecialchars($globalSettings['contact_channels_desc'] ?? 'Connect with our luxury partners. For ultra-high-net-worth portfolio acquisitions or private valuations, please submit the form or contact our concierge line directly.')); ?>
                 </p>
 
                 <div class="contact-luxe-details">
@@ -59,7 +59,7 @@ use App\Helpers\CSRFHelper;
                         <div class="contact-icon-circle me-3"><i class="fa-solid fa-clock text-warning"></i></div>
                         <div>
                             <h6 class="text-white font-cinzel mb-1 fw-bold">Business Hours</h6>
-                            <p class="text-secondary small mb-0">Monday – Saturday: 9:00 AM – 6:00 PM PST<br>Private emergency hotline: 24/7 (Registered Clients)</p>
+                            <p class="text-secondary small mb-0"><?php echo $globalSettings['contact_business_hours'] ?? 'Monday – Saturday: 9:00 AM – 6:00 PM PST<br>Private emergency hotline: 24/7 (Registered Clients)'; ?></p>
                         </div>
                     </div>
                 </div>
@@ -68,8 +68,8 @@ use App\Helpers\CSRFHelper;
             <!-- Form -->
             <div class="col-lg-7 scroll-reveal-right">
                 <div class="glass-card-dark p-5 rounded-4 border-secondary border-opacity-15 shadow-2xl">
-                    <span class="text-gold-accent uppercase tracking-widest fw-bold d-block mb-3 fs-xs">SUBMIT ENQUIRY</span>
-                    <h3 class="font-cinzel text-white fw-bold mb-4">Schedule a Private Viewing</h3>
+                    <span class="text-gold-accent uppercase tracking-widest fw-bold d-block mb-3 fs-xs"><?php echo htmlspecialchars($globalSettings['contact_form_badge'] ?? 'SUBMIT ENQUIRY'); ?></span>
+                    <h3 class="font-cinzel text-white fw-bold mb-4"><?php echo htmlspecialchars($globalSettings['contact_form_title'] ?? 'Schedule a Private Viewing'); ?></h3>
                     
                     <form action="<?php echo BASE_URL; ?>contact/submit" method="POST" class="ajax-enquiry-form mt-4">
                         <?php echo CSRFHelper::getTokenField(); ?>
@@ -106,4 +106,3 @@ use App\Helpers\CSRFHelper;
         </div>
     </div>
 </section>
-

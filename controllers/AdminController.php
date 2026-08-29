@@ -273,6 +273,186 @@ class AdminController extends Controller {
     }
 
     /**
+     * Pages content configuration UI
+     */
+    public function pages(): void {
+        AuthHelper::requireLogin();
+        
+        $settings = Setting::getAll();
+
+        $this->render('admin/pages', [
+            'pageTitle' => 'Manage Pages Content',
+            'settings' => $settings
+        ], 'admin');
+    }
+
+    /**
+     * Save pages content modifications and upload images
+     */
+    public function savePages(): void {
+        AuthHelper::requireLogin();
+        CSRFHelper::verifyPost();
+
+        // Get all current settings so we don't overwrite existing paths if no new file is uploaded
+        $currentSettings = Setting::getAll();
+
+        $pagesData = [
+            // Home page
+            'home_overview_badge' => ValidationHelper::cleanInput($_POST['home_overview_badge'] ?? ''),
+            'home_overview_title' => ValidationHelper::cleanInput($_POST['home_overview_title'] ?? ''),
+            'home_overview_desc_1' => ValidationHelper::cleanInput($_POST['home_overview_desc_1'] ?? ''),
+            'home_overview_desc_2' => ValidationHelper::cleanInput($_POST['home_overview_desc_2'] ?? ''),
+            'home_overview_quote' => ValidationHelper::cleanInput($_POST['home_overview_quote'] ?? ''),
+            'home_overview_stat1_val' => ValidationHelper::cleanInput($_POST['home_overview_stat1_val'] ?? ''),
+            'home_overview_stat1_lbl' => ValidationHelper::cleanInput($_POST['home_overview_stat1_lbl'] ?? ''),
+            'home_overview_stat2_val' => ValidationHelper::cleanInput($_POST['home_overview_stat2_val'] ?? ''),
+            'home_overview_stat2_lbl' => ValidationHelper::cleanInput($_POST['home_overview_stat2_lbl'] ?? ''),
+            'home_stat1_num' => ValidationHelper::cleanInput($_POST['home_stat1_num'] ?? ''),
+            'home_stat1_lbl' => ValidationHelper::cleanInput($_POST['home_stat1_lbl'] ?? ''),
+            'home_stat2_num' => ValidationHelper::cleanInput($_POST['home_stat2_num'] ?? ''),
+            'home_stat2_lbl' => ValidationHelper::cleanInput($_POST['home_stat2_lbl'] ?? ''),
+            'home_stat3_num' => ValidationHelper::cleanInput($_POST['home_stat3_num'] ?? ''),
+            'home_stat3_lbl' => ValidationHelper::cleanInput($_POST['home_stat3_lbl'] ?? ''),
+            'home_stat4_num' => ValidationHelper::cleanInput($_POST['home_stat4_num'] ?? ''),
+            'home_stat4_lbl' => ValidationHelper::cleanInput($_POST['home_stat4_lbl'] ?? ''),
+            'home_testimonials_badge' => ValidationHelper::cleanInput($_POST['home_testimonials_badge'] ?? ''),
+            'home_testimonials_title' => ValidationHelper::cleanInput($_POST['home_testimonials_title'] ?? ''),
+            'home_testimonial1_text' => ValidationHelper::cleanInput($_POST['home_testimonial1_text'] ?? ''),
+            'home_testimonial1_author' => ValidationHelper::cleanInput($_POST['home_testimonial1_author'] ?? ''),
+            'home_testimonial1_role' => ValidationHelper::cleanInput($_POST['home_testimonial1_role'] ?? ''),
+            'home_testimonial2_text' => ValidationHelper::cleanInput($_POST['home_testimonial2_text'] ?? ''),
+            'home_testimonial2_author' => ValidationHelper::cleanInput($_POST['home_testimonial2_author'] ?? ''),
+            'home_testimonial2_role' => ValidationHelper::cleanInput($_POST['home_testimonial2_role'] ?? ''),
+            'home_testimonial_video_title' => ValidationHelper::cleanInput($_POST['home_testimonial_video_title'] ?? ''),
+            'home_testimonial_video_youtube_id' => ValidationHelper::cleanInput($_POST['home_testimonial_video_youtube_id'] ?? ''),
+            'home_services_badge' => ValidationHelper::cleanInput($_POST['home_services_badge'] ?? ''),
+            'home_services_title' => ValidationHelper::cleanInput($_POST['home_services_title'] ?? ''),
+            'home_service1_icon' => ValidationHelper::cleanInput($_POST['home_service1_icon'] ?? ''),
+            'home_service1_title' => ValidationHelper::cleanInput($_POST['home_service1_title'] ?? ''),
+            'home_service1_desc' => ValidationHelper::cleanInput($_POST['home_service1_desc'] ?? ''),
+            'home_service2_icon' => ValidationHelper::cleanInput($_POST['home_service2_icon'] ?? ''),
+            'home_service2_title' => ValidationHelper::cleanInput($_POST['home_service2_title'] ?? ''),
+            'home_service2_desc' => ValidationHelper::cleanInput($_POST['home_service2_desc'] ?? ''),
+            'home_service3_icon' => ValidationHelper::cleanInput($_POST['home_service3_icon'] ?? ''),
+            'home_service3_title' => ValidationHelper::cleanInput($_POST['home_service3_title'] ?? ''),
+            'home_service3_desc' => ValidationHelper::cleanInput($_POST['home_service3_desc'] ?? ''),
+            'home_faq_badge' => ValidationHelper::cleanInput($_POST['home_faq_badge'] ?? ''),
+            'home_faq_title' => ValidationHelper::cleanInput($_POST['home_faq_title'] ?? ''),
+            'home_faq1_q' => ValidationHelper::cleanInput($_POST['home_faq1_q'] ?? ''),
+            'home_faq1_a' => ValidationHelper::cleanInput($_POST['home_faq1_a'] ?? ''),
+            'home_faq2_q' => ValidationHelper::cleanInput($_POST['home_faq2_q'] ?? ''),
+            'home_faq2_a' => ValidationHelper::cleanInput($_POST['home_faq2_a'] ?? ''),
+            'home_faq3_q' => ValidationHelper::cleanInput($_POST['home_faq3_q'] ?? ''),
+            'home_faq3_a' => ValidationHelper::cleanInput($_POST['home_faq3_a'] ?? ''),
+            'home_awards_badge' => ValidationHelper::cleanInput($_POST['home_awards_badge'] ?? ''),
+            'home_awards_title' => ValidationHelper::cleanInput($_POST['home_awards_title'] ?? ''),
+            'home_award1_icon' => ValidationHelper::cleanInput($_POST['home_award1_icon'] ?? ''),
+            'home_award1_title' => ValidationHelper::cleanInput($_POST['home_award1_title'] ?? ''),
+            'home_award1_text' => ValidationHelper::cleanInput($_POST['home_award1_text'] ?? ''),
+            'home_award2_icon' => ValidationHelper::cleanInput($_POST['home_award2_icon'] ?? ''),
+            'home_award2_title' => ValidationHelper::cleanInput($_POST['home_award2_title'] ?? ''),
+            'home_award2_text' => ValidationHelper::cleanInput($_POST['home_award2_text'] ?? ''),
+            'home_award3_icon' => ValidationHelper::cleanInput($_POST['home_award3_icon'] ?? ''),
+            'home_award3_title' => ValidationHelper::cleanInput($_POST['home_award3_title'] ?? ''),
+            'home_award3_text' => ValidationHelper::cleanInput($_POST['home_award3_text'] ?? ''),
+            'home_award4_icon' => ValidationHelper::cleanInput($_POST['home_award4_icon'] ?? ''),
+            'home_award4_title' => ValidationHelper::cleanInput($_POST['home_award4_title'] ?? ''),
+            'home_award4_text' => ValidationHelper::cleanInput($_POST['home_award4_text'] ?? ''),
+            'home_cta_badge' => ValidationHelper::cleanInput($_POST['home_cta_badge'] ?? ''),
+            'home_cta_title' => ValidationHelper::cleanInput($_POST['home_cta_title'] ?? ''),
+            'home_cta_desc' => ValidationHelper::cleanInput($_POST['home_cta_desc'] ?? ''),
+            'home_cta_video_url' => ValidationHelper::cleanInput($_POST['home_cta_video_url'] ?? ''),
+
+            // About page
+            'about_hero_title' => ValidationHelper::cleanInput($_POST['about_hero_title'] ?? ''),
+            'about_hero_desc' => ValidationHelper::cleanInput($_POST['about_hero_desc'] ?? ''),
+            'about_identity_badge' => ValidationHelper::cleanInput($_POST['about_identity_badge'] ?? ''),
+            'about_identity_title' => ValidationHelper::cleanInput($_POST['about_identity_title'] ?? ''),
+            'about_identity_desc1' => ValidationHelper::cleanInput($_POST['about_identity_desc1'] ?? ''),
+            'about_identity_desc2' => ValidationHelper::cleanInput($_POST['about_identity_desc2'] ?? ''),
+            'about_identity_card1_icon' => ValidationHelper::cleanInput($_POST['about_identity_card1_icon'] ?? ''),
+            'about_identity_card1_title' => ValidationHelper::cleanInput($_POST['about_identity_card1_title'] ?? ''),
+            'about_identity_card1_text' => ValidationHelper::cleanInput($_POST['about_identity_card1_text'] ?? ''),
+            'about_identity_card2_icon' => ValidationHelper::cleanInput($_POST['about_identity_card2_icon'] ?? ''),
+            'about_identity_card2_title' => ValidationHelper::cleanInput($_POST['about_identity_card2_title'] ?? ''),
+            'about_identity_card2_text' => ValidationHelper::cleanInput($_POST['about_identity_card2_text'] ?? ''),
+            'about_leadership_badge' => ValidationHelper::cleanInput($_POST['about_leadership_badge'] ?? ''),
+            'about_leadership_title' => ValidationHelper::cleanInput($_POST['about_leadership_title'] ?? ''),
+            'about_team1_name' => ValidationHelper::cleanInput($_POST['about_team1_name'] ?? ''),
+            'about_team1_role' => ValidationHelper::cleanInput($_POST['about_team1_role'] ?? ''),
+            'about_team2_name' => ValidationHelper::cleanInput($_POST['about_team2_name'] ?? ''),
+            'about_team2_role' => ValidationHelper::cleanInput($_POST['about_team2_role'] ?? ''),
+            'about_team3_name' => ValidationHelper::cleanInput($_POST['about_team3_name'] ?? ''),
+            'about_team3_role' => ValidationHelper::cleanInput($_POST['about_team3_role'] ?? ''),
+
+            // Contact page
+            'contact_hero_badge' => ValidationHelper::cleanInput($_POST['contact_hero_badge'] ?? ''),
+            'contact_hero_title' => ValidationHelper::cleanInput($_POST['contact_hero_title'] ?? ''),
+            'contact_hero_desc' => ValidationHelper::cleanInput($_POST['contact_hero_desc'] ?? ''),
+            'contact_channels_badge' => ValidationHelper::cleanInput($_POST['contact_channels_badge'] ?? ''),
+            'contact_channels_title' => ValidationHelper::cleanInput($_POST['contact_channels_title'] ?? ''),
+            'contact_channels_desc' => ValidationHelper::cleanInput($_POST['contact_channels_desc'] ?? ''),
+            'contact_business_hours' => ValidationHelper::cleanInput($_POST['contact_business_hours'] ?? ''),
+            'contact_form_badge' => ValidationHelper::cleanInput($_POST['contact_form_badge'] ?? ''),
+            'contact_form_title' => ValidationHelper::cleanInput($_POST['contact_form_title'] ?? '')
+        ];
+
+        // Process File Uploads for Page Images
+        $errors = [];
+        $targetDir = ROOT_DIR . 'uploads/pages/';
+        if (!is_dir($targetDir)) {
+            mkdir($targetDir, 0755, true);
+        }
+
+        $imageFields = [
+            'home_overview_image',
+            'home_testimonial_video_image',
+            'about_hero_image',
+            'about_team1_image',
+            'about_team2_image',
+            'about_team3_image',
+            'contact_hero_image'
+        ];
+
+        foreach ($imageFields as $field) {
+            if (!empty($_FILES[$field]['name']) && $_FILES[$field]['error'] === UPLOAD_ERR_OK) {
+                $ext = strtolower(pathinfo($_FILES[$field]['name'], PATHINFO_EXTENSION));
+                if (in_array($ext, ['png', 'jpg', 'jpeg', 'svg', 'webp'])) {
+                    $fileName = $field . '_' . time() . '.' . $ext;
+                    if (move_uploaded_file($_FILES[$field]['tmp_name'], $targetDir . $fileName)) {
+                        $pagesData[$field] = 'uploads/pages/' . $fileName;
+                    } else {
+                        $errors[] = "Failed to move uploaded file for {$field}.";
+                    }
+                } else {
+                    $errors[] = "Invalid file extension for field " . str_replace('_', ' ', $field) . ". Only PNG, JPG, JPEG, SVG and WEBP are allowed.";
+                }
+            } else {
+                // Keep the current setting if no new file is uploaded
+                if (isset($currentSettings[$field])) {
+                    $pagesData[$field] = $currentSettings[$field];
+                } else {
+                    $pagesData[$field] = '';
+                }
+            }
+        }
+
+        if (empty($errors)) {
+            $result = Setting::updateAll($pagesData);
+            if ($result) {
+                $_SESSION['pages_success'] = "Pages content updated successfully.";
+            } else {
+                $_SESSION['pages_error'] = "Failed to update page contents in the database.";
+            }
+        } else {
+            $_SESSION['pages_error'] = implode('<br>', $errors);
+        }
+
+        header("Location: " . BASE_URL . "admin/pages");
+        exit;
+    }
+
+    /**
      * Enquiries list panel
      */
     public function enquiries(): void {
@@ -318,6 +498,46 @@ class AdminController extends Controller {
             }
         }
         $this->json(['success' => false, 'message' => 'Failed to update enquiry status.'], 400);
+    }
+
+    /**
+     * Send email reply to an enquiry via AJAX POST
+     */
+    public function replyEnquiry(): void {
+        AuthHelper::requireLogin();
+        CSRFHelper::verifyPost();
+
+        $id = (int)($_POST['id'] ?? 0);
+        $subject = ValidationHelper::cleanInput($_POST['subject'] ?? '');
+        $message = ValidationHelper::cleanInput($_POST['message'] ?? '');
+
+        if ($id <= 0 || empty($subject) || empty($message)) {
+            $this->json(['success' => false, 'message' => 'Invalid parameters. Please enter a subject and message.'], 400);
+        }
+
+        // Get enquiry details
+        self::initDB();
+        $stmt = self::$db->prepare("SELECT name, email FROM enquiries WHERE id = :id");
+        $stmt->execute(['id' => $id]);
+        $enquiry = $stmt->fetch();
+
+        if (!$enquiry) {
+            $this->json(['success' => false, 'message' => 'Enquiry not found.'], 404);
+        }
+
+        // Retrieve settings for SMTP/From email info
+        $settings = Setting::getAll();
+
+        // Send email
+        $sent = \App\Helpers\MailHelper::send($enquiry['email'], $subject, $message, $settings);
+
+        if ($sent) {
+            // Also automatically mark as read
+            Enquiry::markAsRead($id);
+            $this->json(['success' => true, 'message' => 'Your reply has been successfully sent to the client!']);
+        } else {
+            $this->json(['success' => false, 'message' => 'Failed to send reply email.'], 500);
+        }
     }
 
     /**

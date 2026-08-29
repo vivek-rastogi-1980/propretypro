@@ -6,7 +6,7 @@ use App\Helpers\CSRFHelper;
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Console Authentication | LuxeHaven Estates</title>
+    <title>Console Authentication | Vigtez Reality Estates</title>
     
     <!-- Stylesheets -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -21,7 +21,7 @@ use App\Helpers\CSRFHelper;
     <div class="glass-card-dark p-5 rounded-4 shadow-2xl border-secondary border-opacity-15 w-100" style="max-width: 450px;">
         <div class="text-center mb-4">
             <span class="text-warning display-6 mb-3 d-inline-block"><i class="fa-solid fa-hotel"></i></span>
-            <h3 class="font-cinzel text-white fw-bold mb-1">LuxeHaven</h3>
+            <h3 class="font-cinzel text-white fw-bold mb-1">Vigtez Reality</h3>
             <p class="text-secondary small tracking-widest uppercase mb-0">System Authentication</p>
         </div>
 

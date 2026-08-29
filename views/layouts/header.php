@@ -100,7 +100,7 @@ $seoKeywords = !empty($metaKeywords) ? $metaKeywords : ($globalSettings['seo_met
     <div id="preloader">
         <div class="preloader-inner">
             <div class="preloader-brand">
-                <span class="preloader-logo-text"><?php echo htmlspecialchars($globalSettings['company_name'] ?? 'LuxeHaven'); ?></span>
+                <span class="preloader-logo-text"><?php echo htmlspecialchars($globalSettings['company_name'] ?? 'Vigtez Reality'); ?></span>
                 <span class="preloader-subtitle">ESTATES</span>
             </div>
             <div class="preloader-bar">
@@ -114,9 +114,9 @@ $seoKeywords = !empty($metaKeywords) ? $metaKeywords : ($globalSettings['seo_met
         <div class="container">
             <a class="navbar-brand d-flex align-items-center" href="<?php echo BASE_URL; ?>">
                 <?php if (!empty($globalSettings['company_logo'])): ?>
-                    <img src="<?php echo BASE_URL . $globalSettings['company_logo']; ?>" alt="<?php echo htmlspecialchars($globalSettings['company_name'] ?? 'LuxeHaven'); ?>" height="45" class="me-2 brand-logo">
+                    <img src="<?php echo BASE_URL . $globalSettings['company_logo']; ?>" alt="<?php echo htmlspecialchars($globalSettings['company_name'] ?? 'Vigtez Reality'); ?>" height="45" class="me-2 brand-logo">
                 <?php else: ?>
-                    <span class="brand-text text-gradient"><i class="fa-solid fa-hotel me-2"></i><?php echo htmlspecialchars($globalSettings['company_name'] ?? 'LuxeHaven'); ?></span>
+                    <span class="brand-text text-gradient"><i class="fa-solid fa-hotel me-2"></i><?php echo htmlspecialchars($globalSettings['company_name'] ?? 'Vigtez Reality'); ?></span>
                 <?php endif; ?>
             </a>
             

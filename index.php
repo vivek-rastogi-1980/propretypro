@@ -84,10 +84,13 @@ $router->get('admin', 'AdminController@dashboard');
 $router->get('admin/dashboard', 'AdminController@dashboard');
 $router->get('admin/settings', 'AdminController@settings');
 $router->post('admin/settings', 'AdminController@saveSettings');
+$router->get('admin/pages', 'AdminController@pages');
+$router->post('admin/pages', 'AdminController@savePages');
 $router->get('admin/enquiries', 'AdminController@enquiries');
 $router->get('admin/enquiries/export', 'AdminController@exportEnquiries');
 $router->post('admin/enquiries/delete', 'AdminController@deleteEnquiry');
 $router->post('admin/enquiries/mark-read', 'AdminController@markRead');
+$router->post('admin/enquiries/reply', 'AdminController@replyEnquiry');
 
 // Admin Property CRUD
 $router->get('admin/properties', 'AdminPropertyController@index');

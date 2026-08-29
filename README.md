@@ -1,6 +1,6 @@
-# LuxeHaven Estates | Premium Luxury Real Estate Platform
+# Vigtez Reality Estates | Premium Luxury Real Estate Platform
 
-LuxeHaven Estates is an award-winning, state-of-the-art luxury real estate listing portal and customer relationship management application. Built with high-end digital aesthetics in mind, it delivers a custom bespoke user experience featuring cinematic preloaders, smooth scrolling, hardware-accelerated animations, and dynamic client-side theme selection.
+Vigtez Reality Estates is an award-winning, state-of-the-art luxury real estate listing portal and customer relationship management application. Built with high-end digital aesthetics in mind, it delivers a custom bespoke user experience featuring cinematic preloaders, smooth scrolling, hardware-accelerated animations, and dynamic client-side theme selection.
 
 ---
 
@@ -75,7 +75,7 @@ Includes a glassmorphic floating palette switcher (bottom-left) enabling seamles
    php -S localhost:8000
    ```
 5. **Open Browser**:
-   Navigate to `http://localhost:8000/` to explore LuxeHaven Estates.
+   Navigate to `http://localhost:8000/` to explore Vigtez Reality Estates.
 
 ---
 

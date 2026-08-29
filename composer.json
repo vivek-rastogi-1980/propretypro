@@ -1,6 +1,6 @@
 {
-  "name": "luxehaven/real-estate",
-  "description": "LuxeHaven Luxury Real Estate Portal",
+  "name": "vigtezreality/real-estate",
+  "description": "Vigtez Reality Luxury Real Estate Portal",
   "autoload": {
     "psr-4": {
       "App\\Controllers\\": "controllers/",

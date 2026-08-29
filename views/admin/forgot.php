@@ -6,7 +6,7 @@ use App\Helpers\CSRFHelper;
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reset Security Key | LuxeHaven Estates</title>
+    <title>Reset Security Key | Vigtez Reality Estates</title>
     
     <!-- Stylesheets -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -42,7 +42,7 @@ use App\Helpers\CSRFHelper;
 
             <div class="mb-4">
                 <label class="form-label text-secondary small fw-bold"><i class="fa-solid fa-envelope me-2"></i>Administrator Email</label>
-                <input type="email" name="email" class="form-control luxury-input-text" required placeholder="e.g. admin@luxehavenestates.com">
+                <input type="email" name="email" class="form-control luxury-input-text" required placeholder="e.g. admin@vigtezreality.com">
             </div>
 
             <button type="submit" class="btn btn-gold-solid w-100 py-3 uppercase tracking-wider small fw-bold font-cinzel mb-3">

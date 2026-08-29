@@ -27,7 +27,7 @@ class SEOHelper {
      */
     public static function getTitle(?string $customTitle = null): string {
         self::init();
-        $companyName = self::$cachedSettings['company_name'] ?? 'LuxeHaven Estates';
+        $companyName = self::$cachedSettings['company_name'] ?? 'Vigtez Reality Estates';
         $siteTitle = self::$cachedSettings['seo_title'] ?? DEFAULT_SEO_TITLE;
 
         if ($customTitle) {

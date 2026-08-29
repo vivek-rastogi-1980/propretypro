@@ -1,5 +1,5 @@
 <?php
-$companyName = htmlspecialchars($globalSettings['company_name'] ?? 'LuxeHaven Estates');
+$companyName = htmlspecialchars($globalSettings['company_name'] ?? 'Vigtez Reality Estates');
 $companyPhone = htmlspecialchars($globalSettings['company_phone'] ?? '');
 $companyEmail = htmlspecialchars($globalSettings['company_email'] ?? '');
 $officeAddress = htmlspecialchars($globalSettings['office_address'] ?? '');
@@ -24,7 +24,7 @@ $pinterest = htmlspecialchars($globalSettings['social_pinterest'] ?? '');
                         <i class="fa-solid fa-hotel me-2"></i><?php echo $companyName; ?>
                     </h4>
                     <p class="text-secondary small mb-4 lh-lg">
-                        <?php echo htmlspecialchars($globalSettings['company_description'] ?? 'Crafting environments of absolute trust, bespoke services, and unmatched luxury real estate. Experience architectural masterpieces with LuxeHaven.'); ?>
+                        <?php echo htmlspecialchars($globalSettings['company_description'] ?? 'Crafting environments of absolute trust, bespoke services, and unmatched luxury real estate. Experience architectural masterpieces with Vigtez Reality.'); ?>
                     </p>
                     <div class="footer-social-icons d-flex">
                         <?php if ($facebook): ?>

@@ -3,14 +3,14 @@ use App\Helpers\CSRFHelper;
 use App\Models\Enquiry;
 
 $unreadCount = Enquiry::getUnreadCount();
-$companyName = htmlspecialchars($globalSettings['company_name'] ?? 'LuxeHaven');
+$companyName = htmlspecialchars($globalSettings['company_name'] ?? 'Vigtez Reality');
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo $pageTitle ?? 'Admin Panel'; ?> | LuxeHaven Admin</title>
+    <title><?php echo $pageTitle ?? 'Admin Panel'; ?> | Vigtez Reality Admin</title>
     
     <!-- CSRF Token Meta -->
     <meta name="csrf-token" content="<?php echo CSRFHelper::generateToken(); ?>">
@@ -46,7 +46,7 @@ $companyName = htmlspecialchars($globalSettings['company_name'] ?? 'LuxeHaven');
         <aside class="col-md-3 col-lg-2 px-0 position-fixed start-0 top-0 d-md-block d-none admin-sidebar-luxury">
             <div class="px-4 py-4 border-bottom border-secondary border-opacity-10 mb-4 text-center">
                 <a href="<?php echo BASE_URL; ?>" class="text-decoration-none">
-                    <span class="fs-4 fw-extrabold text-gradient-light"><i class="fa-solid fa-hotel me-2"></i>LuxeHaven</span>
+                    <span class="fs-4 fw-extrabold text-gradient-light"><i class="fa-solid fa-hotel me-2"></i>Vigtez Reality</span>
                 </a>
                 <div class="small text-muted mt-2 tracking-widest uppercase fs-xs">System Console</div>
                 <div class="mt-3">
@@ -72,6 +72,9 @@ $companyName = htmlspecialchars($globalSettings['company_name'] ?? 'LuxeHaven');
                 <a class="nav-link <?php echo str_contains($_SERVER['REQUEST_URI'], 'admin/media') ? 'active' : ''; ?>" href="<?php echo BASE_URL; ?>admin/media">
                     <i class="fa-solid fa-photo-film me-3"></i> Media Library
                 </a>
+                <a class="nav-link <?php echo str_contains($_SERVER['REQUEST_URI'], 'admin/pages') ? 'active' : ''; ?>" href="<?php echo BASE_URL; ?>admin/pages">
+                    <i class="fa-solid fa-file-pen me-3"></i> Manage Pages
+                </a>
                 <a class="nav-link <?php echo str_contains($_SERVER['REQUEST_URI'], 'admin/settings') ? 'active' : ''; ?>" href="<?php echo BASE_URL; ?>admin/settings">
                     <i class="fa-solid fa-gears me-3"></i> Settings
                 </a>
@@ -91,7 +94,7 @@ $companyName = htmlspecialchars($globalSettings['company_name'] ?? 'LuxeHaven');
         <main class="col-md-9 col-lg-10 ms-auto px-md-4 px-3" style="padding-top: 30px; min-height: 100vh;">
             <header class="d-md-none d-flex justify-content-between align-items-center mb-4 py-3 px-3 glass-card rounded-4 border-secondary border-opacity-15">
                 <a href="<?php echo BASE_URL; ?>" class="text-decoration-none">
-                    <span class="fs-4 fw-bold text-gradient-light"><i class="fa-solid fa-hotel me-2"></i>LuxeHaven</span>
+                    <span class="fs-4 fw-bold text-gradient-light"><i class="fa-solid fa-hotel me-2"></i>Vigtez Reality</span>
                 </a>
                 
                 <div class="d-flex align-items-center gap-2">
@@ -110,6 +113,7 @@ $companyName = htmlspecialchars($globalSettings['company_name'] ?? 'LuxeHaven');
                         <li><a class="dropdown-item fw-semibold" href="<?php echo BASE_URL; ?>admin/properties"><i class="fa-solid fa-hotel me-2"></i>Properties</a></li>
                         <li><a class="dropdown-item fw-semibold" href="<?php echo BASE_URL; ?>admin/enquiries"><i class="fa-solid fa-envelope-open-text me-2"></i>Enquiries</a></li>
                         <li><a class="dropdown-item fw-semibold" href="<?php echo BASE_URL; ?>admin/media"><i class="fa-solid fa-photo-film me-2"></i>Media</a></li>
+                        <li><a class="dropdown-item fw-semibold" href="<?php echo BASE_URL; ?>admin/pages"><i class="fa-solid fa-file-pen me-2"></i>Manage Pages</a></li>
                         <li><a class="dropdown-item fw-semibold" href="<?php echo BASE_URL; ?>admin/settings"><i class="bi bi-gear me-2"></i>Settings</a></li>
                         <li><hr class="dropdown-divider border-secondary border-opacity-10"></li>
                         <li><a class="dropdown-item fw-semibold text-danger" href="<?php echo BASE_URL; ?>admin/logout"><i class="fa-solid fa-right-from-bracket me-2"></i>Logout</a></li>

@@ -1,5 +1,5 @@
 /**
- * LuxeHaven Estates Luxury Digital Interactions
+ * Vigtez Reality Estates Luxury Digital Interactions
  */
 $(document).ready(function () {
     
@@ -457,6 +457,69 @@ $(document).ready(function () {
             error: function () {
                 btn.prop('disabled', false);
                 alert('Failed to update enquiry status.');
+            }
+        });
+    });
+
+    // Admin Action: Auto Mark Read when View Modal opens
+    $(document).on('show.bs.modal', '.modal', function () {
+        const modal = $(this);
+        const idAttr = modal.attr('id');
+        if (idAttr && idAttr.startsWith('viewModal')) {
+            const enquiryId = idAttr.replace('viewModal', '');
+            const row = $(`tr[data-enquiry-id="${enquiryId}"]`);
+            const markReadBtn = row.find('.admin-mark-read-btn');
+            if (markReadBtn.length > 0 && !markReadBtn.prop('disabled')) {
+                markReadBtn.trigger('click');
+            }
+        }
+    });
+
+    // Admin Action: Send Email Reply AJAX
+    $(document).on('submit', '.ajax-reply-form', function (e) {
+        e.preventDefault();
+        const form = $(this);
+        const submitBtn = form.find('button[type="submit"]');
+        const responseMsg = form.find('.reply-response-message');
+        
+        submitBtn.prop('disabled', true).html('<i class="fa-solid fa-spinner fa-spin me-2"></i>Sending...');
+        responseMsg.hide().removeClass('alert alert-success alert-danger');
+
+        $.ajax({
+            url: form.attr('action'),
+            method: 'POST',
+            data: form.serialize(),
+            dataType: 'json',
+            success: function (response) {
+                submitBtn.prop('disabled', false).html('<i class="fa-solid fa-paper-plane me-2"></i>Send Email Reply');
+                if (response.success) {
+                    responseMsg.addClass('alert alert-success').text(response.message).show();
+                    form.find('textarea[name="message"]').val('');
+                    
+                    // Mark status badge as read on screens
+                    const enquiryId = form.find('input[name="id"]').val();
+                    const row = $(`tr[data-enquiry-id="${enquiryId}"]`);
+                    row.find('.enquiry-status-badge')
+                       .removeClass('bg-warning text-dark')
+                       .addClass('bg-success text-white')
+                       .text('Read');
+                    row.find('.admin-mark-read-btn').remove();
+
+                    setTimeout(function() {
+                        form.closest('.modal').modal('hide');
+                        responseMsg.hide().removeClass('alert alert-success alert-danger');
+                    }, 2000);
+                } else {
+                    responseMsg.addClass('alert alert-danger').text(response.message || 'Failed to send reply.').show();
+                }
+            },
+            error: function (xhr) {
+                submitBtn.prop('disabled', false).html('<i class="fa-solid fa-paper-plane me-2"></i>Send Email Reply');
+                let errMsg = 'Failed to send reply. Server error.';
+                if (xhr.responseJSON && xhr.responseJSON.message) {
+                    errMsg = xhr.responseJSON.message;
+                }
+                responseMsg.addClass('alert alert-danger').text(errMsg).show();
             }
         });
     });

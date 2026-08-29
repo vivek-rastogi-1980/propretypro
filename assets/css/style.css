@@ -728,6 +728,18 @@ h6 {
     min-height: 350px;
 }
 
+html .luxury-inner-hero h1,
+html .luxury-inner-hero p,
+html .luxury-inner-hero .lead {
+    color: #FFFFFF !important;
+}
+
+.luxury-inner-hero h1,
+.luxury-inner-hero p,
+.luxury-inner-hero .lead {
+    color: #ffffff !important;
+}
+
 .inner-hero-bg {
     position: absolute;
     top: 0;

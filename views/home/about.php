@@ -5,7 +5,7 @@
     
     <div class="container position-relative z-1 text-center py-5">
         <h1 class="display-3 font-cinzel theme-blue-whiteOne fw-bold" style="color:white"><?php echo htmlspecialchars($globalSettings['about_hero_title'] ?? 'About Vigtez Realty'); ?></h1>
-        <p class="lead text-light-muted mx-auto" style="max-width: 600px;"><?php echo htmlspecialchars($globalSettings['about_hero_desc'] ?? 'A legacy of beautiful designs, with personal attention and complete client privacy.'); ?></p>
+        <p class="lead text-light-muted mx-auto" style="max-width: 600px;color:white;"><?php echo htmlspecialchars($globalSettings['about_hero_desc'] ?? 'A legacy of beautiful designs, with personal attention and complete client privacy.'); ?></p>
     </div>
 </section>
 

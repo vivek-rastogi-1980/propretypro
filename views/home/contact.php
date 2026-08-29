@@ -8,9 +8,8 @@ use App\Helpers\CSRFHelper;
     <div class="video-overlay-tint"></div>
     
     <div class="container position-relative z-1 text-center py-5">
-        <span class="badge hero-luxe-badge mb-3"><i class="fa-solid fa-gem text-warning me-2"></i><?php echo htmlspecialchars($globalSettings['contact_hero_badge'] ?? 'CONCIERGE DESK'); ?></span>
-        <h1 class="display-3 font-cinzel text-white fw-bold"><?php echo htmlspecialchars($globalSettings['contact_hero_title'] ?? 'Connect with Vigtez Reality'); ?></h1>
-        <p class="lead text-white mx-auto" style="max-width: 600px;"><?php echo htmlspecialchars($globalSettings['contact_hero_desc'] ?? 'Schedule private helicopter viewings, charter tours, or off-market portfolios.'); ?></p>
+        <h1 class="display-3 font-cinzel fw-bold" style="color:white"><?php echo htmlspecialchars($globalSettings['contact_hero_title'] ?? 'Connect with Vigtez Reality'); ?></h1>
+        <p class="lead mx-auto" style="max-width: 600px; color: white;"><?php echo htmlspecialchars($globalSettings['contact_hero_desc'] ?? 'Schedule private helicopter viewings, charter tours, or off-market portfolios.'); ?></p>
     </div>
 </section>
 

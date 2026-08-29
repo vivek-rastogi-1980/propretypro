@@ -4,9 +4,8 @@
     <div class="video-overlay-tint"></div>
     
     <div class="container position-relative z-1 text-center py-5">
-        <span class="badge hero-luxe-badge mb-3"><i class="fa-solid fa-gem text-warning me-2"></i>THE COLLECTION</span>
-        <h1 class="display-3 font-cinzel text-white fw-bold">Bespoke Properties</h1>
-        <p class="lead text-white mx-auto" style="max-width: 600px;">Explore our certified portfolio of architectural masterpieces and private sanctuaries.</p>
+        <h1 class="display-3 font-cinzel fw-bold" style="color:white">Bespoke Properties</h1>
+        <p class="lead mx-auto" style="max-width: 600px; color: white;">Explore our certified portfolio of architectural masterpieces and private sanctuaries.</p>
     </div>
 </section>
 

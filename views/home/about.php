@@ -4,9 +4,8 @@
     <div class="video-overlay-tint"></div>
     
     <div class="container position-relative z-1 text-center py-5">
-        <span class="badge hero-luxe-badge mb-3"><i class="fa-solid fa-gem text-warning me-2"></i>OUR HISTORY</span>
-        <h1 class="display-3 font-cinzel text-white fw-bold">About <span class="text-gold-gradient">LuxeHaven</span></h1>
-        <p class="lead text-light-muted mx-auto" style="max-width: 600px;">Generations of curated architectural masterpieces and absolute client discretion.</p>
+        <h1 class="display-3 font-cinzel theme-blue-whiteOne fw-bold" style="color:white">About <span class="text-gold-gradient">Vigtez Realty</span></h1>
+        <p class="lead text-light-muted mx-auto" style="max-width: 600px;">A legacy of beautiful designs, with personal attention and complete client privacy.</p>
     </div>
 </section>
 
@@ -16,12 +15,12 @@
         <div class="row align-items-center">
             <div class="col-lg-6 mb-5 mb-lg-0 scroll-reveal-left">
                 <span class="text-gold-accent uppercase tracking-widest fw-bold d-block mb-3 fs-xs"><i class="fa-solid fa-hotel me-2"></i>OUR IDENTITY</span>
-                <h2 class="display-6 font-cinzel text-white fw-bold mb-4">Curating Homes that are <span class="text-gold-gradient">Works of Art</span></h2>
+                <h2 class="display-6 font-cinzel text-white fw-bold mb-4">Vigtez Realty Pvt. Ltd<br/><span class="text-gold-gradient">Works of Art</span></h2>
                 <p class="text-light-muted fs-6 lh-lg mb-4">
-                    Founded in Beverly Hills in 2012, LuxeHaven Estates began with a single vision: to treat real estate transactions not as brokerage operations, but as art advisory services. We recognized that luxury homes are the most complex financial and physical assets an individual can acquire.
+                    Vigtez Realty Pvt. Ltd., incorporated in 2026, is a Uttarakhand-based real estate company focused on premium land, villas, and second-home projects. We aim to deliver trusted, transparent, and value-driven real estate opportunities.
                 </p>
                 <p class="text-light-muted fs-6 lh-lg mb-4">
-                    Today, we manage a private inventory spanning 12 global cities, supporting family offices, sovereign wealth funds, and private clients in acquiring ocean bluffs, historical estates, and sustainable automated penthouses.
+                    Today, we manage a private inventory spanning 5 cities, supporting family offices, and private clients in acquiring ocean bluffs, historical estates, and sustainable automated penthouses.
                 </p>
             </div>
             <div class="col-lg-6 scroll-reveal-right">

@@ -1364,6 +1364,12 @@ html.theme-blue-white .navbar-brand {
     /* Deep dark blue-slate */
 }
 
+html.theme-blue-white h1,
+html.theme-blue-whiteOne .navbar-brand {
+    color: #E2E8F0 !important;
+    /* Deep dark blue-slate */
+}
+
 html.theme-green h1,
 html.theme-green h2,
 html.theme-green h3,
@@ -2270,10 +2276,12 @@ html.theme-blue-white .luxury-footer p,
 html.theme-blue-white .luxury-footer .text-secondary {
     color: #94A3B8 !important;
 }
+
 html.theme-green .luxury-footer p,
 html.theme-green .luxury-footer .text-secondary {
     color: #C0CFB2 !important;
 }
+
 html.theme-sand-beige .luxury-footer p,
 html.theme-sand-beige .luxury-footer .text-secondary {
     color: #C5BCB5 !important;
@@ -2285,6 +2293,7 @@ html.theme-blue-white .luxury-footer a.footer-link {
     color: #94A3B8 !important;
     transition: color 0.3s ease;
 }
+
 html.theme-blue-white .luxury-footer .footer-link:hover,
 html.theme-blue-white .luxury-footer a.footer-link:hover {
     color: #FFFFFF !important;
@@ -2295,6 +2304,7 @@ html.theme-green .luxury-footer a.footer-link {
     color: #C0CFB2 !important;
     transition: color 0.3s ease;
 }
+
 html.theme-green .luxury-footer .footer-link:hover,
 html.theme-green .luxury-footer a.footer-link:hover {
     color: #FFFFFF !important;
@@ -2305,6 +2315,7 @@ html.theme-sand-beige .luxury-footer a.footer-link {
     color: #C5BCB5 !important;
     transition: color 0.3s ease;
 }
+
 html.theme-sand-beige .luxury-footer .footer-link:hover,
 html.theme-sand-beige .luxury-footer a.footer-link:hover {
     color: #FFFFFF !important;

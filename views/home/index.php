@@ -132,13 +132,13 @@
     <div class="container">
         <div class="row align-items-center py-5">
             <div class="col-lg-6 mb-5 mb-lg-0 scroll-reveal-left">
-                <span class="text-gold-accent uppercase tracking-widest fw-bold d-block mb-3 fs-xs"><i class="fa-solid fa-feather-pointed me-2"></i>ABOUT LUXEHAVEN</span>
+                <span class="text-gold-accent uppercase tracking-widest fw-bold d-block mb-3 fs-xs"><i class="fa-solid fa-feather-pointed me-2"></i>ABOUT VIGTEZ REALTY</span>
                 <h2 class="display-5 font-cinzel text-white fw-bold mb-4">Shaping Masterpieces of <span class="text-gold-gradient">Luxury Living</span></h2>
                 <p class="text-light-muted mb-4 fs-6 lh-lg">
-                    LuxeHaven represents more than a brokerage; we are curators of structural artwork. Each estate in our private portfolio is handpicked for its design excellence, panoramic settings, and premium automation.
+                    Vigtez Realty Pvt. Ltd. is a Uttarakhand-based real estate company specializing in premium land, villas, and second-home projects. We create investment opportunities in strategically located destinations across Uttarakhand with a focus on quality, transparency, and long-term value.
                 </p>
                 <p class="text-light-muted mb-4 fs-6 lh-lg">
-                    With offices in Beverly Hills, Aspen, and Palm Beach, we cater to an elite clientele with absolute privacy and boutique services tailored to family offices and high-net-worth individuals.
+                    incorporated in 2026, is a Uttarakhand-based real estate company focused on premium land, villas, and second-home projects. We aim to deliver trusted, transparent, and value-driven real estate opportunities.
                 </p>
                 <div class="row g-4 mt-2">
                     <div class="col-6">
@@ -507,10 +507,10 @@
     <div class="container position-relative z-1 py-5 text-center">
         <div class="row justify-content-center py-4">
             <div class="col-lg-8 scroll-reveal-fade">
-                <span class="text-gold-accent uppercase tracking-widest fw-bold d-block mb-3 fs-xs"><i class="fa-solid fa-envelope me-2"></i>CONTACT CONCIERGE</span>
-                <h2 class="display-4 font-cinzel text-white fw-bold mb-4">Acquire Your Next Piece of <br><span class="text-gold-gradient">Structural Artwork</span></h2>
+                <span class="text-gold-accent uppercase tracking-widest fw-bold d-block mb-3 fs-xs"><i class="fa-solid fa-envelope me-2"></i>CONTACT WITH US</span>
+                <h2 class="display-4 font-cinzel text-white fw-bold mb-4">Invest in Your <br><span class="text-gold-gradient">Next Dream Space</span></h2>
                 <p class="lead text-light-muted fs-5 mb-5 mx-auto" style="max-width: 600px;">
-                    Our executive brokers are online to arrange private jets, helipad landings, and custom structural viewings.
+                    Experience beautifully crafted spaces where elegant design meets comfort and timeless appeal.
                 </p>
                 <a href="<?php echo BASE_URL; ?>contact" class="btn btn-premium px-5 py-3 btn-lg">
                     Schedule Private Tour<i class="fa-solid fa-headset ms-3 text-warning"></i>

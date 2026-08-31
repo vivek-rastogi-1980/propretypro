@@ -1270,16 +1270,136 @@ html.admin-light-theme .text-warning {
     color: #B45309 !important;
 }
 
+/* --- Admin Modal Styling (Dark Theme default) --- */
+.admin-modal-card {
+    background-color: #0B0F19 !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8) !important;
+    border-radius: 16px !important;
+    color: #E2E8F0 !important;
+}
+
+.admin-modal-card .modal-header {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+    padding: 1.25rem 1.5rem;
+}
+
+.admin-modal-card .modal-footer {
+    border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+    padding: 1.25rem 1.5rem;
+}
+
+.admin-modal-value {
+    color: #FFFFFF !important;
+}
+
+.admin-modal-muted {
+    color: #94A3B8 !important;
+}
+
+.admin-modal-link {
+    color: #E2E8F0 !important;
+    transition: color 0.2s ease;
+}
+
+.admin-modal-link:hover {
+    color: var(--gold-accent) !important;
+}
+
+.admin-modal-label {
+    color: #94A3B8 !important;
+}
+
+.admin-modal-divider {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.08);
+    width: 100%;
+}
+
+.admin-message-display-box {
+    background: rgba(15, 23, 42, 0.6) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    color: #CBD5E1 !important;
+}
+
+.admin-readonly-input {
+    background-color: rgba(15, 23, 42, 0.7) !important;
+    color: #94A3B8 !important;
+    border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
 /* Modal styling in light theme */
+html.admin-light-theme .admin-modal-card,
 html.admin-light-theme .modal-content,
 html.admin-light-theme .modal-content.bg-black {
     background-color: #FFFFFF !important;
-    border-color: rgba(0, 0, 0, 0.08) !important;
+    border: 1px solid #E2E8F0 !important;
+    box-shadow: 0 25px 60px rgba(15, 23, 42, 0.15) !important;
+    color: #1E293B !important;
+}
+
+html.admin-light-theme .admin-modal-card .modal-header,
+html.admin-light-theme .modal-header {
+    border-bottom: 1px solid #E2E8F0 !important;
+}
+
+html.admin-light-theme .admin-modal-card .modal-title,
+html.admin-light-theme .modal-title {
+    color: #0F172A !important;
+}
+
+html.admin-light-theme .admin-modal-card .modal-footer,
+html.admin-light-theme .modal-footer {
+    border-top: 1px solid #E2E8F0 !important;
+}
+
+html.admin-light-theme .admin-modal-value {
+    color: #0F172A !important;
+}
+
+html.admin-light-theme .admin-modal-muted {
+    color: #475569 !important;
+}
+
+html.admin-light-theme .admin-modal-link {
+    color: #0F172A !important;
+}
+
+html.admin-light-theme .admin-modal-link:hover {
+    color: #B45309 !important;
+}
+
+html.admin-light-theme .admin-modal-label {
     color: #334155 !important;
 }
 
-html.admin-light-theme .modal-header {
-    border-bottom-color: rgba(0, 0, 0, 0.06) !important;
+html.admin-light-theme .admin-modal-divider {
+    background: #E2E8F0 !important;
+}
+
+html.admin-light-theme .admin-message-display-box {
+    background: #F8FAFC !important;
+    border: 1px solid #CBD5E1 !important;
+    color: #0F172A !important;
+}
+
+html.admin-light-theme .admin-message-display-box .admin-modal-muted {
+    color: #334155 !important;
+}
+
+html.admin-light-theme .admin-readonly-input {
+    background-color: #F1F5F9 !important;
+    color: #475569 !important;
+    border-color: #CBD5E1 !important;
+}
+
+html.admin-light-theme .btn-close {
+    filter: none !important;
+    opacity: 0.7;
+}
+
+html.admin-light-theme .btn-close:hover {
+    opacity: 1;
 }
 
 /* ==========================================================================

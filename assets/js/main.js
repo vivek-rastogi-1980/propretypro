@@ -506,9 +506,17 @@ $(document).ready(function () {
                     row.find('.admin-mark-read-btn').remove();
 
                     setTimeout(function() {
-                        form.closest('.modal').modal('hide');
+                        const modalEl = form.closest('.modal')[0];
+                        if (modalEl) {
+                            if (typeof bootstrap !== 'undefined' && bootstrap.Modal) {
+                                const modalInstance = bootstrap.Modal.getInstance(modalEl) || bootstrap.Modal.getOrCreateInstance(modalEl);
+                                modalInstance.hide();
+                            } else if (typeof $(modalEl).modal === 'function') {
+                                $(modalEl).modal('hide');
+                            }
+                        }
                         responseMsg.hide().removeClass('alert alert-success alert-danger');
-                    }, 2000);
+                    }, 1800);
                 } else {
                     responseMsg.addClass('alert alert-danger').text(response.message || 'Failed to send reply.').show();
                 }

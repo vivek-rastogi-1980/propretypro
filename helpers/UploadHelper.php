@@ -8,11 +8,18 @@ class UploadHelper {
     private static array $allowedMimeTypes = [
         'image/jpeg',
         'image/png',
-        'image/webp'
+        'image/webp',
+        'image/heic',
+        'image/heif',
+        'image/x-heic',
+        'image/heic-sequence',
+        'image/heif-sequence',
+        'image/octet-stream',
+        'application/octet-stream'
     ];
 
     private static array $allowedExtensions = [
-        'jpg', 'jpeg', 'png', 'webp'
+        'jpg', 'jpeg', 'png', 'webp', 'heic', 'heif'
     ];
 
     /**
@@ -51,14 +58,14 @@ class UploadHelper {
 
             // Size check
             if ($file['size'] > MAX_FILE_SIZE) {
-                $errors[] = "Image \"" . htmlspecialchars($file['name']) . "\" exceeds the 5MB size limit.";
+                $errors[] = "Image \"" . htmlspecialchars($file['name']) . "\" exceeds the 8MB size limit.";
                 continue;
             }
 
             // Validate extension
             $ext = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
             if (!in_array($ext, self::$allowedExtensions)) {
-                $errors[] = "Image \"" . htmlspecialchars($file['name']) . "\" has an invalid extension. Only JPG, PNG, and WEBP allowed.";
+                $errors[] = "Image \"" . htmlspecialchars($file['name']) . "\" has an invalid extension. Only JPG, PNG, WEBP, and HEIC allowed.";
                 continue;
             }
 
@@ -74,6 +81,7 @@ class UploadHelper {
 
             // Generate unique name
             $fileName = uniqid('prop_' . $propertyId . '_', true);
+            $isHeic = in_array($ext, ['heic', 'heif']);
             $largeName = $fileName . '_large.jpg';
             $thumbName = $fileName . '_thumb.jpg';
 
@@ -81,8 +89,8 @@ class UploadHelper {
             $thumbPath = $targetDir . $thumbName;
 
             // Compress and save
-            $savedLarge = self::compressImage($file['tmp_name'], $largePath, 1200, 80);
-            $savedThumb = self::compressImage($file['tmp_name'], $thumbPath, 500, 70);
+            $savedLarge = self::compressImage($file['tmp_name'], $largePath, 1200, 80, $ext);
+            $savedThumb = self::compressImage($file['tmp_name'], $thumbPath, 500, 70, $ext);
 
             if ($savedLarge && $savedThumb) {
                 // Store paths relative to web root: uploads/properties/{id}/filename
@@ -102,31 +110,81 @@ class UploadHelper {
     }
 
     /**
-     * Compress and resize image using GD library
+     * Compress and resize image using GD library (with Imagick/fallback support)
      */
-    private static function compressImage(string $sourcePath, string $destinationPath, int $maxWidth, int $quality): bool {
-        // Get image details
-        list($origWidth, $origHeight, $imageType) = getimagesize($sourcePath);
+    private static function compressImage(string $sourcePath, string $destinationPath, int $maxWidth, int $quality, string $ext = ''): bool {
+        $sourceImage = null;
+        $imageType = null;
+        $origWidth = 0;
+        $origHeight = 0;
 
-        // Load image resource
-        switch ($imageType) {
-            case IMAGETYPE_JPEG:
-                $sourceImage = imagecreatefromjpeg($sourcePath);
-                break;
-            case IMAGETYPE_PNG:
-                $sourceImage = imagecreatefrompng($sourcePath);
-                // Keep transparency background safe
-                imagealphablending($sourceImage, true);
-                imagesavealpha($sourceImage, true);
-                break;
-            case IMAGETYPE_WEBP:
-                $sourceImage = imagecreatefromwebp($sourcePath);
-                break;
-            default:
-                return false;
+        // 1. Try Imagick if available (handles HEIC natively if ImageMagick is compiled with libheif)
+        if (class_exists('\Imagick') && in_array(strtolower($ext), ['heic', 'heif'])) {
+            try {
+                $imagick = new \Imagick($sourcePath);
+                $imagick->setImageFormat('jpeg');
+                $blob = $imagick->getImageBlob();
+                $sourceImage = @imagecreatefromstring($blob);
+                if ($sourceImage) {
+                    $origWidth = imagesx($sourceImage);
+                    $origHeight = imagesy($sourceImage);
+                    $imageType = IMAGETYPE_JPEG;
+                }
+                $imagick->clear();
+                $imagick->destroy();
+            } catch (\Throwable $e) {
+                $sourceImage = null;
+            }
         }
 
+        // 2. Standard GD image loading
         if (!$sourceImage) {
+            $imageInfo = @getimagesize($sourcePath);
+            if ($imageInfo !== false) {
+                list($origWidth, $origHeight, $imageType) = $imageInfo;
+                switch ($imageType) {
+                    case IMAGETYPE_JPEG:
+                        $sourceImage = @imagecreatefromjpeg($sourcePath);
+                        break;
+                    case IMAGETYPE_PNG:
+                        $sourceImage = @imagecreatefrompng($sourcePath);
+                        if ($sourceImage) {
+                            imagealphablending($sourceImage, true);
+                            imagesavealpha($sourceImage, true);
+                        }
+                        break;
+                    case IMAGETYPE_WEBP:
+                        if (function_exists('imagecreatefromwebp')) {
+                            $sourceImage = @imagecreatefromwebp($sourcePath);
+                        }
+                        break;
+                    case IMAGETYPE_AVIF:
+                        if (function_exists('imagecreatefromavif')) {
+                            $sourceImage = @imagecreatefromavif($sourcePath);
+                        }
+                        break;
+                }
+            }
+        }
+
+        // 3. Fallback: try imagecreatefromstring
+        if (!$sourceImage) {
+            $content = @file_get_contents($sourcePath);
+            if ($content !== false) {
+                $sourceImage = @imagecreatefromstring($content);
+                if ($sourceImage) {
+                    $origWidth = imagesx($sourceImage);
+                    $origHeight = imagesy($sourceImage);
+                    $imageType = IMAGETYPE_JPEG;
+                }
+            }
+        }
+
+        // 4. Fallback for raw HEIC when GD cannot decode: direct safe copy to avoid upload rejection
+        if (!$sourceImage || $origWidth <= 0 || $origHeight <= 0) {
+            if (in_array(strtolower($ext), ['heic', 'heif'])) {
+                return @copy($sourcePath, $destinationPath);
+            }
             return false;
         }
 
@@ -251,12 +309,12 @@ class UploadHelper {
         }
 
         if ($file['size'] > MAX_FILE_SIZE) {
-            throw new \Exception("Floor plan image exceeds size limit.");
+            throw new \Exception("Floor plan image exceeds 8MB size limit.");
         }
 
         $ext = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
         if (!in_array($ext, self::$allowedExtensions)) {
-            throw new \Exception("Only JPG, PNG, and WEBP allowed for floor plans.");
+            throw new \Exception("Only JPG, PNG, WEBP, and HEIC allowed for floor plans.");
         }
 
         // Ensure property target directory exists
@@ -268,7 +326,7 @@ class UploadHelper {
         $fileName = 'floorplan_' . uniqid() . '.jpg';
         $targetPath = $targetDir . $fileName;
 
-        if (self::compressImage($file['tmp_name'], $targetPath, 1200, 85)) {
+        if (self::compressImage($file['tmp_name'], $targetPath, 1200, 85, $ext)) {
             return 'uploads/properties/' . $propertyId . '/' . $fileName;
         }
 

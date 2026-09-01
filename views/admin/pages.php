@@ -72,8 +72,8 @@ function val(array $settings, string $key, string $default = ''): string {
                                 <textarea name="home_overview_desc_2" rows="3" class="form-control"><?php echo val($settings, 'home_overview_desc_2'); ?></textarea>
                             </div>
                             <div class="col-md-6">
-                                <label class="form-label small fw-bold text-muted">Upload Overview Image</label>
-                                <input type="file" name="home_overview_image" class="form-control mb-2">
+                                <label class="form-label small fw-bold text-muted">Upload Overview Image (Max 8MB, JPG/PNG/WEBP/HEIC)</label>
+                                <input type="file" name="home_overview_image" class="form-control mb-2" accept="image/*,.heic,.heif">
                                 <?php if (!empty($settings['home_overview_image'])): ?>
                                     <div class="p-2 border border-secondary border-opacity-15 rounded bg-dark mb-2" style="max-width: 250px;">
                                         <img src="<?php echo BASE_URL . $settings['home_overview_image']; ?>" alt="Overview Image" class="img-fluid rounded">
@@ -200,8 +200,8 @@ function val(array $settings, string $key, string $default = ''): string {
                                 <h5 class="fw-bold text-warning mb-3">Featured Video Review</h5>
                             </div>
                             <div class="col-md-6">
-                                <label class="form-label small fw-bold text-muted">Video Thumbnail Image</label>
-                                <input type="file" name="home_testimonial_video_image" class="form-control mb-2">
+                                <label class="form-label small fw-bold text-muted">Video Thumbnail Image (Max 8MB, JPG/PNG/WEBP/HEIC)</label>
+                                <input type="file" name="home_testimonial_video_image" class="form-control mb-2" accept="image/*,.heic,.heif">
                                 <?php if (!empty($settings['home_testimonial_video_image'])): ?>
                                     <div class="p-2 border border-secondary border-opacity-15 rounded bg-dark" style="max-width: 250px;">
                                         <img src="<?php echo BASE_URL . $settings['home_testimonial_video_image']; ?>" alt="Video Thumbnail" class="img-fluid rounded">
@@ -456,8 +456,8 @@ function val(array $settings, string $key, string $default = ''): string {
                         <h4 class="fw-bold mb-4 text-gradient"><i class="fa-solid fa-image me-2"></i>About Us Hero Section</h4>
                         <div class="row g-3">
                             <div class="col-md-6">
-                                <label class="form-label small fw-bold text-muted">Hero Background Image</label>
-                                <input type="file" name="about_hero_image" class="form-control mb-2">
+                                <label class="form-label small fw-bold text-muted">Hero Background Image (Max 8MB, JPG/PNG/WEBP/HEIC)</label>
+                                <input type="file" name="about_hero_image" class="form-control mb-2" accept="image/*,.heic,.heif">
                                 <?php if (!empty($settings['about_hero_image'])): ?>
                                     <div class="p-2 border border-secondary border-opacity-15 rounded bg-dark mb-2" style="max-width: 250px;">
                                         <img src="<?php echo BASE_URL . $settings['about_hero_image']; ?>" alt="About Hero" class="img-fluid rounded">
@@ -552,8 +552,8 @@ function val(array $settings, string $key, string $default = ''): string {
                                     <input type="text" name="about_team1_role" class="form-control" value="<?php echo val($settings, 'about_team1_role', 'Founder & Chief Advisor'); ?>">
                                 </div>
                                 <div>
-                                    <label class="form-label text-xs text-muted">Profile Image</label>
-                                    <input type="file" name="about_team1_image" class="form-control mb-1">
+                                    <label class="form-label text-xs text-muted">Profile Image (Max 8MB)</label>
+                                    <input type="file" name="about_team1_image" class="form-control mb-1" accept="image/*,.heic,.heif">
                                     <?php if (!empty($settings['about_team1_image'])): ?>
                                         <img src="<?php echo BASE_URL . $settings['about_team1_image']; ?>" class="img-thumbnail rounded mb-2" style="max-height: 80px;">
                                     <?php endif; ?>
@@ -572,8 +572,8 @@ function val(array $settings, string $key, string $default = ''): string {
                                     <input type="text" name="about_team2_role" class="form-control" value="<?php echo val($settings, 'about_team2_role', 'Managing Partner (Beverly Hills)'); ?>">
                                 </div>
                                 <div>
-                                    <label class="form-label text-xs text-muted">Profile Image</label>
-                                    <input type="file" name="about_team2_image" class="form-control mb-1">
+                                    <label class="form-label text-xs text-muted">Profile Image (Max 8MB)</label>
+                                    <input type="file" name="about_team2_image" class="form-control mb-1" accept="image/*,.heic,.heif">
                                     <?php if (!empty($settings['about_team2_image'])): ?>
                                         <img src="<?php echo BASE_URL . $settings['about_team2_image']; ?>" class="img-thumbnail rounded mb-2" style="max-height: 80px;">
                                     <?php endif; ?>
@@ -592,8 +592,8 @@ function val(array $settings, string $key, string $default = ''): string {
                                     <input type="text" name="about_team3_role" class="form-control" value="<?php echo val($settings, 'about_team3_role', 'Head of Wealth & Asset Advisory'); ?>">
                                 </div>
                                 <div>
-                                    <label class="form-label text-xs text-muted">Profile Image</label>
-                                    <input type="file" name="about_team3_image" class="form-control mb-1">
+                                    <label class="form-label text-xs text-muted">Profile Image (Max 8MB)</label>
+                                    <input type="file" name="about_team3_image" class="form-control mb-1" accept="image/*,.heic,.heif">
                                     <?php if (!empty($settings['about_team3_image'])): ?>
                                         <img src="<?php echo BASE_URL . $settings['about_team3_image']; ?>" class="img-thumbnail rounded mb-2" style="max-height: 80px;">
                                     <?php endif; ?>
@@ -616,8 +616,8 @@ function val(array $settings, string $key, string $default = ''): string {
                         <h4 class="fw-bold mb-4 text-gradient"><i class="fa-solid fa-image me-2"></i>Contact Page Hero</h4>
                         <div class="row g-3">
                             <div class="col-md-6">
-                                <label class="form-label small fw-bold text-muted">Hero Background Image</label>
-                                <input type="file" name="contact_hero_image" class="form-control mb-2">
+                                <label class="form-label small fw-bold text-muted">Hero Background Image (Max 8MB, JPG/PNG/WEBP/HEIC)</label>
+                                <input type="file" name="contact_hero_image" class="form-control mb-2" accept="image/*,.heic,.heif">
                                 <?php if (!empty($settings['contact_hero_image'])): ?>
                                     <div class="p-2 border border-secondary border-opacity-15 rounded bg-dark mb-2" style="max-width: 250px;">
                                         <img src="<?php echo BASE_URL . $settings['contact_hero_image']; ?>" alt="Contact Hero" class="img-fluid rounded">

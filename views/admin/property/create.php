@@ -113,12 +113,12 @@ use App\Helpers\CSRFHelper;
             <div class="tab-pane fade" id="media" role="tabpanel" aria-labelledby="media-tab">
                 <div class="row g-4">
                     <div class="col-md-12">
-                        <label class="form-label text-secondary small fw-bold">Upload Gallery Images (Up to 20 files, Max 5MB each)</label>
+                        <label class="form-label text-secondary small fw-bold">Upload Gallery Images (Up to 20 files, Max 8MB each)</label>
                         <div class="luxury-file-dropzone p-5 rounded-4 text-center border-secondary border-opacity-15 mb-3" style="border: 2px dashed rgba(255,255,255,0.15);">
                             <i class="fa-solid fa-images text-warning display-5 mb-3"></i>
                             <h6 class="text-white">Drag & drop images here or click to select</h6>
-                            <p class="text-secondary small mb-3">Only JPG, PNG, and WEBP formats supported</p>
-                            <input type="file" name="images[]" id="property-images-input" multiple class="form-control" style="cursor: pointer;" accept="image/*">
+                            <p class="text-secondary small mb-3">JPG, PNG, WEBP, and HEIC formats supported (Max 8MB each)</p>
+                            <input type="file" name="images[]" id="property-images-input" multiple class="form-control" style="cursor: pointer;" accept="image/*,.heic,.heif">
                         </div>
                         <div id="image-preview-container" class="d-flex flex-wrap gap-2"></div>
                     </div>
@@ -127,8 +127,8 @@ use App\Helpers\CSRFHelper;
                         <input type="file" name="pdf_brochure" class="form-control luxury-input-text" accept="application/pdf">
                     </div>
                     <div class="col-md-6">
-                        <label class="form-label text-secondary small fw-bold">Upload Floor Plan Images (Multiple allowed)</label>
-                        <input type="file" name="floor_plans[]" multiple class="form-control luxury-input-text" accept="image/*">
+                        <label class="form-label text-secondary small fw-bold">Upload Floor Plan Images (Multiple allowed, Max 8MB each)</label>
+                        <input type="file" name="floor_plans[]" multiple class="form-control luxury-input-text" accept="image/*,.heic,.heif">
                     </div>
 
                     <!-- Dynamic Videos Repeater -->

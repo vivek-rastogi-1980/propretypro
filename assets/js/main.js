@@ -401,30 +401,111 @@ $(document).ready(function () {
         $(this).data('original-text', $(this).html());
     });
 
-    // Image Selection Preview
-    $('#property-images-input').on('change', function () {
+    // Image Selection Preview with HEIC & 8MB support
+    $('#property-images-input').on('change', async function () {
         const previewContainer = $('#image-preview-container');
         previewContainer.html('');
         
-        const files = this.files;
+        const files = Array.from(this.files || []);
         if (files.length > 20) {
             alert('You can select a maximum of 20 images.');
             this.value = '';
             return;
         }
 
-        if (files) {
-            $.each(files, function (index, file) {
-                const reader = new FileReader();
-                reader.onload = function (e) {
-                    previewContainer.append(`
-                        <div class="position-relative d-inline-block m-1">
-                            <img src="${e.target.result}" class="img-thumbnail" style="width: 80px; height: 80px; object-fit: cover; border: 1px solid rgba(255,255,255,0.15); background: transparent;">
+        const MAX_SIZE = 8 * 1024 * 1024; // 8MB
+        const invalidFiles = [];
+        const validFiles = [];
+
+        // Check file sizes
+        files.forEach(function (file) {
+            if (file.size > MAX_SIZE) {
+                invalidFiles.push(file.name);
+            } else {
+                validFiles.push(file);
+            }
+        });
+
+        if (invalidFiles.length > 0) {
+            alert('The following file(s) exceed the 8MB limit and will be skipped:\n- ' + invalidFiles.join('\n- '));
+        }
+
+        if (validFiles.length === 0) {
+            this.value = '';
+            return;
+        }
+
+        // Process files for preview and HEIC conversion if supported
+        const dt = new DataTransfer();
+        for (let i = 0; i < validFiles.length; i++) {
+            const file = validFiles[i];
+            const isHeic = file.name.match(/\.(heic|heif)$/i) || file.type === 'image/heic' || file.type === 'image/heif';
+
+            if (isHeic && typeof heic2any !== 'undefined') {
+                const previewId = 'heic-preview-' + i;
+                previewContainer.append(`
+                    <div class="position-relative d-inline-block m-1" id="${previewId}">
+                        <div class="img-thumbnail d-flex flex-column align-items-center justify-content-center text-center p-1" style="width: 80px; height: 80px; border: 1px solid rgba(255,255,255,0.15); background: rgba(0,0,0,0.3);">
+                            <div class="spinner-border spinner-border-sm text-warning mb-1" role="status"></div>
+                            <span class="text-xs text-muted" style="font-size: 9px;">HEIC</span>
+                        </div>
+                    </div>
+                `);
+
+                try {
+                    const convertedBlob = await heic2any({
+                        blob: file,
+                        toType: 'image/jpeg',
+                        quality: 0.85
+                    });
+                    const blob = Array.isArray(convertedBlob) ? convertedBlob[0] : convertedBlob;
+                    const convertedFile = new File([blob], file.name.replace(/\.(heic|heif)$/i, '.jpg'), { type: 'image/jpeg' });
+                    dt.items.add(convertedFile);
+
+                    const previewUrl = URL.createObjectURL(blob);
+                    $(`#${previewId}`).html(`
+                        <img src="${previewUrl}" class="img-thumbnail" style="width: 80px; height: 80px; object-fit: cover; border: 1px solid rgba(255,255,255,0.15); background: transparent;">
+                    `);
+                } catch (err) {
+                    console.warn('Client-side HEIC conversion failed, keeping raw HEIC:', err);
+                    dt.items.add(file);
+                    $(`#${previewId}`).html(`
+                        <div class="img-thumbnail d-flex flex-column align-items-center justify-content-center text-center p-1" style="width: 80px; height: 80px; border: 1px solid rgba(255,255,255,0.15); background: rgba(0,0,0,0.3);">
+                            <i class="fa-solid fa-file-image text-warning mb-1"></i>
+                            <span class="text-xs text-muted" style="font-size: 9px;">HEIC</span>
                         </div>
                     `);
                 }
-                reader.readAsDataURL(file);
-            });
+            } else {
+                dt.items.add(file);
+                if (isHeic) {
+                    previewContainer.append(`
+                        <div class="position-relative d-inline-block m-1">
+                            <div class="img-thumbnail d-flex flex-column align-items-center justify-content-center text-center p-1" style="width: 80px; height: 80px; border: 1px solid rgba(255,255,255,0.15); background: rgba(0,0,0,0.3);">
+                                <i class="fa-solid fa-file-image text-warning mb-1"></i>
+                                <span class="text-xs text-muted" style="font-size: 9px;">HEIC</span>
+                            </div>
+                        </div>
+                    `);
+                } else {
+                    const reader = new FileReader();
+                    reader.onload = function (e) {
+                        previewContainer.append(`
+                            <div class="position-relative d-inline-block m-1">
+                                <img src="${e.target.result}" class="img-thumbnail" style="width: 80px; height: 80px; object-fit: cover; border: 1px solid rgba(255,255,255,0.15); background: transparent;">
+                            </div>
+                        `);
+                    };
+                    reader.readAsDataURL(file);
+                }
+            }
+        }
+
+        // Update the file input files with converted/validated files if supported
+        try {
+            this.files = dt.files;
+        } catch (e) {
+            // Some older browsers might restrict programmatic input.files assignment
         }
     });
 
@@ -799,6 +880,35 @@ $(document).ready(function () {
             }
         }
     }
+
+    // --- Video Modal Playback Control ---
+    // Instantly stops YouTube/Vimeo audio and video playback whenever a modal is closed
+    $(document).on('hidden.bs.modal hide.bs.modal', '.modal', function () {
+        const modal = $(this);
+        
+        // Handle iframe embeds (YouTube, Vimeo, etc.)
+        modal.find('iframe').each(function () {
+            const iframe = $(this);
+            const currentSrc = iframe.attr('src');
+            if (currentSrc) {
+                // Try postMessage to pause if supported
+                try {
+                    this.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+                    this.contentWindow.postMessage('{"event":"command","func":"stopVideo","args":""}', '*');
+                } catch (e) {}
+                
+                // Reset source to fully terminate background audio
+                iframe.attr('src', '');
+                iframe.attr('src', currentSrc);
+            }
+        });
+
+        // Handle HTML5 video elements
+        modal.find('video').each(function () {
+            this.pause();
+            this.currentTime = 0;
+        });
+    });
 
 });
 

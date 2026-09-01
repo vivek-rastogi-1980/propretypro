@@ -521,30 +521,36 @@
 </section>
 
 <!-- Modals for films -->
-<div class="modal fade" id="brandVideoModal" tabindex="-1" aria-hidden="true">
+<div class="modal fade" id="brandVideoModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
     <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content bg-black border-secondary border-opacity-15">
-            <div class="modal-header border-0">
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div class="modal-content bg-black border border-secondary border-opacity-25 shadow-2xl rounded-4 overflow-hidden">
+            <div class="modal-header border-bottom border-secondary border-opacity-15 py-3 px-4 d-flex justify-content-between align-items-center bg-dark bg-opacity-75">
+                <h5 class="modal-title font-cinzel text-white small fw-bold mb-0"><i class="fa-solid fa-film text-warning me-2"></i>Brand Story Film</h5>
+                <button type="button" class="modal-video-close-btn" data-bs-dismiss="modal" aria-label="Close">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
             </div>
-            <div class="modal-body p-0">
+            <div class="modal-body p-0 bg-black">
                 <div class="ratio ratio-16x9">
-                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ?enablejsapi=1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<div class="modal fade" id="clientVideoModal" tabindex="-1" aria-hidden="true">
+<div class="modal fade" id="clientVideoModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
     <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content bg-black border-secondary border-opacity-15">
-            <div class="modal-header border-0">
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div class="modal-content bg-black border border-secondary border-opacity-25 shadow-2xl rounded-4 overflow-hidden">
+            <div class="modal-header border-bottom border-secondary border-opacity-15 py-3 px-4 d-flex justify-content-between align-items-center bg-dark bg-opacity-75">
+                <h5 class="modal-title font-cinzel text-white small fw-bold mb-0"><i class="fa-solid fa-film text-warning me-2"></i><?php echo htmlspecialchars($globalSettings['home_testimonial_video_title'] ?? 'Video Review - Vance Family Office'); ?></h5>
+                <button type="button" class="modal-video-close-btn" data-bs-dismiss="modal" aria-label="Close">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
             </div>
-            <div class="modal-body p-0">
+            <div class="modal-body p-0 bg-black">
                 <div class="ratio ratio-16x9">
-                    <iframe src="https://www.youtube.com/embed/<?php echo htmlspecialchars($globalSettings['home_testimonial_video_youtube_id'] ?? 'dQw4w9WgXcQ'); ?>" allowfullscreen></iframe>
+                    <iframe src="https://www.youtube.com/embed/<?php echo htmlspecialchars($globalSettings['home_testimonial_video_youtube_id'] ?? 'dQw4w9WgXcQ'); ?>?enablejsapi=1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
             </div>
         </div>

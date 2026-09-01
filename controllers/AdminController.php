@@ -233,27 +233,35 @@ class AdminController extends Controller {
 
         // Logo Upload
         if (!empty($_FILES['company_logo']['name']) && $_FILES['company_logo']['error'] === UPLOAD_ERR_OK) {
-            $ext = strtolower(pathinfo($_FILES['company_logo']['name'], PATHINFO_EXTENSION));
-            if (in_array($ext, ['png', 'jpg', 'jpeg', 'svg', 'webp'])) {
-                $logoName = 'logo_' . time() . '.' . $ext;
-                if (move_uploaded_file($_FILES['company_logo']['tmp_name'], $targetDir . $logoName)) {
-                    $settingsData['company_logo'] = 'uploads/' . $logoName;
-                }
+            if ($_FILES['company_logo']['size'] > MAX_FILE_SIZE) {
+                $errors[] = "Logo image exceeds the 8MB size limit.";
             } else {
-                $errors[] = "Invalid logo file extension.";
+                $ext = strtolower(pathinfo($_FILES['company_logo']['name'], PATHINFO_EXTENSION));
+                if (in_array($ext, ['png', 'jpg', 'jpeg', 'svg', 'webp', 'heic', 'heif'])) {
+                    $logoName = 'logo_' . time() . '.' . $ext;
+                    if (move_uploaded_file($_FILES['company_logo']['tmp_name'], $targetDir . $logoName)) {
+                        $settingsData['company_logo'] = 'uploads/' . $logoName;
+                    }
+                } else {
+                    $errors[] = "Invalid logo file extension. Supported formats: PNG, JPG, JPEG, SVG, WEBP, HEIC.";
+                }
             }
         }
 
         // Favicon Upload
         if (!empty($_FILES['company_favicon']['name']) && $_FILES['company_favicon']['error'] === UPLOAD_ERR_OK) {
-            $ext = strtolower(pathinfo($_FILES['company_favicon']['name'], PATHINFO_EXTENSION));
-            if (in_array($ext, ['png', 'ico', 'x-icon'])) {
-                $favName = 'favicon_' . time() . '.' . $ext;
-                if (move_uploaded_file($_FILES['company_favicon']['tmp_name'], $targetDir . $favName)) {
-                    $settingsData['company_favicon'] = 'uploads/' . $favName;
-                }
+            if ($_FILES['company_favicon']['size'] > MAX_FILE_SIZE) {
+                $errors[] = "Favicon exceeds the 8MB size limit.";
             } else {
-                $errors[] = "Invalid favicon file extension (only PNG or ICO allowed).";
+                $ext = strtolower(pathinfo($_FILES['company_favicon']['name'], PATHINFO_EXTENSION));
+                if (in_array($ext, ['png', 'ico', 'x-icon'])) {
+                    $favName = 'favicon_' . time() . '.' . $ext;
+                    if (move_uploaded_file($_FILES['company_favicon']['tmp_name'], $targetDir . $favName)) {
+                        $settingsData['company_favicon'] = 'uploads/' . $favName;
+                    }
+                } else {
+                    $errors[] = "Invalid favicon file extension (only PNG or ICO allowed).";
+                }
             }
         }
 
@@ -416,16 +424,20 @@ class AdminController extends Controller {
 
         foreach ($imageFields as $field) {
             if (!empty($_FILES[$field]['name']) && $_FILES[$field]['error'] === UPLOAD_ERR_OK) {
-                $ext = strtolower(pathinfo($_FILES[$field]['name'], PATHINFO_EXTENSION));
-                if (in_array($ext, ['png', 'jpg', 'jpeg', 'svg', 'webp'])) {
-                    $fileName = $field . '_' . time() . '.' . $ext;
-                    if (move_uploaded_file($_FILES[$field]['tmp_name'], $targetDir . $fileName)) {
-                        $pagesData[$field] = 'uploads/pages/' . $fileName;
-                    } else {
-                        $errors[] = "Failed to move uploaded file for {$field}.";
-                    }
+                if ($_FILES[$field]['size'] > MAX_FILE_SIZE) {
+                    $errors[] = "Image for " . str_replace('_', ' ', $field) . " exceeds the 8MB size limit.";
                 } else {
-                    $errors[] = "Invalid file extension for field " . str_replace('_', ' ', $field) . ". Only PNG, JPG, JPEG, SVG and WEBP are allowed.";
+                    $ext = strtolower(pathinfo($_FILES[$field]['name'], PATHINFO_EXTENSION));
+                    if (in_array($ext, ['png', 'jpg', 'jpeg', 'svg', 'webp', 'heic', 'heif'])) {
+                        $fileName = $field . '_' . time() . '.' . $ext;
+                        if (move_uploaded_file($_FILES[$field]['tmp_name'], $targetDir . $fileName)) {
+                            $pagesData[$field] = 'uploads/pages/' . $fileName;
+                        } else {
+                            $errors[] = "Failed to move uploaded file for {$field}.";
+                        }
+                    } else {
+                        $errors[] = "Invalid file extension for field " . str_replace('_', ' ', $field) . ". Only PNG, JPG, JPEG, SVG, WEBP, and HEIC are allowed.";
+                    }
                 }
             } else {
                 // Keep the current setting if no new file is uploaded

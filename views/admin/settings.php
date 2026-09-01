@@ -81,8 +81,8 @@ $favicon = htmlspecialchars($settings['company_favicon'] ?? '');
                 <h4 class="fw-bold mb-3 mt-2 text-gradient"><i class="bi bi-image me-2"></i>Branding Assets</h4>
                 <div class="row g-3 mb-2">
                     <div class="col-md-6">
-                        <label class="form-label small fw-bold text-muted">Upload Logo</label>
-                        <input type="file" name="company_logo" class="form-control mb-2">
+                        <label class="form-label small fw-bold text-muted">Upload Logo (Max 8MB, JPG/PNG/WEBP/HEIC/SVG)</label>
+                        <input type="file" name="company_logo" class="form-control mb-2" accept="image/*,.heic,.heif">
                         <?php if ($logo): ?>
                             <div class="p-2 border rounded text-center bg-white" style="max-width: 150px;">
                                 <img src="<?php echo BASE_URL . $logo; ?>" alt="Company Logo" class="img-fluid" style="max-height: 40px;">
@@ -90,8 +90,8 @@ $favicon = htmlspecialchars($settings['company_favicon'] ?? '');
                         <?php endif; ?>
                     </div>
                     <div class="col-md-6">
-                        <label class="form-label small fw-bold text-muted">Upload Favicon</label>
-                        <input type="file" name="company_favicon" class="form-control mb-2">
+                        <label class="form-label small fw-bold text-muted">Upload Favicon (Max 8MB, PNG/ICO)</label>
+                        <input type="file" name="company_favicon" class="form-control mb-2" accept="image/png,image/x-icon,image/vnd.microsoft.icon,.ico,.png">
                         <?php if ($favicon): ?>
                             <div class="p-2 border rounded text-center bg-white" style="max-width: 80px;">
                                 <img src="<?php echo BASE_URL . $favicon; ?>" alt="Favicon" class="img-fluid" style="max-height: 25px;">

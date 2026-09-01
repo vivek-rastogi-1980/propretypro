@@ -150,11 +150,12 @@ $videosList = json_decode($property['videos'], true) ?: [];
                     </div>
 
                     <div class="col-md-12 mt-4">
-                        <label class="form-label text-secondary small fw-bold">Upload More Images (Max 20 total limit)</label>
+                        <label class="form-label text-secondary small fw-bold">Upload More Images (Max 20 total limit, 8MB each)</label>
                         <div class="luxury-file-dropzone p-5 rounded-4 text-center border-secondary border-opacity-15 mb-3" style="border: 2px dashed rgba(255,255,255,0.15);">
                             <i class="fa-solid fa-cloud-arrow-up text-warning display-5 mb-3"></i>
                             <h6 class="text-white">Select files to upload and expand the collection</h6>
-                            <input type="file" name="images[]" id="property-images-input" multiple class="form-control" accept="image/*">
+                            <p class="text-secondary small mb-3">JPG, PNG, WEBP, and HEIC formats supported (Max 8MB each)</p>
+                            <input type="file" name="images[]" id="property-images-input" multiple class="form-control" accept="image/*,.heic,.heif">
                         </div>
                         <div id="image-preview-container" class="d-flex flex-wrap gap-2"></div>
                     </div>
@@ -176,7 +177,7 @@ $videosList = json_decode($property['videos'], true) ?: [];
 
                     <!-- Floor Plans -->
                     <div class="col-md-6">
-                        <label class="form-label text-secondary small fw-bold">Floor Plans (Images)</label>
+                        <label class="form-label text-secondary small fw-bold">Floor Plans (Images, Max 8MB each)</label>
                         <?php if (!empty($floorPlansList)): ?>
                             <div class="row g-2 mb-3">
                                 <?php foreach ($floorPlansList as $fp): ?>
@@ -191,7 +192,7 @@ $videosList = json_decode($property['videos'], true) ?: [];
                                 <?php endforeach; ?>
                             </div>
                         <?php endif; ?>
-                        <input type="file" name="floor_plans[]" multiple class="form-control luxury-input-text" accept="image/*">
+                        <input type="file" name="floor_plans[]" multiple class="form-control luxury-input-text" accept="image/*,.heic,.heif">
                     </div>
 
                     <!-- Videos repeater -->

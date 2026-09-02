@@ -165,7 +165,7 @@
                                             <div class="text-secondary fs-xs"><?php echo htmlspecialchars($prop['location']); ?></div>
                                         </div>
                                     </td>
-                                    <td class="text-warning font-cinzel small fw-bold">$<?php echo number_format($prop['price']); ?></td>
+                                    <td class="text-warning font-cinzel small fw-bold">₹<?php echo number_format($prop['price']); ?></td>
                                     <td>
                                         <span class="badge <?php echo $prop['is_published'] ? 'bg-success' : 'bg-secondary'; ?> rounded-pill" style="font-size: 10px;">
                                             <?php echo $prop['is_published'] ? 'Published' : 'Draft'; ?>

@@ -36,6 +36,11 @@ abstract class Model {
                     if ($check && !$check->fetch()) {
                         self::$db->exec("ALTER TABLE `properties` ADD COLUMN `in_slider` TINYINT(1) NOT NULL DEFAULT 0, ADD COLUMN `slider_image` VARCHAR(255) NULL");
                     }
+                    
+                    $checkUnit = self::$db->query("SHOW COLUMNS FROM `properties` LIKE 'area_unit'");
+                    if ($checkUnit && !$checkUnit->fetch()) {
+                        self::$db->exec("ALTER TABLE `properties` ADD COLUMN `area_unit` VARCHAR(50) NOT NULL DEFAULT 'Sq. Ft.'");
+                    }
                 } catch (\Throwable $migrationError) {
                     // Ignore migration check if table doesn't exist yet
                 }

@@ -261,14 +261,14 @@ class Property extends Model {
         $stmt = self::$db->prepare("
             INSERT INTO properties (
                 title, slug, category_id, status, price, location, 
-                bedrooms, bathrooms, area, short_description, 
+                bedrooms, bathrooms, area, area_unit, short_description, 
                 full_description, amenities, is_featured, is_published,
                 rera_number, construction_status, availability_status, google_map_embed,
                 pdf_brochure, floor_plans, meta_title, meta_description,
                 meta_keywords, videos, three_sixty_tour_url, in_slider, slider_image
             ) VALUES (
                 :title, :slug, :category_id, :status, :price, :location, 
-                :bedrooms, :bathrooms, :area, :short_description, 
+                :bedrooms, :bathrooms, :area, :area_unit, :short_description, 
                 :full_description, :amenities, :is_featured, :is_published,
                 :rera_number, :construction_status, :availability_status, :google_map_embed,
                 :pdf_brochure, :floor_plans, :meta_title, :meta_description,
@@ -286,6 +286,7 @@ class Property extends Model {
             'bedrooms' => $data['bedrooms'],
             'bathrooms' => $data['bathrooms'],
             'area' => $data['area'],
+            'area_unit' => $data['area_unit'] ?? 'Sq. Ft.',
             'short_description' => $data['short_description'],
             'full_description' => $data['full_description'],
             'amenities' => $data['amenities'], // should be JSON string
@@ -326,6 +327,7 @@ class Property extends Model {
                 bedrooms = :bedrooms,
                 bathrooms = :bathrooms,
                 area = :area,
+                area_unit = :area_unit,
                 short_description = :short_description,
                 full_description = :full_description,
                 amenities = :amenities,
@@ -358,6 +360,7 @@ class Property extends Model {
             'bedrooms' => $data['bedrooms'],
             'bathrooms' => $data['bathrooms'],
             'area' => $data['area'],
+            'area_unit' => $data['area_unit'] ?? 'Sq. Ft.',
             'short_description' => $data['short_description'],
             'full_description' => $data['full_description'],
             'amenities' => $data['amenities'],

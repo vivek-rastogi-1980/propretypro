@@ -110,6 +110,9 @@ class AdminPropertyController extends Controller {
         $selectedAmenities = $_POST['amenities'] ?? [];
         $amenitiesJson = json_encode($selectedAmenities);
 
+        // Area Unit
+        $areaUnit = ValidationHelper::cleanInput($_POST['area_unit'] ?? 'Sq. Ft.');
+
         $data = [
             'title' => ValidationHelper::cleanInput($title),
             'slug' => ValidationHelper::cleanInput($slug),
@@ -120,6 +123,7 @@ class AdminPropertyController extends Controller {
             'bedrooms' => $bedrooms,
             'bathrooms' => $bathrooms,
             'area' => $area,
+            'area_unit' => $areaUnit,
             'short_description' => ValidationHelper::cleanInput($shortDescription),
             'full_description' => trim($fullDescription), // Allow HTML
             'amenities' => $amenitiesJson,
@@ -398,6 +402,9 @@ class AdminPropertyController extends Controller {
         $selectedAmenities = $_POST['amenities'] ?? [];
         $amenitiesJson = json_encode($selectedAmenities);
 
+        // Area Unit
+        $areaUnit = ValidationHelper::cleanInput($_POST['area_unit'] ?? 'Sq. Ft.');
+
         $data = [
             'title' => ValidationHelper::cleanInput($title),
             'slug' => ValidationHelper::cleanInput($slug),
@@ -408,6 +415,7 @@ class AdminPropertyController extends Controller {
             'bedrooms' => $bedrooms,
             'bathrooms' => $bathrooms,
             'area' => $area,
+            'area_unit' => $areaUnit,
             'short_description' => ValidationHelper::cleanInput($shortDescription),
             'full_description' => trim($fullDescription),
             'amenities' => $amenitiesJson,

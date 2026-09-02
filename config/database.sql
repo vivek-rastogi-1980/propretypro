@@ -33,6 +33,7 @@ CREATE TABLE IF NOT EXISTS `properties` (
   `bedrooms` INT NOT NULL DEFAULT 0,
   `bathrooms` INT NOT NULL DEFAULT 0,
   `area` DECIMAL(10, 2) NOT NULL,
+  `area_unit` VARCHAR(50) NOT NULL DEFAULT 'Sq. Ft.',
   `short_description` VARCHAR(500) NOT NULL,
   `full_description` TEXT NOT NULL,
   `amenities` TEXT DEFAULT NULL, -- JSON array of amenities

@@ -51,8 +51,8 @@
                             </select>
                         </div>
                         <div class="col-12">
-                            <label class="form-label text-secondary small fw-bold">Max Budget</label>
-                            <input type="number" name="budget_max" class="form-control luxury-input-text-sm" placeholder="e.g. 5000000" value="<?php echo htmlspecialchars($filters['budget_max'] ?? ''); ?>">
+                            <label class="form-label text-secondary small fw-bold">Max Budget (₹)</label>
+                            <input type="number" name="budget_max" class="form-control luxury-input-text-sm" placeholder="e.g. 25000000" value="<?php echo htmlspecialchars($filters['budget_max'] ?? ''); ?>">
                         </div>
                         <div class="col-6">
                             <label class="form-label text-secondary small fw-bold">Beds (Min)</label>
@@ -73,8 +73,8 @@
                             </select>
                         </div>
                         <div class="col-12">
-                            <label class="form-label text-secondary small fw-bold">Min Area (SqFt)</label>
-                            <input type="number" name="area" class="form-control luxury-input-text-sm" placeholder="e.g. 2000" value="<?php echo htmlspecialchars($filters['area'] ?? ''); ?>">
+                            <label class="form-label text-secondary small fw-bold">Min Land / Area Size</label>
+                            <input type="number" name="area" class="form-control luxury-input-text-sm" placeholder="e.g. 1500" value="<?php echo htmlspecialchars($filters['area'] ?? ''); ?>">
                         </div>
                         <div class="col-12">
                             <label class="form-label text-secondary small fw-bold">Construction Status</label>
@@ -89,32 +89,27 @@
                             <input type="text" name="rera_number" class="form-control luxury-input-text-sm" placeholder="e.g. RERA123" value="<?php echo htmlspecialchars($filters['rera_number'] ?? ''); ?>">
                         </div>
                         <div class="col-12 mt-4">
-                            <button type="submit" class="btn btn-gold-solid w-100 py-3 uppercase tracking-wider small fw-bold">
-                                Apply Filters
-                            </button>
+                            <button type="submit" class="btn btn-premium w-100 py-2"><i class="fa-solid fa-filter me-2"></i>Apply Filters</button>
+                            <a href="<?php echo BASE_URL; ?>properties" class="btn btn-outline-secondary w-100 py-2 mt-2 fs-xs">Reset All</a>
                         </div>
                     </form>
                 </div>
             </div>
 
-            <!-- Properties Listings Grid -->
+            <!-- Property Grid List -->
             <div class="col-lg-9">
-                <div class="d-flex justify-content-between align-items-center mb-4 pb-2 border-bottom border-secondary border-opacity-15">
-                    <p class="text-secondary small mb-0">Showing <strong><?php echo $totalProperties; ?></strong> exclusive listings matching filters</p>
-                    <div class="d-flex align-items-center">
-                        <span class="text-secondary small me-2 d-none d-sm-inline">Sort by:</span>
-                        <select class="form-select luxury-input-text-sm py-1 px-3 border-0 bg-transparent text-white" style="width: auto; cursor: pointer;">
-                            <option value="newest" class="bg-dark text-white">Newest First</option>
-                        </select>
-                    </div>
+                <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
+                    <span class="text-secondary small">Showing <strong class="text-white"><?php echo count($properties); ?></strong> of <strong class="text-white"><?php echo $totalProperties; ?></strong> luxury properties</span>
+                    
+                    <!-- View switcher & Sorting could be added here -->
                 </div>
 
                 <?php if (empty($properties)): ?>
-                    <div class="glass-card-dark p-5 rounded-4 border-secondary border-opacity-15 text-center my-5">
-                        <i class="fa-solid fa-hotel text-warning display-4 mb-4"></i>
-                        <h4 class="font-cinzel text-white fw-bold">No Listings Matched</h4>
+                    <div class="glass-card p-5 text-center rounded-4 my-5">
+                        <i class="fa-solid fa-magnifying-glass-chart fs-1 text-gold-accent mb-3"></i>
+                        <h4 class="font-cinzel text-white fw-bold mb-2">No Properties Found</h4>
                         <p class="text-light-muted mb-4">No estates matched the specified search filters. Try refining your keywords or budget limits.</p>
-                        <a href="<?php echo BASE_URL; ?>properties" class="btn btn-gold-solid px-4 py-2 small">Reset Search</a>
+                        <a href="<?php echo BASE_URL; ?>properties" class="btn btn-outline-gold px-4 py-2">View All Collection</a>
                     </div>
                 <?php else: ?>
                     <div class="row g-4">
@@ -143,12 +138,12 @@
                                         <p class="text-light-muted small mb-4 line-clamp-2"><?php echo htmlspecialchars($prop['short_description']); ?></p>
                                         
                                         <div class="d-flex justify-content-between align-items-center border-top border-secondary border-opacity-15 pt-3">
-                                            <h5 class="text-warning font-cinzel mb-0 fw-bold">$<?php echo number_format($prop['price']); ?></h5>
+                                            <h5 class="text-warning font-cinzel mb-0 fw-bold">₹<?php echo number_format($prop['price']); ?></h5>
                                             <div class="property-specs text-secondary fs-xs">
                                                 <?php if ($prop['bedrooms']): ?>
                                                     <span class="me-3"><i class="fa-solid fa-bed text-gold-accent me-1"></i><?php echo $prop['bedrooms']; ?> Beds</span>
                                                 <?php endif; ?>
-                                                <span><i class="fa-solid fa-maximize text-gold-accent me-1"></i><?php echo number_format($prop['area']); ?> SqFt</span>
+                                                <span><i class="fa-solid fa-maximize text-gold-accent me-1"></i><?php echo number_format($prop['area']); ?> <?php echo htmlspecialchars($prop['area_unit'] ?? 'Sq. Ft.'); ?></span>
                                             </div>
                                         </div>
                                         <a href="<?php echo BASE_URL; ?>property/<?php echo $prop['slug']; ?>" class="stretched-link"></a>

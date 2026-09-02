@@ -86,7 +86,7 @@ use App\Helpers\CSRFHelper;
                                 </div>
                             </td>
                             <td class="text-light-muted small"><?php echo htmlspecialchars($prop['category_name']); ?></td>
-                            <td class="text-warning font-cinzel small fw-bold">$<?php echo number_format($prop['price']); ?></td>
+                            <td class="text-warning font-cinzel small fw-bold">₹<?php echo number_format($prop['price']); ?></td>
                             <td class="small"><?php echo htmlspecialchars($prop['status']); ?></td>
                             <td>
                                 <span class="badge <?php 

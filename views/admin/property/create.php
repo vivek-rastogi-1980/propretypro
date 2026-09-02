@@ -81,7 +81,7 @@ use App\Helpers\CSRFHelper;
                         </select>
                     </div>
                     <div class="col-md-4">
-                        <label class="form-label text-secondary small fw-bold">Acquisition Price ($) *</label>
+                        <label class="form-label text-secondary small fw-bold">Acquisition Price (₹) *</label>
                         <input type="number" step="0.01" name="price" class="form-control luxury-input-text" required placeholder="e.g. 2450000" value="<?php echo htmlspecialchars($old['price'] ?? ''); ?>">
                         <?php if (!empty($errors['price'])): ?>
                             <div class="text-danger small fw-bold mt-1"><?php echo $errors['price']; ?></div>
@@ -162,20 +162,32 @@ use App\Helpers\CSRFHelper;
             <!-- 3. Specs & Amenities Tab -->
             <div class="tab-pane fade" id="details" role="tabpanel" aria-labelledby="details-tab">
                 <div class="row g-4">
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <label class="form-label text-secondary small fw-bold">Bedrooms Count</label>
                         <input type="number" name="bedrooms" class="form-control luxury-input-text" placeholder="e.g. 3" value="<?php echo htmlspecialchars($old['bedrooms'] ?? '0'); ?>">
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <label class="form-label text-secondary small fw-bold">Bathrooms Count</label>
                         <input type="number" name="bathrooms" class="form-control luxury-input-text" placeholder="e.g. 4" value="<?php echo htmlspecialchars($old['bathrooms'] ?? '0'); ?>">
                     </div>
-                    <div class="col-md-4">
-                        <label class="form-label text-secondary small fw-bold">Area Size (SqFt) *</label>
+                    <div class="col-md-3">
+                        <label class="form-label text-secondary small fw-bold">Area / Land Size *</label>
                         <input type="number" step="0.01" name="area" class="form-control luxury-input-text" placeholder="e.g. 4500" required value="<?php echo htmlspecialchars($old['area'] ?? ''); ?>">
                         <?php if (!empty($errors['area'])): ?>
                             <div class="text-danger small fw-bold mt-1"><?php echo $errors['area']; ?></div>
                         <?php endif; ?>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label text-secondary small fw-bold">Area Unit *</label>
+                        <select name="area_unit" class="form-select luxury-input" required>
+                            <?php
+                            $units = ['Sq. Ft.', 'Sq. Yard', 'Nali', 'Bigha', 'Acres'];
+                            $selectedUnit = $old['area_unit'] ?? 'Sq. Ft.';
+                            foreach ($units as $u):
+                            ?>
+                                <option value="<?php echo $u; ?>" <?php echo $selectedUnit === $u ? 'selected' : ''; ?>><?php echo $u; ?></option>
+                            <?php endforeach; ?>
+                        </select>
                     </div>
                     <div class="col-md-12">
                         <label class="form-label text-secondary small fw-bold">Short Snippet Description *</label>

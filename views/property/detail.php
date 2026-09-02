@@ -45,7 +45,7 @@ $videosList = json_decode($property['videos'], true) ?: [];
                 </div>
                 <div class="col-md-4 text-md-end">
                     <span class="text-secondary small d-block mb-1">Acquisition Price</span>
-                    <h3 class="text-warning font-cinzel fw-bold mb-0">$<?php echo number_format($price); ?></h3>
+                    <h3 class="text-warning font-cinzel fw-bold mb-0">₹<?php echo number_format($price); ?></h3>
                 </div>
             </div>
         </div>
@@ -78,7 +78,7 @@ $videosList = json_decode($property['videos'], true) ?: [];
                         <div class="col-4">
                             <i class="fa-solid fa-maximize text-warning fs-3 mb-2"></i>
                             <h6 class="text-secondary small mb-1">Total Area</h6>
-                            <h5 class="font-cinzel text-white fw-bold mb-0"><?php echo number_format($area); ?> SqFt</h5>
+                            <h5 class="font-cinzel text-white fw-bold mb-0"><?php echo number_format($area); ?> <?php echo htmlspecialchars($property['area_unit'] ?? 'Sq. Ft.'); ?></h5>
                         </div>
                     </div>
                 </div>
@@ -343,8 +343,8 @@ $videosList = json_decode($property['videos'], true) ?: [];
                                 <span class="text-gold-accent uppercase small tracking-widest fw-semibold d-block mb-2"><?php echo htmlspecialchars($rel['category_name']); ?></span>
                                 <h4 class="font-cinzel text-white fw-bold mb-3 fs-5"><?php echo htmlspecialchars($rel['title']); ?></h4>
                                 <div class="d-flex justify-content-between align-items-center border-top border-secondary border-opacity-15 pt-3 mt-3">
-                                    <h6 class="text-warning font-cinzel mb-0 fw-bold">$<?php echo number_format($rel['price']); ?></h6>
-                                    <span class="text-secondary small" style="font-size: 11px;"><i class="fa-solid fa-maximize text-gold-accent me-1"></i><?php echo number_format($rel['area']); ?> SqFt</span>
+                                    <h6 class="text-warning font-cinzel mb-0 fw-bold">₹<?php echo number_format($rel['price']); ?></h6>
+                                    <span class="text-secondary small" style="font-size: 11px;"><i class="fa-solid fa-maximize text-gold-accent me-1"></i><?php echo number_format($rel['area']); ?> <?php echo htmlspecialchars($rel['area_unit'] ?? 'Sq. Ft.'); ?></span>
                                 </div>
                                 <a href="<?php echo BASE_URL; ?>property/<?php echo $rel['slug']; ?>" class="stretched-link"></a>
                             </div>

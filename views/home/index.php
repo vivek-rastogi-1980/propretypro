@@ -99,11 +99,13 @@
                     <label class="form-label text-gold-accent small uppercase tracking-wider fw-bold"><i class="fa-solid fa-circle-dollar-to-slot me-2"></i>Max Budget</label>
                     <select name="budget_max" class="form-select luxury-input">
                         <option value="">No Limit</option>
-                        <option value="500000">$500,000</option>
-                        <option value="1000000">$1,000,000</option>
-                        <option value="2500000">$2,500,000</option>
-                        <option value="5000000">$5,000,000</option>
-                        <option value="10000000">$10,000,000</option>
+                        <option value="2500000">₹25 Lakhs</option>
+                        <option value="5000000">₹50 Lakhs</option>
+                        <option value="10000000">₹1 Crore</option>
+                        <option value="25000000">₹2.5 Crore</option>
+                        <option value="50000000">₹5 Crore</option>
+                        <option value="100000000">₹10 Crore</option>
+                        <option value="250000000">₹25+ Crore</option>
                     </select>
                 </div>
                 <div class="col-md-2">
@@ -200,12 +202,12 @@
                                 <p class="text-light-muted small mb-4 line-clamp-2"><?php echo htmlspecialchars($prop['short_description']); ?></p>
                                 
                                 <div class="d-flex justify-content-between align-items-center border-top border-secondary border-opacity-15 pt-3">
-                                    <h5 class="text-warning font-cinzel mb-0 fw-bold">$<?php echo number_format($prop['price']); ?></h5>
+                                    <h5 class="text-warning font-cinzel mb-0 fw-bold">₹<?php echo number_format($prop['price']); ?></h5>
                                     <div class="property-specs text-secondary fs-xs">
                                         <?php if ($prop['bedrooms']): ?>
                                             <span class="me-3"><i class="fa-solid fa-bed text-gold-accent me-1"></i><?php echo $prop['bedrooms']; ?> Beds</span>
                                         <?php endif; ?>
-                                        <span><i class="fa-solid fa-maximize text-gold-accent me-1"></i><?php echo number_format($prop['area']); ?> SqFt</span>
+                                        <span><i class="fa-solid fa-maximize text-gold-accent me-1"></i><?php echo number_format($prop['area']); ?> <?php echo htmlspecialchars($prop['area_unit'] ?? 'Sq. Ft.'); ?></span>
                                     </div>
                                 </div>
                                 <a href="<?php echo BASE_URL; ?>property/<?php echo $prop['slug']; ?>" class="stretched-link"></a>
@@ -246,12 +248,12 @@
                             <p class="text-light-muted small mb-4 line-clamp-2"><?php echo htmlspecialchars($prop['short_description']); ?></p>
                             
                             <div class="d-flex justify-content-between align-items-center border-top border-secondary border-opacity-15 pt-3">
-                                <h5 class="text-warning font-cinzel mb-0 fw-bold">$<?php echo number_format($prop['price']); ?></h5>
+                                <h5 class="text-warning font-cinzel mb-0 fw-bold">₹<?php echo number_format($prop['price']); ?></h5>
                                 <div class="property-specs text-secondary fs-xs">
                                     <?php if ($prop['bedrooms']): ?>
                                         <span class="me-3"><i class="fa-solid fa-bed text-gold-accent me-1"></i><?php echo $prop['bedrooms']; ?> Beds</span>
                                     <?php endif; ?>
-                                    <span><i class="fa-solid fa-maximize text-gold-accent me-1"></i><?php echo number_format($prop['area']); ?> SqFt</span>
+                                    <span><i class="fa-solid fa-maximize text-gold-accent me-1"></i><?php echo number_format($prop['area']); ?> <?php echo htmlspecialchars($prop['area_unit'] ?? 'Sq. Ft.'); ?></span>
                                 </div>
                             </div>
                             <a href="<?php echo BASE_URL; ?>property/<?php echo $prop['slug']; ?>" class="stretched-link"></a>

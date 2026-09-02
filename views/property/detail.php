@@ -336,7 +336,7 @@ $videosList = json_decode($property['videos'], true) ?: [];
                         <div class="property-luxury-card rounded-4 overflow-hidden glass-card-dark position-relative h-100">
                             <span class="property-status-tag"><?php echo htmlspecialchars($rel['status']); ?></span>
                             <div class="property-image-holder" style="height: 200px;">
-                                <img src="<?php echo BASE_URL . ($rel['image_path'] ?? 'assets/images/default_property.png'); ?>" alt="<?php echo htmlspecialchars($rel['title']); ?>" class="w-100 h-100 object-fit-cover">
+                                <img src="<?php echo BASE_URL . ($rel['image_path'] ?? 'assets/images/default_property.png'); ?>" onerror="this.onerror=null; this.src='<?php echo BASE_URL; ?>assets/images/default_property.png';" alt="<?php echo htmlspecialchars($rel['title']); ?>" class="w-100 h-100 object-fit-cover">
                                 <div class="image-gradient-shade"></div>
                             </div>
                             <div class="property-content-holder p-4">

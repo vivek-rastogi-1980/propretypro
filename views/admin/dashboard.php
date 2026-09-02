@@ -158,7 +158,7 @@
                                 <tr>
                                     <td class="d-flex align-items-center">
                                         <div class="rounded-3 overflow-hidden me-3" style="width: 50px; height: 50px; border: 1px solid rgba(255,255,255,0.1);">
-                                            <img src="<?php echo BASE_URL . ($prop['image_path'] ?? 'assets/images/default_property.png'); ?>" class="w-100 h-100 object-fit-cover">
+                                            <img src="<?php echo BASE_URL . ($prop['image_path'] ?? 'assets/images/default_property.png'); ?>" onerror="this.onerror=null; this.src='<?php echo BASE_URL; ?>assets/images/default_property.png';" class="w-100 h-100 object-fit-cover">
                                         </div>
                                         <div>
                                             <div class="fw-bold text-white small"><?php echo htmlspecialchars($prop['title']); ?></div>

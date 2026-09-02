@@ -9,17 +9,14 @@ $footerContent = htmlspecialchars($globalSettings['footer_content'] ?? '');
 $facebook = htmlspecialchars($globalSettings['social_facebook'] ?? '');
 $instagram = htmlspecialchars($globalSettings['social_instagram'] ?? '');
 $twitter = htmlspecialchars($globalSettings['social_twitter'] ?? '');
-$linkedin = htmlspecialchars($globalSettings['social_linkedin'] ?? '');
-$youtube = htmlspecialchars($globalSettings['social_youtube'] ?? '');
-$pinterest = htmlspecialchars($globalSettings['social_pinterest'] ?? '');
 ?>
     
     <!-- Footer Section -->
     <footer class="luxury-footer pt-5 pb-4 mt-5 border-top border-secondary border-opacity-10">
         <div class="container text-md-left">
-            <div class="row">
+            <div class="row g-4">
                 <!-- Company Details Column -->
-                <div class="col-md-4 col-lg-4 col-xl-4 mx-auto mt-3 footer-brand-column">
+                <div class="col-lg-5 col-md-6 footer-brand-column">
                     <h4 class="text-uppercase mb-4 font-weight-bold text-gradient-light brand-logo-footer">
                         <i class="fa-solid fa-hotel me-2"></i><?php echo $companyName; ?>
                     </h4>
@@ -28,28 +25,19 @@ $pinterest = htmlspecialchars($globalSettings['social_pinterest'] ?? '');
                     </p>
                     <div class="footer-social-icons d-flex">
                         <?php if ($facebook): ?>
-                            <a href="<?php echo $facebook; ?>" target="_blank" class="social-circle-link me-2"><i class="fa-brands fa-facebook-f"></i></a>
+                            <a href="<?php echo $facebook; ?>" target="_blank" class="social-circle-link me-2" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
                         <?php endif; ?>
                         <?php if ($instagram): ?>
-                            <a href="<?php echo $instagram; ?>" target="_blank" class="social-circle-link me-2"><i class="fa-brands fa-instagram"></i></a>
+                            <a href="<?php echo $instagram; ?>" target="_blank" class="social-circle-link me-2" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
                         <?php endif; ?>
                         <?php if ($twitter): ?>
-                            <a href="<?php echo $twitter; ?>" target="_blank" class="social-circle-link me-2"><i class="fa-brands fa-x-twitter"></i></a>
-                        <?php endif; ?>
-                        <?php if ($linkedin): ?>
-                            <a href="<?php echo $linkedin; ?>" target="_blank" class="social-circle-link me-2"><i class="fa-brands fa-linkedin-in"></i></a>
-                        <?php endif; ?>
-                        <?php if ($youtube): ?>
-                            <a href="<?php echo $youtube; ?>" target="_blank" class="social-circle-link me-2"><i class="fa-brands fa-youtube"></i></a>
-                        <?php endif; ?>
-                        <?php if ($pinterest): ?>
-                            <a href="<?php echo $pinterest; ?>" target="_blank" class="social-circle-link"><i class="fa-brands fa-pinterest-p"></i></a>
+                            <a href="<?php echo $twitter; ?>" target="_blank" class="social-circle-link" aria-label="Twitter / X"><i class="fa-brands fa-x-twitter"></i></a>
                         <?php endif; ?>
                     </div>
                 </div>
 
                 <!-- Fast Links Column -->
-                <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+                <div class="col-lg-3 col-md-6">
                     <h6 class="text-uppercase mb-4 font-weight-bold text-white small tracking-widest text-gold-accent">Quick Navigation</h6>
                     <ul class="list-unstyled footer-link-list">
                         <li class="mb-2"><a href="<?php echo BASE_URL; ?>" class="footer-link">Home Portal</a></li>
@@ -60,7 +48,7 @@ $pinterest = htmlspecialchars($globalSettings['social_pinterest'] ?? '');
                 </div>
 
                 <!-- Contact details Column -->
-                <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+                <div class="col-lg-4 col-md-12">
                     <h6 class="text-uppercase mb-4 font-weight-bold text-white small tracking-widest text-gold-accent">Contact Details</h6>
                     <div class="text-secondary small footer-contact-details">
                         <?php if ($officeAddress): ?>
@@ -74,18 +62,6 @@ $pinterest = htmlspecialchars($globalSettings['social_pinterest'] ?? '');
                         <?php endif; ?>
                     </div>
                 </div>
-
-                <!-- Newsletter Column -->
-                <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
-                    <h6 class="text-uppercase mb-4 font-weight-bold text-white small tracking-widest text-gold-accent">Newsletter</h6>
-                    <p class="text-secondary small mb-3">Subscribe to receive private updates on luxury off-market listings.</p>
-                    <form action="#" class="footer-newsletter-form">
-                        <div class="input-group">
-                            <input type="email" class="form-control newsletter-input" placeholder="Your Email" aria-label="Your Email" required>
-                            <button class="btn btn-premium btn-newsletter" type="submit"><i class="fa-solid fa-paper-plane"></i></button>
-                        </div>
-                    </form>
-                </div>
             </div>
 
             <hr class="mb-4 mt-5 border-secondary border-opacity-10">
@@ -95,7 +71,7 @@ $pinterest = htmlspecialchars($globalSettings['social_pinterest'] ?? '');
                     <p class="text-secondary small mb-0"><?php echo $footerContent ?: "© " . date('Y') . " {$companyName}. All rights reserved."; ?></p>
                 </div>
                 <div class="col-md-5 col-lg-4 text-md-end">
-                    <span class="text-secondary small">Designed by <a href="#" class="text-decoration-none text-gold-accent fw-bold"><i class="fa-solid fa-award me-1"></i>Awwwards Winner Style</a></span>
+                    <span class="text-secondary small">Designed by <a href="#" class="text-decoration-none text-gold-accent fw-bold"><i class="fa-solid fa-award me-1"></i>Digital Logic India</a></span>
                 </div>
             </div>
         </div>

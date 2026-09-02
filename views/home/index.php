@@ -190,7 +190,7 @@
                             <?php endif; ?>
                             
                             <div class="property-image-holder">
-                                <img src="<?php echo BASE_URL . ($prop['image_path'] ?? 'assets/images/default_property.png'); ?>" alt="<?php echo htmlspecialchars($prop['title']); ?>" class="w-100 h-100 object-fit-cover">
+                                <img src="<?php echo BASE_URL . ($prop['image_path'] ?? 'assets/images/default_property.png'); ?>" onerror="this.onerror=null; this.src='<?php echo BASE_URL; ?>assets/images/default_property.png';" alt="<?php echo htmlspecialchars($prop['title']); ?>" class="w-100 h-100 object-fit-cover">
                                 <div class="image-gradient-shade"></div>
                             </div>
                             
@@ -236,7 +236,7 @@
                         <span class="property-status-tag"><?php echo htmlspecialchars($prop['status']); ?></span>
                         
                         <div class="property-image-holder">
-                            <img src="<?php echo BASE_URL . ($prop['image_path'] ?? 'assets/images/default_property.png'); ?>" alt="<?php echo htmlspecialchars($prop['title']); ?>" class="w-100 h-100 object-fit-cover">
+                            <img src="<?php echo BASE_URL . ($prop['image_path'] ?? 'assets/images/default_property.png'); ?>" onerror="this.onerror=null; this.src='<?php echo BASE_URL; ?>assets/images/default_property.png';" alt="<?php echo htmlspecialchars($prop['title']); ?>" class="w-100 h-100 object-fit-cover">
                             <div class="image-gradient-shade"></div>
                         </div>
                         

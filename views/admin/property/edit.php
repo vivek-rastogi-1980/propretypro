@@ -131,7 +131,7 @@ $videosList = json_decode($property['videos'], true) ?: [];
                             <?php foreach ($images as $img): ?>
                                 <div class="col-xl-2 col-md-3 col-sm-4 col-6 admin-gallery-item-wrapper">
                                     <div class="admin-gallery-item rounded-3 overflow-hidden position-relative" style="height: 120px; border: 1px solid rgba(255,255,255,0.15);">
-                                        <img src="<?php echo BASE_URL . $img['image_path']; ?>" class="w-100 h-100 object-fit-cover">
+                                        <img src="<?php echo BASE_URL . $img['image_path']; ?>" onerror="this.onerror=null; this.src='<?php echo BASE_URL; ?>assets/images/default_property.png';" class="w-100 h-100 object-fit-cover">
                                         <div class="admin-gallery-actions">
                                             <button type="button" class="btn btn-xs btn-primary admin-set-featured-img" data-property-id="<?php echo $property['id']; ?>" data-image-id="<?php echo $img['id']; ?>" data-action="<?php echo BASE_URL; ?>admin/properties/set-featured-image" title="Set Featured Thumbnail"><i class="fa-solid fa-star"></i></button>
                                             <button type="button" class="btn btn-xs btn-warning admin-set-slider-img" data-property-id="<?php echo $property['id']; ?>" data-image-id="<?php echo $img['id']; ?>" data-action="<?php echo BASE_URL; ?>admin/properties/set-slider-image" title="Set Slider Image"><i class="fa-solid fa-images text-dark"></i></button>

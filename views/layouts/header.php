@@ -114,7 +114,8 @@ $seoKeywords = !empty($metaKeywords) ? $metaKeywords : ($globalSettings['seo_met
         <div class="container">
             <a class="navbar-brand d-flex align-items-center" href="<?php echo BASE_URL; ?>">
                 <?php if (!empty($globalSettings['company_logo'])): ?>
-                    <img src="<?php echo BASE_URL . $globalSettings['company_logo']; ?>" alt="<?php echo htmlspecialchars($globalSettings['company_name'] ?? 'Vigtez Reality'); ?>" height="45" class="me-2 brand-logo">
+                    <img src="<?php echo BASE_URL . $globalSettings['company_logo']; ?>" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';" alt="<?php echo htmlspecialchars($globalSettings['company_name'] ?? 'Vigtez Reality'); ?>" height="45" class="me-2 brand-logo">
+                    <span class="brand-text text-gradient" style="display:none;"><i class="fa-solid fa-hotel me-2"></i><?php echo htmlspecialchars($globalSettings['company_name'] ?? 'Vigtez Reality'); ?></span>
                 <?php else: ?>
                     <span class="brand-text text-gradient"><i class="fa-solid fa-hotel me-2"></i><?php echo htmlspecialchars($globalSettings['company_name'] ?? 'Vigtez Reality'); ?></span>
                 <?php endif; ?>

@@ -55,14 +55,15 @@
         </div>
 
         <div class="row g-4 mt-4">
-            <div class="col-lg-4 col-md-6 scroll-reveal-fade">
-                <div class="team-luxury-card rounded-4 overflow-hidden glass-card-dark position-relative">
-                    <div class="team-img-wrapper" style="height: 380px;">
-                        <img src="<?php echo !empty($globalSettings['about_team1_image']) ? BASE_URL . $globalSettings['about_team1_image'] : 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=800&q=80'; ?>" alt="Executive Broker" class="w-100 h-100 object-fit-cover">
+            <!-- Member 1 -->
+            <div class="col-lg-3 col-md-6 scroll-reveal-fade">
+                <div class="team-luxury-card rounded-4 overflow-hidden glass-card-dark position-relative h-100">
+                    <div class="team-img-wrapper" style="height: 340px;">
+                        <img src="<?php echo !empty($globalSettings['about_team1_image']) ? BASE_URL . $globalSettings['about_team1_image'] : 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=800&q=80'; ?>" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=800&q=80';" alt="<?php echo htmlspecialchars($globalSettings['about_team1_name'] ?? 'Charles Sterling'); ?>" class="w-100 h-100 object-fit-cover">
                     </div>
                     <div class="team-content p-4 text-center text-white">
-                        <h4 class="font-cinzel fw-bold mb-1"><?php echo htmlspecialchars($globalSettings['about_team1_name'] ?? 'Charles Sterling'); ?></h4>
-                        <p class="text-gold-accent small uppercase tracking-wider mb-3"><?php echo htmlspecialchars($globalSettings['about_team1_role'] ?? 'Founder & Chief Advisor'); ?></p>
+                        <h4 class="font-cinzel fw-bold mb-1 fs-5"><?php echo htmlspecialchars($globalSettings['about_team1_name'] ?? 'Charles Sterling'); ?></h4>
+                        <p class="text-gold-accent small uppercase tracking-wider mb-3 fs-xs"><?php echo htmlspecialchars($globalSettings['about_team1_role'] ?? 'Founder & Chief Advisor'); ?></p>
                         <div class="team-social-links">
                             <a href="#" class="text-secondary mx-2"><i class="fa-brands fa-linkedin"></i></a>
                             <a href="#" class="text-secondary mx-2"><i class="fa-solid fa-envelope"></i></a>
@@ -70,14 +71,15 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-6 scroll-reveal-fade">
-                <div class="team-luxury-card rounded-4 overflow-hidden glass-card-dark position-relative">
-                    <div class="team-img-wrapper" style="height: 380px;">
-                        <img src="<?php echo !empty($globalSettings['about_team2_image']) ? BASE_URL . $globalSettings['about_team2_image'] : 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80'; ?>" alt="Executive Broker" class="w-100 h-100 object-fit-cover">
+            <!-- Member 2 -->
+            <div class="col-lg-3 col-md-6 scroll-reveal-fade">
+                <div class="team-luxury-card rounded-4 overflow-hidden glass-card-dark position-relative h-100">
+                    <div class="team-img-wrapper" style="height: 340px;">
+                        <img src="<?php echo !empty($globalSettings['about_team2_image']) ? BASE_URL . $globalSettings['about_team2_image'] : 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80'; ?>" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80';" alt="<?php echo htmlspecialchars($globalSettings['about_team2_name'] ?? 'Alexandra Vance'); ?>" class="w-100 h-100 object-fit-cover">
                     </div>
                     <div class="team-content p-4 text-center text-white">
-                        <h4 class="font-cinzel fw-bold mb-1"><?php echo htmlspecialchars($globalSettings['about_team2_name'] ?? 'Alexandra Vance'); ?></h4>
-                        <p class="text-gold-accent small uppercase tracking-wider mb-3"><?php echo htmlspecialchars($globalSettings['about_team2_role'] ?? 'Managing Partner (Beverly Hills)'); ?></p>
+                        <h4 class="font-cinzel fw-bold mb-1 fs-5"><?php echo htmlspecialchars($globalSettings['about_team2_name'] ?? 'Alexandra Vance'); ?></h4>
+                        <p class="text-gold-accent small uppercase tracking-wider mb-3 fs-xs"><?php echo htmlspecialchars($globalSettings['about_team2_role'] ?? 'Managing Partner (Beverly Hills)'); ?></p>
                         <div class="team-social-links">
                             <a href="#" class="text-secondary mx-2"><i class="fa-brands fa-linkedin"></i></a>
                             <a href="#" class="text-secondary mx-2"><i class="fa-solid fa-envelope"></i></a>
@@ -85,14 +87,31 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-6 scroll-reveal-fade">
-                <div class="team-luxury-card rounded-4 overflow-hidden glass-card-dark position-relative">
-                    <div class="team-img-wrapper" style="height: 380px;">
-                        <img src="<?php echo !empty($globalSettings['about_team3_image']) ? BASE_URL . $globalSettings['about_team3_image'] : 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=800&q=80'; ?>" alt="Executive Broker" class="w-100 h-100 object-fit-cover">
+            <!-- Member 3 -->
+            <div class="col-lg-3 col-md-6 scroll-reveal-fade">
+                <div class="team-luxury-card rounded-4 overflow-hidden glass-card-dark position-relative h-100">
+                    <div class="team-img-wrapper" style="height: 340px;">
+                        <img src="<?php echo !empty($globalSettings['about_team3_image']) ? BASE_URL . $globalSettings['about_team3_image'] : 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=800&q=80'; ?>" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=800&q=80';" alt="<?php echo htmlspecialchars($globalSettings['about_team3_name'] ?? 'Julien Beaumont'); ?>" class="w-100 h-100 object-fit-cover">
                     </div>
                     <div class="team-content p-4 text-center text-white">
-                        <h4 class="font-cinzel fw-bold mb-1"><?php echo htmlspecialchars($globalSettings['about_team3_name'] ?? 'Julien Beaumont'); ?></h4>
-                        <p class="text-gold-accent small uppercase tracking-wider mb-3"><?php echo htmlspecialchars($globalSettings['about_team3_role'] ?? 'Head of Wealth & Asset Advisory'); ?></p>
+                        <h4 class="font-cinzel fw-bold mb-1 fs-5"><?php echo htmlspecialchars($globalSettings['about_team3_name'] ?? 'Julien Beaumont'); ?></h4>
+                        <p class="text-gold-accent small uppercase tracking-wider mb-3 fs-xs"><?php echo htmlspecialchars($globalSettings['about_team3_role'] ?? 'Head of Wealth & Asset Advisory'); ?></p>
+                        <div class="team-social-links">
+                            <a href="#" class="text-secondary mx-2"><i class="fa-brands fa-linkedin"></i></a>
+                            <a href="#" class="text-secondary mx-2"><i class="fa-solid fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Member 4 -->
+            <div class="col-lg-3 col-md-6 scroll-reveal-fade">
+                <div class="team-luxury-card rounded-4 overflow-hidden glass-card-dark position-relative h-100">
+                    <div class="team-img-wrapper" style="height: 340px;">
+                        <img src="<?php echo !empty($globalSettings['about_team4_image']) ? BASE_URL . $globalSettings['about_team4_image'] : 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=800&q=80'; ?>" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=800&q=80';" alt="<?php echo htmlspecialchars($globalSettings['about_team4_name'] ?? 'Eleanor Kensington'); ?>" class="w-100 h-100 object-fit-cover">
+                    </div>
+                    <div class="team-content p-4 text-center text-white">
+                        <h4 class="font-cinzel fw-bold mb-1 fs-5"><?php echo htmlspecialchars($globalSettings['about_team4_name'] ?? 'Eleanor Kensington'); ?></h4>
+                        <p class="text-gold-accent small uppercase tracking-wider mb-3 fs-xs"><?php echo htmlspecialchars($globalSettings['about_team4_role'] ?? 'Director of Acquisitions'); ?></p>
                         <div class="team-social-links">
                             <a href="#" class="text-secondary mx-2"><i class="fa-brands fa-linkedin"></i></a>
                             <a href="#" class="text-secondary mx-2"><i class="fa-solid fa-envelope"></i></a>

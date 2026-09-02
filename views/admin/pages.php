@@ -541,7 +541,7 @@ function val(array $settings, string $key, string $default = ''): string {
                             <hr class="my-4 border-secondary border-opacity-10">
 
                             <!-- Member 1 -->
-                            <div class="col-lg-4">
+                            <div class="col-lg-3 col-md-6">
                                 <h6 class="fw-bold text-warning mb-2">Member 1</h6>
                                 <div class="mb-2">
                                     <label class="form-label text-xs text-muted">Name</label>
@@ -561,7 +561,7 @@ function val(array $settings, string $key, string $default = ''): string {
                             </div>
 
                             <!-- Member 2 -->
-                            <div class="col-lg-4">
+                            <div class="col-lg-3 col-md-6">
                                 <h6 class="fw-bold text-warning mb-2">Member 2</h6>
                                 <div class="mb-2">
                                     <label class="form-label text-xs text-muted">Name</label>
@@ -581,7 +581,7 @@ function val(array $settings, string $key, string $default = ''): string {
                             </div>
 
                             <!-- Member 3 -->
-                            <div class="col-lg-4">
+                            <div class="col-lg-3 col-md-6">
                                 <h6 class="fw-bold text-warning mb-2">Member 3</h6>
                                 <div class="mb-2">
                                     <label class="form-label text-xs text-muted">Name</label>
@@ -596,6 +596,26 @@ function val(array $settings, string $key, string $default = ''): string {
                                     <input type="file" name="about_team3_image" class="form-control mb-1" accept="image/*,.heic,.heif">
                                     <?php if (!empty($settings['about_team3_image'])): ?>
                                         <img src="<?php echo BASE_URL . $settings['about_team3_image']; ?>" class="img-thumbnail rounded mb-2" style="max-height: 80px;">
+                                    <?php endif; ?>
+                                </div>
+                            </div>
+
+                            <!-- Member 4 -->
+                            <div class="col-lg-3 col-md-6">
+                                <h6 class="fw-bold text-warning mb-2">Member 4</h6>
+                                <div class="mb-2">
+                                    <label class="form-label text-xs text-muted">Name</label>
+                                    <input type="text" name="about_team4_name" class="form-control" value="<?php echo val($settings, 'about_team4_name', 'Eleanor Kensington'); ?>">
+                                </div>
+                                <div class="mb-2">
+                                    <label class="form-label text-xs text-muted">Role</label>
+                                    <input type="text" name="about_team4_role" class="form-control" value="<?php echo val($settings, 'about_team4_role', 'Director of Acquisitions'); ?>">
+                                </div>
+                                <div>
+                                    <label class="form-label text-xs text-muted">Profile Image (Max 8MB)</label>
+                                    <input type="file" name="about_team4_image" class="form-control mb-1" accept="image/*,.heic,.heif">
+                                    <?php if (!empty($settings['about_team4_image'])): ?>
+                                        <img src="<?php echo BASE_URL . $settings['about_team4_image']; ?>" class="img-thumbnail rounded mb-2" style="max-height: 80px;">
                                     <?php endif; ?>
                                 </div>
                             </div>

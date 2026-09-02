@@ -392,6 +392,8 @@ class AdminController extends Controller {
             'about_team2_role' => ValidationHelper::cleanInput($_POST['about_team2_role'] ?? ''),
             'about_team3_name' => ValidationHelper::cleanInput($_POST['about_team3_name'] ?? ''),
             'about_team3_role' => ValidationHelper::cleanInput($_POST['about_team3_role'] ?? ''),
+            'about_team4_name' => ValidationHelper::cleanInput($_POST['about_team4_name'] ?? ''),
+            'about_team4_role' => ValidationHelper::cleanInput($_POST['about_team4_role'] ?? ''),
 
             // Contact page
             'contact_hero_badge' => ValidationHelper::cleanInput($_POST['contact_hero_badge'] ?? ''),
@@ -419,6 +421,7 @@ class AdminController extends Controller {
             'about_team1_image',
             'about_team2_image',
             'about_team3_image',
+            'about_team4_image',
             'contact_hero_image'
         ];
 

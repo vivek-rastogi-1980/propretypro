@@ -235,8 +235,13 @@ class Property extends Model {
 
         // 11. Keywords search (checks title, short description, description, location, RERA)
         if (!empty($filters['keywords'])) {
-            $sql .= " AND (p.title LIKE :keywords OR p.short_description LIKE :keywords OR p.full_description LIKE :keywords OR p.location LIKE :keywords OR p.rera_number LIKE :keywords)";
-            $params[':keywords'] = '%' . $filters['keywords'] . '%';
+            $sql .= " AND (p.title LIKE :kw_title OR p.short_description LIKE :kw_short OR p.full_description LIKE :kw_desc OR p.location LIKE :kw_loc OR p.rera_number LIKE :kw_rera)";
+            $kwPattern = '%' . $filters['keywords'] . '%';
+            $params[':kw_title'] = $kwPattern;
+            $params[':kw_short'] = $kwPattern;
+            $params[':kw_desc'] = $kwPattern;
+            $params[':kw_loc'] = $kwPattern;
+            $params[':kw_rera'] = $kwPattern;
         }
 
         // 12. Featured Only

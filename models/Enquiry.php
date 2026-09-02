@@ -41,8 +41,12 @@ class Enquiry extends Model {
         $params = [];
 
         if (!empty($filters['search'])) {
-            $sql .= " AND (e.name LIKE :search OR e.email LIKE :search OR e.phone LIKE :search OR e.message LIKE :search)";
-            $params[':search'] = '%' . $filters['search'] . '%';
+            $sql .= " AND (e.name LIKE :search_name OR e.email LIKE :search_email OR e.phone LIKE :search_phone OR e.message LIKE :search_msg)";
+            $searchPattern = '%' . $filters['search'] . '%';
+            $params[':search_name'] = $searchPattern;
+            $params[':search_email'] = $searchPattern;
+            $params[':search_phone'] = $searchPattern;
+            $params[':search_msg'] = $searchPattern;
         }
 
         $sql .= " ORDER BY e.id DESC LIMIT :limit OFFSET :offset";
@@ -69,8 +73,12 @@ class Enquiry extends Model {
         $params = [];
 
         if (!empty($filters['search'])) {
-            $sql .= " AND (e.name LIKE :search OR e.email LIKE :search OR e.phone LIKE :search OR e.message LIKE :search)";
-            $params[':search'] = '%' . $filters['search'] . '%';
+            $sql .= " AND (e.name LIKE :search_name OR e.email LIKE :search_email OR e.phone LIKE :search_phone OR e.message LIKE :search_msg)";
+            $searchPattern = '%' . $filters['search'] . '%';
+            $params[':search_name'] = $searchPattern;
+            $params[':search_email'] = $searchPattern;
+            $params[':search_phone'] = $searchPattern;
+            $params[':search_msg'] = $searchPattern;
         }
 
         $stmt = self::$db->prepare($sql);

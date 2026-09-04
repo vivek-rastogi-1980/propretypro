@@ -18,7 +18,7 @@ $twitter = htmlspecialchars($globalSettings['social_twitter'] ?? '');
                 <!-- Company Details Column -->
                 <div class="col-lg-5 col-md-6 footer-brand-column">
                     <h4 class="text-uppercase mb-4 font-weight-bold text-gradient-light brand-logo-footer">
-                        <i class="fa-solid fa-hotel me-2"></i><?php echo $companyName; ?>
+                        <img src="<?php echo BASE_URL . $globalSettings['company_logo']; ?>" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';" alt="<?php echo htmlspecialchars($globalSettings['company_name'] ?? 'Vigtez Reality'); ?>" height="45" class="me-2 brand-logo">
                     </h4>
                     <p class="text-secondary small mb-4 lh-lg">
                         <?php echo htmlspecialchars($globalSettings['company_description'] ?? 'Crafting environments of absolute trust, bespoke services, and unmatched luxury real estate. Experience architectural masterpieces with Vigtez Reality.'); ?>
@@ -31,7 +31,7 @@ $twitter = htmlspecialchars($globalSettings['social_twitter'] ?? '');
                             <a href="<?php echo $instagram; ?>" target="_blank" class="social-circle-link me-2" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
                         <?php endif; ?>
                         <?php if ($twitter): ?>
-                            <a href="<?php echo $twitter; ?>" target="_blank" class="social-circle-link" aria-label="Twitter / X"><i class="fa-brands fa-x-twitter"></i></a>
+                            <a href="<?php echo $twitter; ?>" target="_blank" class="social-circle-link" aria-label="Twitter / X"><i class="fa-brands fa-twitter"></i></a>
                         <?php endif; ?>
                     </div>
                 </div>
@@ -40,25 +40,25 @@ $twitter = htmlspecialchars($globalSettings['social_twitter'] ?? '');
                 <div class="col-lg-3 col-md-6">
                     <h6 class="text-uppercase mb-4 font-weight-bold text-white small tracking-widest text-gold-accent">Quick Navigation</h6>
                     <ul class="list-unstyled footer-link-list">
-                        <li class="mb-2"><a href="<?php echo BASE_URL; ?>" class="footer-link">Home Portal</a></li>
-                        <li class="mb-2"><a href="<?php echo BASE_URL; ?>about" class="footer-link">About Luxe</a></li>
-                        <li class="mb-2"><a href="<?php echo BASE_URL; ?>properties" class="footer-link">Exclusive Collection</a></li>
-                        <li class="mb-2"><a href="<?php echo BASE_URL; ?>contact" class="footer-link">Connect with Us</a></li>
+                        <li class="mb-2"><a href="<?php echo BASE_URL; ?>" class="footer-link">Home</a></li>
+                        <li class="mb-2"><a href="<?php echo BASE_URL; ?>about" class="footer-link">About</a></li>
+                        <li class="mb-2"><a href="<?php echo BASE_URL; ?>properties" class="footer-link">Properties</a></li>
+                        <li class="mb-2"><a href="<?php echo BASE_URL; ?>contact" class="footer-link">Contact Us</a></li>
                     </ul>
                 </div>
 
                 <!-- Contact details Column -->
                 <div class="col-lg-4 col-md-12">
-                    <h6 class="text-uppercase mb-4 font-weight-bold text-white small tracking-widest text-gold-accent">Contact Details</h6>
+                    <h6 class="text-uppercase mb-4 font-weight-bold text-white small tracking-widest text-gold-accent">Registered Address</h6>
                     <div class="text-secondary small footer-contact-details">
                         <?php if ($officeAddress): ?>
                             <p class="d-flex align-items-start mb-3"><i class="fa-solid fa-location-dot me-3 text-warning mt-1"></i><span><?php echo $officeAddress; ?></span></p>
                         <?php endif; ?>
                         <?php if ($companyEmail): ?>
-                            <p class="d-flex align-items-center mb-3"><i class="fa-solid fa-envelope-open me-3 text-warning"></i><span><?php echo $companyEmail; ?></span></p>
+                            <p class="d-flex align-items-center mb-3"><i class="fa-solid fa-envelope-open me-3 text-warning"></i><span><a href="mailto:<?php echo $companyEmail; ?>" style="text-decoration:none"><?php echo $companyEmail; ?></a></span></p>
                         <?php endif; ?>
                         <?php if ($companyPhone): ?>
-                            <p class="d-flex align-items-center"><i class="fa-solid fa-phone me-3 text-warning"></i><span><?php echo $companyPhone; ?></span></p>
+                            <p class="d-flex align-items-center"><i class="fa-solid fa-phone me-3 text-warning"></i><span><a href="tel:+<?php echo $companyPhone; ?>" style="text-decoration:none"><?php echo $companyPhone; ?></a></span></p>
                         <?php endif; ?>
                     </div>
                 </div>
@@ -71,7 +71,7 @@ $twitter = htmlspecialchars($globalSettings['social_twitter'] ?? '');
                     <p class="text-secondary small mb-0"><?php echo $footerContent ?: "© " . date('Y') . " {$companyName}. All rights reserved."; ?></p>
                 </div>
                 <div class="col-md-5 col-lg-4 text-md-end">
-                    <span class="text-secondary small">Designed by <a href="#" class="text-decoration-none text-gold-accent fw-bold"><i class="fa-solid fa-award me-1"></i>Digital Logic India</a></span>
+                    <span class="text-secondary small">Designed by <a href="#" class="text-decoration-none text-gold-accent fw-bold"><i class="fa-solid fa-award me-1"></i>Thrusture Pvt. Ltd. Tech Partner DigitalLogicIndia</a></span>
                 </div>
             </div>
         </div>

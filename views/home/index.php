@@ -84,7 +84,7 @@
             <div class="row g-3 align-items-end">
                 <div class="col-md-3">
                     <label class="form-label text-gold-accent small uppercase tracking-wider fw-bold"><i class="fa-solid fa-location-dot me-2"></i>Location</label>
-                    <input type="text" name="location" class="form-control luxury-input" placeholder="e.g. Beverly Hills, Malibu">
+                    <input type="text" name="location" class="form-control luxury-input" placeholder="e.g. Dehradun, Thano, Mussoorie, Rishikesh">
                 </div>
                 <div class="col-md-3">
                     <label class="form-label text-gold-accent small uppercase tracking-wider fw-bold"><i class="fa-solid fa-building me-2"></i>Type</label>
@@ -319,11 +319,11 @@
                             <div class="glass-card-dark p-5 rounded-4 border-secondary border-opacity-15 position-relative">
                                 <i class="fa-solid fa-quote-left text-warning fs-1 opacity-20 mb-4 d-block"></i>
                                 <p class="text-light-muted fs-5 lh-lg mb-4">
-                                                                  <?php echo htmlspecialchars($globalSettings['home_testimonial1_text'] ?? 'Vigtez Reality provided an elite concierge experience. They negotiated our off-market estate in Malibu with absolute discretion and precision. Their team was professional beyond expectations.'); ?>
+                                    <?php echo htmlspecialchars($globalSettings['home_testimonial1_text'] ?? 'Vigtez Realty provided an exceptional property advisory experience. They helped us acquire our prime hillside estate in Thano Valley, Dehradun with absolute discretion, clean land titles, and effortless legal verification. Truly unmatched professionalism.'); ?>
                                 </p>
                                 <div class="client-info">
-                                    <h5 class="text-white font-cinzel fw-bold mb-1"><?php echo htmlspecialchars($globalSettings['home_testimonial1_author'] ?? 'Marcus Vance'); ?></h5>
-                                    <p class="text-gold-accent small uppercase tracking-wider mb-0"><?php echo htmlspecialchars($globalSettings['home_testimonial1_role'] ?? 'CEO, Vance Capital Group'); ?></p>
+                                    <h5 class="text-white font-cinzel fw-bold mb-1"><?php echo htmlspecialchars($globalSettings['home_testimonial1_author'] ?? 'Rajesh Singhania'); ?></h5>
+                                    <p class="text-gold-accent small uppercase tracking-wider mb-0"><?php echo htmlspecialchars($globalSettings['home_testimonial1_role'] ?? 'Managing Director, Singhania Enterprises, New Delhi'); ?></p>
                                 </div>
                             </div>
                         </div>
@@ -331,11 +331,11 @@
                             <div class="glass-card-dark p-5 rounded-4 border-secondary border-opacity-15 position-relative">
                                 <i class="fa-solid fa-quote-left text-warning fs-1 opacity-20 mb-4 d-block"></i>
                                 <p class="text-light-muted fs-5 lh-lg mb-4">
-                                    <?php echo htmlspecialchars($globalSettings['home_testimonial2_text'] ?? 'The obsidian penthouse is a true architectural masterpiece. The layout, standard of marble detailing, and the transaction service from Vigtez Reality made buying our dream home an absolute joy.'); ?>
+                                    <?php echo htmlspecialchars($globalSettings['home_testimonial2_text'] ?? 'Finding a clear-title luxury villa and scenic farmland in Uttarakhand can be daunting, but Vigtez Realty made our retreat acquisition seamless. Their transparency, RERA compliance, and personalised concierge service made investing in Dehradun an absolute pleasure.'); ?>
                                 </p>
                                 <div class="client-info">
-                                    <h5 class="text-white font-cinzel fw-bold mb-1"><?php echo htmlspecialchars($globalSettings['home_testimonial2_author'] ?? 'Sophia Loren'); ?></h5>
-                                    <p class="text-gold-accent small uppercase tracking-wider mb-0"><?php echo htmlspecialchars($globalSettings['home_testimonial2_role'] ?? 'Fashion Designer & Investor'); ?></p>
+                                    <h5 class="text-white font-cinzel fw-bold mb-1"><?php echo htmlspecialchars($globalSettings['home_testimonial2_author'] ?? 'Dr. Ananya Sharma'); ?></h5>
+                                    <p class="text-gold-accent small uppercase tracking-wider mb-0"><?php echo htmlspecialchars($globalSettings['home_testimonial2_role'] ?? 'Cardiologist & Estate Owner, Gurugram'); ?></p>
                                 </div>
                             </div>
                         </div>
@@ -353,7 +353,7 @@
                         <button class="play-btn-pulse" data-bs-toggle="modal" data-bs-target="#clientVideoModal">
                             <i class="fa-solid fa-play text-warning"></i>
                         </button>
-                        <h6 class="text-white font-cinzel mt-4 uppercase tracking-widest"><?php echo htmlspecialchars($globalSettings['home_testimonial_video_title'] ?? 'Video Review - Vance Family Office'); ?></h6>
+                        <h6 class="text-white font-cinzel mt-4 uppercase tracking-widest"><?php echo htmlspecialchars($globalSettings['home_testimonial_video_title'] ?? 'Client Experience - Singhania Family, Estate in Dehradun'); ?></h6>
                     </div>
                 </div>
             </div>

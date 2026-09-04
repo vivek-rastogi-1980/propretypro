@@ -83,7 +83,7 @@ class HomeController extends Controller {
         try {
             $result = Enquiry::create($formData);
             if ($result) {
-                $this->json(['success' => true, 'message' => 'Thank you! Your enquiry has been received successfully. We will contact you soon.']);
+                $this->json(['success' => true, 'message' => 'Thank you for reaching out to Vigtez Realty! Your enquiry has been received successfully. Our property advisor will contact you shortly via phone or WhatsApp.']);
             } else {
                 $this->json(['success' => false, 'message' => 'Something went wrong. Please try again later.'], 500);
             }

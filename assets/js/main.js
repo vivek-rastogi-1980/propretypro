@@ -232,23 +232,73 @@ $(document).ready(function () {
         });
     }
 
-    // Detail Page Gallery Carousel
+    // Detail Page Gallery Carousel with Luxury Controls, Counter, & Thumbnails
     if (document.querySelector('.detail-gallery-swiper')) {
-        new Swiper('.detail-gallery-swiper', {
+        const detailSwiper = new Swiper('.detail-gallery-swiper', {
             slidesPerView: 1,
             loop: true,
-            speed: 1000,
+            speed: 850,
+            effect: 'fade',
+            fadeEffect: {
+                crossFade: true
+            },
             autoplay: {
-                delay: 4000,
+                delay: 4500,
                 disableOnInteraction: false,
+                pauseOnMouseEnter: true
             },
             pagination: {
                 el: '.detail-gallery-pagination',
                 clickable: true,
             },
             navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
+                nextEl: '.property-gallery-next',
+                prevEl: '.property-gallery-prev',
+            },
+            on: {
+                init: function () {
+                    syncGalleryState(this);
+                },
+                slideChange: function () {
+                    syncGalleryState(this);
+                }
+            }
+        });
+
+        function syncGalleryState(swiper) {
+            const currentIdx = swiper.realIndex !== undefined ? swiper.realIndex + 1 : 1;
+            $('.gallery-current-idx').text(currentIdx);
+            
+            // Sync thumbnail highlight
+            $('.gallery-thumb-item').removeClass('active');
+            $(`.gallery-thumb-item[data-slide-index="${swiper.realIndex}"]`).addClass('active');
+        }
+
+        // Click thumbnail to slide
+        $(document).on('click', '.gallery-thumb-item', function () {
+            const slideIdx = parseInt($(this).data('slide-index'), 10);
+            if (!isNaN(slideIdx)) {
+                detailSwiper.slideToLoop(slideIdx);
+            }
+        });
+
+        // Fullscreen Lightbox Modal
+        $('#btn-open-gallery-modal').on('click', function () {
+            const activeSlide = $('.detail-gallery-swiper .swiper-slide-active .detail-gallery-slide-img, .detail-gallery-swiper .swiper-slide-active .detail-gallery-slide-wrap');
+            let imgUrl = activeSlide.data('full-img');
+            if (!imgUrl) {
+                const bg = activeSlide.css('background-image');
+                if (bg && bg !== 'none') {
+                    imgUrl = bg.replace(/(url\(|\)|")/g, '');
+                }
+            }
+            if (imgUrl) {
+                $('#galleryModalImage').attr('src', imgUrl);
+                const modalEl = document.getElementById('galleryPhotoModal');
+                if (modalEl) {
+                    const modal = bootstrap.Modal.getOrCreateInstance(modalEl);
+                    modal.show();
+                }
             }
         });
     }
@@ -357,7 +407,7 @@ $(document).ready(function () {
         form.find('.invalid-feedback').remove();
         formResponse.hide().html('');
 
-        submitBtn.prop('disabled', true).html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Sending...');
+        submitBtn.prop('disabled', true).html('<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span> Sending...');
 
         $.ajax({
             url: form.attr('action'),
@@ -365,18 +415,31 @@ $(document).ready(function () {
             data: form.serialize(),
             dataType: 'json',
             success: function (response) {
-                submitBtn.prop('disabled', false).html(submitBtn.data('original-text') || 'Submit Enquiry');
+                submitBtn.prop('disabled', false).html(submitBtn.data('original-text') || 'Send Inquiry');
                 if (response.success) {
                     formResponse.html(`
-                        <div class="alert alert-success border-0 glass-card-dark p-3 animated-fade-in text-white" style="background: rgba(16, 185, 129, 0.15) !important; border: 1px solid rgba(16, 185, 129, 0.25) !important; color: #ffffff !important;">
-                            <i class="fa-solid fa-circle-check me-2 text-success"></i> ${response.message}
+                        <div class="luxe-success-alert p-4 rounded-4 shadow-lg animated-fade-in my-3 text-start">
+                            <div class="d-flex align-items-start">
+                                <div class="luxe-alert-icon-wrap me-3 flex-shrink-0">
+                                    <i class="fa-solid fa-circle-check fs-2"></i>
+                                </div>
+                                <div class="flex-grow-1">
+                                    <h5 class="luxe-alert-title font-cinzel fw-bold mb-1">Enquiry Sent Successfully!</h5>
+                                    <p class="luxe-alert-desc mb-0">${response.message || 'Thank you for reaching out to Vigtez Realty. Our luxury property advisor will contact you shortly via phone / WhatsApp.'}</p>
+                                </div>
+                            </div>
                         </div>
-                    `).fadeIn();
+                    `).fadeIn(350);
                     form[0].reset();
+                    setTimeout(function() {
+                        if (formResponse.length && formResponse[0].scrollIntoView) {
+                            formResponse[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        }
+                    }, 120);
                 }
             },
             error: function (xhr) {
-                submitBtn.prop('disabled', false).html(submitBtn.data('original-text') || 'Submit Enquiry');
+                submitBtn.prop('disabled', false).html(submitBtn.data('original-text') || 'Send Inquiry');
                 
                 const response = xhr.responseJSON;
                 if (xhr.status === 422 && response && response.errors) {
@@ -388,10 +451,13 @@ $(document).ready(function () {
                 } else {
                     const errorMsg = (response && response.message) ? response.message : 'An unexpected error occurred. Please try again later.';
                     formResponse.html(`
-                        <div class="alert alert-danger border-0 glass-card-dark p-3" style="background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.2) !important;">
-                            <i class="fa-solid fa-triangle-exclamation me-2 text-danger"></i> ${errorMsg}
+                        <div class="luxe-error-alert p-3 rounded-4 shadow animated-fade-in my-3 text-start">
+                            <div class="d-flex align-items-center">
+                                <i class="fa-solid fa-triangle-exclamation me-3 fs-4 flex-shrink-0"></i>
+                                <div class="flex-grow-1 small">${errorMsg}</div>
+                            </div>
                         </div>
-                    `).fadeIn();
+                    `).fadeIn(350);
                 }
             }
         });
@@ -805,7 +871,7 @@ $(document).ready(function () {
         $('html').removeClass('admin-light-theme');
 
         // --- Frontend Theme Switcher ---
-        const activeTheme = localStorage.getItem('frontend-theme') || 'dark';
+        const activeTheme = localStorage.getItem('frontend-theme') || 'blue-white';
         applyFrontendTheme(activeTheme);
 
         // Append the Floating Theme Switcher HTML dynamically to the body
@@ -817,13 +883,13 @@ $(document).ready(function () {
                 <div class="theme-switcher-panel" id="theme-switcher-panel">
                     <div class="theme-switcher-title">Select Theme</div>
                     <div class="theme-options-list">
-                        <button class="theme-option-btn ${activeTheme === 'dark' ? 'active' : ''}" data-theme="dark">
-                            <span>Dark Luxe</span>
-                            <span class="theme-preview-circle theme-preview-dark"></span>
-                        </button>
                         <button class="theme-option-btn ${activeTheme === 'blue-white' ? 'active' : ''}" data-theme="blue-white">
                             <span>Blue & White</span>
                             <span class="theme-preview-circle theme-preview-blue"></span>
+                        </button>
+                        <button class="theme-option-btn ${activeTheme === 'dark' ? 'active' : ''}" data-theme="dark">
+                            <span>Dark Luxe</span>
+                            <span class="theme-preview-circle theme-preview-dark"></span>
                         </button>
                         <button class="theme-option-btn ${activeTheme === 'green' ? 'active' : ''}" data-theme="green">
                             <span>Westin Green</span>

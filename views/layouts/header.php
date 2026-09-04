@@ -25,7 +25,7 @@ $seoKeywords = !empty($metaKeywords) ? $metaKeywords : ($globalSettings['seo_met
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script>
         (function() {
-            const theme = localStorage.getItem('frontend-theme') || 'dark';
+            const theme = localStorage.getItem('frontend-theme') || 'blue-white';
             if (theme !== 'dark') {
                 document.documentElement.classList.add('theme-' + theme);
             }
@@ -141,7 +141,7 @@ $seoKeywords = !empty($metaKeywords) ? $metaKeywords : ($globalSettings['seo_met
                         <a class="nav-link nav-link-luxury <?php echo $aboutActive; ?>" href="<?php echo BASE_URL; ?>about">About</a>
                     </li>
                     <li class="nav-item px-3">
-                        <a class="nav-link nav-link-luxury <?php echo $propertiesActive; ?>" href="<?php echo BASE_URL; ?>properties">Collection</a>
+                        <a class="nav-link nav-link-luxury <?php echo $propertiesActive; ?>" href="<?php echo BASE_URL; ?>properties">Properties</a>
                     </li>
                     <li class="nav-item px-3">
                         <a class="nav-link nav-link-luxury <?php echo $contactActive; ?>" href="<?php echo BASE_URL; ?>contact">Contact</a>
@@ -162,7 +162,7 @@ $seoKeywords = !empty($metaKeywords) ? $metaKeywords : ($globalSettings['seo_met
                         </li>
                     <?php else: ?>
                         <li class="nav-item px-2 ms-lg-3">
-                            <a class="btn btn-premium d-flex align-items-center" href="<?php echo BASE_URL; ?>properties"><i class="fa-solid fa-magnifying-glass me-2"></i>Explore</a>
+                            <a class="btn btn-premium d-flex align-items-center" href="tel:+919719665858"><i class="fa-solid fa-magnifying-glass me-2"></i>Call Now</a>
                         </li>
                     <?php endif; ?>
                 </ul>

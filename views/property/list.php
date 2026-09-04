@@ -29,7 +29,7 @@
                         </div>
                         <div class="col-12">
                             <label class="form-label text-secondary small fw-bold">Location</label>
-                            <input type="text" name="location" class="form-control luxury-input-text-sm" placeholder="e.g. Malibu, Aspen" value="<?php echo htmlspecialchars($filters['location'] ?? ''); ?>">
+                            <input type="text" name="location" class="form-control luxury-input-text-sm" placeholder="e.g. Dehradun, Thano, Rishikesh, Mussoorie" value="<?php echo htmlspecialchars($filters['location'] ?? ''); ?>">
                         </div>
                         <div class="col-12">
                             <label class="form-label text-secondary small fw-bold">Category</label>

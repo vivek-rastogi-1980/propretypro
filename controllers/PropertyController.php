@@ -138,7 +138,7 @@ class PropertyController extends Controller {
         try {
             $result = Enquiry::create($formData);
             if ($result) {
-                $this->json(['success' => true, 'message' => 'Your inquiry about this property has been received. We will contact you soon.']);
+                $this->json(['success' => true, 'message' => 'Thank you for your interest! Your enquiry regarding this property has been received. Our dedicated property advisor will contact you shortly via phone / WhatsApp.']);
             } else {
                 $this->json(['success' => false, 'message' => 'Submission failed. Please try again later.'], 500);
             }

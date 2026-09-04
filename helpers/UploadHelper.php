@@ -88,9 +88,9 @@ class UploadHelper {
             $largePath = $targetDir . $largeName;
             $thumbPath = $targetDir . $thumbName;
 
-            // Compress and save
-            $savedLarge = self::compressImage($file['tmp_name'], $largePath, 1200, 80, $ext);
-            $savedThumb = self::compressImage($file['tmp_name'], $thumbPath, 500, 70, $ext);
+            // Compress and save (Full HD 1920px at high quality for luxury presentation)
+            $savedLarge = self::compressImage($file['tmp_name'], $largePath, 1920, 90, $ext);
+            $savedThumb = self::compressImage($file['tmp_name'], $thumbPath, 600, 80, $ext);
 
             if ($savedLarge && $savedThumb) {
                 // Store paths relative to web root: uploads/properties/{id}/filename

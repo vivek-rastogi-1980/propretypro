@@ -8,8 +8,8 @@ use App\Helpers\CSRFHelper;
     <div class="video-overlay-tint"></div>
     
     <div class="container position-relative z-1 text-center py-5">
-        <h1 class="display-3 font-cinzel fw-bold" style="color:white"><?php echo htmlspecialchars($globalSettings['contact_hero_title'] ?? 'Connect with Vigtez Reality'); ?></h1>
-        <p class="lead mx-auto" style="max-width: 600px; color: white;"><?php echo htmlspecialchars($globalSettings['contact_hero_desc'] ?? 'Schedule private helicopter viewings, charter tours, or off-market portfolios.'); ?></p>
+        <h1 class="display-3 font-cinzel fw-bold" style="color:white; margin-top:2em;"><?php echo htmlspecialchars($globalSettings['contact_hero_title'] ?? 'HAVE QUESTIONS?'); ?></h1>
+        <p class="lead mx-auto" style="max-width: 600px; color: white;"><?php echo htmlspecialchars($globalSettings['contact_hero_desc'] ?? 'Connect with our luxury real estate advisors for prime residential villas, estates, and investment land across Uttarakhand and North India.'); ?></p>
     </div>
 </section>
 
@@ -30,7 +30,7 @@ use App\Helpers\CSRFHelper;
                         <div class="d-flex align-items-start mb-4">
                             <div class="contact-icon-circle me-3"><i class="fa-solid fa-location-dot text-warning"></i></div>
                             <div>
-                                <h6 class="text-white font-cinzel mb-1 fw-bold">Principal Office</h6>
+                                <h6 class="text-white font-cinzel mb-1 fw-bold">Registered Office</h6>
                                 <p class="text-secondary small mb-0"><?php echo htmlspecialchars($globalSettings['office_address']); ?></p>
                             </div>
                         </div>
@@ -40,7 +40,7 @@ use App\Helpers\CSRFHelper;
                             <div class="contact-icon-circle me-3"><i class="fa-solid fa-envelope-open text-warning"></i></div>
                             <div>
                                 <h6 class="text-white font-cinzel mb-1 fw-bold">Email Communications</h6>
-                                <p class="text-secondary small mb-0"><?php echo htmlspecialchars($globalSettings['company_email']); ?></p>
+                                <p class="text-secondary small mb-0" style="text-transform: none;"><a href="mailto:<?php echo htmlspecialchars($globalSettings['company_email']); ?>" style="text-decoration:none"><?php echo htmlspecialchars($globalSettings['company_email']); ?></a></p>
                             </div>
                         </div>
                     <?php endif; ?>
@@ -48,8 +48,8 @@ use App\Helpers\CSRFHelper;
                         <div class="d-flex align-items-start mb-4">
                             <div class="contact-icon-circle me-3"><i class="fa-solid fa-phone text-warning"></i></div>
                             <div>
-                                <h6 class="text-white font-cinzel mb-1 fw-bold">Concierge Hotline</h6>
-                                <p class="text-secondary small mb-0"><?php echo htmlspecialchars($globalSettings['company_phone']); ?></p>
+                                <h6 class="text-white font-cinzel mb-1 fw-bold">Office Phone</h6>
+                                <p class="text-secondary small mb-0"><a href="tel:+<?php echo htmlspecialchars($globalSettings['company_phone']); ?>" style="text-decoration:none"><?php echo htmlspecialchars($globalSettings['company_phone']); ?></a></p>
                             </div>
                         </div>
                     <?php endif; ?>
@@ -58,7 +58,7 @@ use App\Helpers\CSRFHelper;
                         <div class="contact-icon-circle me-3"><i class="fa-solid fa-clock text-warning"></i></div>
                         <div>
                             <h6 class="text-white font-cinzel mb-1 fw-bold">Business Hours</h6>
-                            <p class="text-secondary small mb-0"><?php echo $globalSettings['contact_business_hours'] ?? 'Monday – Saturday: 9:00 AM – 6:00 PM PST<br>Private emergency hotline: 24/7 (Registered Clients)'; ?></p>
+                            <p class="text-secondary small mb-0"><?php echo $globalSettings['contact_business_hours'] ?? 'Monday – Saturday: 9:30 AM – 6:30 PM IST<br>Client Advisory Helpline: 24/7 (Registered HNI & NRI Clients)'; ?></p>
                         </div>
                     </div>
                 </div>
@@ -68,7 +68,7 @@ use App\Helpers\CSRFHelper;
             <div class="col-lg-7 scroll-reveal-right">
                 <div class="glass-card-dark p-5 rounded-4 border-secondary border-opacity-15 shadow-2xl">
                     <span class="text-gold-accent uppercase tracking-widest fw-bold d-block mb-3 fs-xs"><?php echo htmlspecialchars($globalSettings['contact_form_badge'] ?? 'SUBMIT ENQUIRY'); ?></span>
-                    <h3 class="font-cinzel text-white fw-bold mb-4"><?php echo htmlspecialchars($globalSettings['contact_form_title'] ?? 'Schedule a Private Viewing'); ?></h3>
+                    <h3 class="font-cinzel text-white fw-bold mb-4"><?php echo htmlspecialchars($globalSettings['contact_form_title'] ?? 'Schedule a Private Site Visit'); ?></h3>
                     
                     <form action="<?php echo BASE_URL; ?>contact/submit" method="POST" class="ajax-enquiry-form mt-4">
                         <?php echo CSRFHelper::getTokenField(); ?>
@@ -76,19 +76,19 @@ use App\Helpers\CSRFHelper;
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <label class="form-label text-secondary small fw-bold">Your Name *</label>
-                                <input type="text" name="name" class="form-control luxury-input-text" required placeholder="e.g. Marcus Vance">
+                                <input type="text" name="name" class="form-control luxury-input-text" required placeholder="e.g. Rajesh Sharma">
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label text-secondary small fw-bold">Email Address *</label>
-                                <input type="email" name="email" class="form-control luxury-input-text" required placeholder="name@domain.com">
+                                <input type="email" name="email" class="form-control luxury-input-text" required placeholder="rajesh.sharma@example.com">
                             </div>
                             <div class="col-12">
-                                <label class="form-label text-secondary small fw-bold">Phone Number</label>
-                                <input type="tel" name="phone" class="form-control luxury-input-text" placeholder="e.g. +1 (555) 000-0000">
+                                <label class="form-label text-secondary small fw-bold">Phone / WhatsApp Number *</label>
+                                <input type="tel" name="phone" class="form-control luxury-input-text" placeholder="e.g. +91 98765 43210">
                             </div>
                             <div class="col-12">
-                                <label class="form-label text-secondary small fw-bold">Bespoke Message *</label>
-                                <textarea name="message" rows="5" class="form-control luxury-input-text" required placeholder="Describe the type of property, category, location, and parameters you are looking to acquire..."></textarea>
+                                <label class="form-label text-secondary small fw-bold">Bespoke Inquiry / Requirement *</label>
+                                <textarea name="message" rows="5" class="form-control luxury-input-text" required placeholder="Describe your property requirement, preferred location (e.g. Dehradun, Rishikesh, Mussoorie, Delhi NCR), budget, and land area..."></textarea>
                             </div>
                             <div class="col-12">
                                 <div class="form-response-message my-3" style="display: none;"></div>

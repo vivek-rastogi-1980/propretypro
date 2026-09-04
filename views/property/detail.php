@@ -13,39 +13,98 @@ $videosList = json_decode($property['videos'], true) ?: [];
 ?>
 
 <!-- Cinematic Image Gallery Slider (Hero) -->
-<section class="property-hero-gallery position-relative bg-black">
+<section class="property-hero-gallery position-relative bg-black overflow-hidden">
     <div class="swiper detail-gallery-swiper">
         <div class="swiper-wrapper">
             <?php if (empty($images)): ?>
                 <div class="swiper-slide">
-                    <div class="detail-gallery-slide-img" style="background-image: url('<?php echo BASE_URL; ?>assets/images/default_property.png');"></div>
+                    <div class="detail-gallery-slide-wrap" data-full-img="<?php echo BASE_URL; ?>assets/images/default_property.png">
+                        <div class="gallery-slide-backdrop" style="background-image: url('<?php echo BASE_URL; ?>assets/images/default_property.png');"></div>
+                        <div class="detail-gallery-slide-img" style="background-image: url('<?php echo BASE_URL; ?>assets/images/default_property.png');" data-full-img="<?php echo BASE_URL; ?>assets/images/default_property.png" role="img" aria-label="<?php echo htmlspecialchars($property['title']); ?>">
+                            <div class="gallery-slide-overlay"></div>
+                        </div>
+                    </div>
                 </div>
             <?php else: ?>
-                <?php foreach ($images as $img): ?>
+                <?php foreach ($images as $idx => $img): ?>
+                    <?php $fullImgPath = BASE_URL . $img['image_path']; ?>
                     <div class="swiper-slide">
-                        <div class="detail-gallery-slide-img" style="background-image: url('<?php echo BASE_URL . $img['image_path']; ?>');"></div>
+                        <div class="detail-gallery-slide-wrap" data-full-img="<?php echo $fullImgPath; ?>">
+                            <div class="gallery-slide-backdrop" style="background-image: url('<?php echo $fullImgPath; ?>');"></div>
+                            <div class="detail-gallery-slide-img" style="background-image: url('<?php echo $fullImgPath; ?>');" data-full-img="<?php echo $fullImgPath; ?>" role="img" aria-label="<?php echo htmlspecialchars($property['title']); ?> - Photo <?php echo $idx + 1; ?>">
+                                <div class="gallery-slide-overlay"></div>
+                            </div>
+                        </div>
                     </div>
                 <?php endforeach; ?>
             <?php endif; ?>
         </div>
-        <div class="swiper-button-next swiper-nav-luxe"></div>
-        <div class="swiper-button-prev swiper-nav-luxe"></div>
+
+        <!-- Custom Luxury Navigation Controls -->
+        <button type="button" class="property-gallery-nav property-gallery-prev" aria-label="Previous Slide">
+            <i class="fa-solid fa-chevron-left"></i>
+        </button>
+        <button type="button" class="property-gallery-nav property-gallery-next" aria-label="Next Slide">
+            <i class="fa-solid fa-chevron-right"></i>
+        </button>
+
+        <!-- Floating Utilities: Counter & Fullscreen -->
+        <div class="gallery-floating-top d-flex align-items-center justify-content-between">
+            <div class="gallery-photo-badge">
+                <i class="fa-regular fa-images me-2 text-warning"></i>
+                <span class="gallery-current-idx">1</span> / <span class="gallery-total-idx"><?php echo max(count($images), 1); ?></span> Photos
+            </div>
+            <button type="button" class="gallery-fullscreen-btn" id="btn-open-gallery-modal" aria-label="View Fullscreen Photo" title="View Fullscreen">
+                <i class="fa-solid fa-expand me-1"></i> Fullscreen
+            </button>
+        </div>
+
+        <!-- Pagination Dots -->
         <div class="swiper-pagination detail-gallery-pagination"></div>
     </div>
-    
-    <!-- Floating Quick Info panel -->
-    <div class="container position-relative z-2">
-        <div class="property-floating-summary glass-card-dark p-4 rounded-4 text-white position-absolute z-3" style="bottom: 30px; left: 15px; right: 15px;">
-            <div class="row align-items-center g-3">
-                <div class="col-md-8">
-                    <span class="badge bg-gold-accent text-dark font-cinzel uppercase py-2 px-3 mb-2 me-2"><?php echo htmlspecialchars($property['category_name']); ?></span>
-                    <span class="badge bg-dark bg-opacity-70 text-warning border border-warning border-opacity-30 font-cinzel py-2 px-3 mb-2"><?php echo htmlspecialchars($property['availability_status']); ?></span>
-                    <h2 class="font-cinzel fw-bold mb-1 fs-3"><?php echo htmlspecialchars($property['title']); ?></h2>
-                    <p class="text-secondary small mb-0"><i class="fa-solid fa-location-dot me-2 text-warning"></i><?php echo htmlspecialchars($property['location']); ?></p>
+
+    <!-- Thumbnail Navigation Strip -->
+    <?php if (!empty($images) && count($images) > 1): ?>
+        <div class="gallery-thumbs-wrapper py-3 border-top border-secondary border-opacity-10">
+            <div class="container">
+                <div class="gallery-thumbs-scroll d-flex align-items-center gap-3 justify-content-center flex-wrap">
+                    <?php foreach ($images as $idx => $img): ?>
+                        <div class="gallery-thumb-item <?php echo $idx === 0 ? 'active' : ''; ?>" data-slide-index="<?php echo $idx; ?>">
+                            <img src="<?php echo !empty($img['thumb_url']) ? $img['thumb_url'] : BASE_URL . $img['image_path']; ?>" alt="Thumbnail <?php echo $idx + 1; ?>" class="w-100 h-100 object-fit-cover">
+                        </div>
+                    <?php endforeach; ?>
                 </div>
-                <div class="col-md-4 text-md-end">
-                    <span class="text-secondary small d-block mb-1">Acquisition Price</span>
-                    <h3 class="text-warning font-cinzel fw-bold mb-0">₹<?php echo number_format($price); ?></h3>
+            </div>
+        </div>
+    <?php endif; ?>
+</section>
+
+<!-- Property Detail Header Section (Positioned Cleanly Below Slider) -->
+<section class="property-detail-header-section py-4 py-md-5 bg-dark-deep border-bottom border-secondary border-opacity-10">
+    <div class="container">
+        <div class="property-header-card glass-card-dark p-4 p-md-5 rounded-4 border-secondary border-opacity-15 shadow-2xl">
+            <div class="row align-items-center g-4">
+                <div class="col-lg-8">
+                    <div class="d-flex flex-wrap align-items-center gap-2 mb-3">
+                        <span class="property-badge-category font-cinzel uppercase"><?php echo htmlspecialchars($property['category_name']); ?></span>
+                        <span class="property-badge-available font-cinzel uppercase"><?php echo htmlspecialchars($property['availability_status']); ?></span>
+                        <?php if (!empty($property['rera_number'])): ?>
+                            <span class="property-badge-rera font-cinzel uppercase"><i class="fa-solid fa-shield-halved me-2"></i>RERA Verified</span>
+                        <?php endif; ?>
+                    </div>
+                    <h1 class="display-6 font-cinzel text-white fw-bold mb-2 property-main-title"><?php echo htmlspecialchars($property['title']); ?></h1>
+                    <p class="text-secondary mb-0 fs-6">
+                        <i class="fa-solid fa-location-dot me-2 text-warning"></i><span class="text-light-muted"><?php echo htmlspecialchars($property['location']); ?></span>
+                    </p>
+                </div>
+                <div class="col-lg-4 text-lg-end border-lg-start border-secondary border-opacity-15 ps-lg-4">
+                    <span class="text-secondary small uppercase tracking-wider d-block mb-1">Acquisition Price</span>
+                    <h2 class="text-warning font-cinzel fw-bold mb-0 display-6 property-price-val">₹<?php echo number_format($price); ?></h2>
+                    <?php if ($area > 0): ?>
+                        <span class="text-secondary small mt-1 d-block">
+                            Approx. ₹<?php echo number_format(round($price / $area)); ?> per <?php echo htmlspecialchars($property['area_unit'] ?? 'Sq. Ft.'); ?>
+                        </span>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
@@ -57,8 +116,8 @@ $videosList = json_decode($property['videos'], true) ?: [];
     <div class="container py-5">
         <div class="row g-5">
             
-            <!-- Left Info Block -->
-            <div class="col-lg-8">
+            <!-- Main Info Block -->
+            <div class="col-12">
                 
                 <!-- Core Spec Icons -->
                 <div class="glass-card-dark p-4 rounded-4 border-secondary border-opacity-15 mb-5">
@@ -83,31 +142,40 @@ $videosList = json_decode($property['videos'], true) ?: [];
                     </div>
                 </div>
 
-                <!-- Description -->
-                <div class="mb-5">
-                    <h4 class="font-cinzel text-white fw-bold mb-4"><i class="fa-solid fa-align-left text-warning me-3"></i>Property Description</h4>
-                    <div class="text-light-muted lh-lg fs-6">
-                        <?php echo nl2br($property['full_description']); ?>
+                <!-- Description and Premium Amenities (Side-by-Side) -->
+                <div class="row g-4 mb-5 align-items-stretch">
+                    <!-- Property Description (Left Side) -->
+                    <div class="<?php echo !empty($amenities) ? 'col-lg-7' : 'col-12'; ?>">
+                        <div class="glass-card-dark p-4 p-md-5 rounded-4 border-secondary border-opacity-15 h-100 property-description-card">
+                            <h4 class="font-cinzel text-white fw-bold mb-4">
+                                <i class="fa-solid fa-align-left text-warning me-3"></i>Property Description
+                            </h4>
+                            <div class="text-light-muted lh-lg fs-6 property-description-text">
+                                <?php echo nl2br($property['full_description']); ?>
+                            </div>
+                        </div>
                     </div>
-                </div>
 
-                <!-- Amenities List -->
-                <div class="mb-5">
-                    <h4 class="font-cinzel text-white fw-bold mb-4"><i class="fa-solid fa-hotel text-warning me-3"></i>Premium Amenities</h4>
-                    <div class="row g-3 mt-2">
-                        <?php if (!empty($amenities)): ?>
-                            <?php foreach ($amenities as $am): ?>
-                                <div class="col-sm-4 col-6">
-                                    <div class="p-3 rounded-3 glass-card-dark border-secondary border-opacity-10 d-flex align-items-center">
-                                        <i class="fa-solid fa-circle-check text-success me-3"></i>
-                                        <span class="text-white small fw-semibold"><?php echo htmlspecialchars($am); ?></span>
-                                    </div>
+                    <!-- Premium Amenities (Right Side of Description) - Only appears when at least 1 amenity selected -->
+                    <?php if (!empty($amenities)): ?>
+                        <div class="col-lg-5">
+                            <div class="glass-card-dark p-4 p-md-5 rounded-4 border-secondary border-opacity-15 h-100 property-amenities-card">
+                                <h4 class="font-cinzel text-white fw-bold mb-4">
+                                    <i class="fa-solid fa-hotel text-warning me-3"></i>Premium Amenities
+                                </h4>
+                                <div class="row g-3">
+                                    <?php foreach ($amenities as $am): ?>
+                                        <div class="col-sm-6 col-12">
+                                            <div class="amenity-pill-item d-flex align-items-center h-100">
+                                                <i class="fa-solid fa-circle-check text-success me-3 flex-shrink-0"></i>
+                                                <span class="amenity-title small fw-semibold"><?php echo htmlspecialchars($am); ?></span>
+                                            </div>
+                                        </div>
+                                    <?php endforeach; ?>
                                 </div>
-                            <?php endforeach; ?>
-                        <?php else: ?>
-                            <p class="text-secondary small">Contact agent for full specifications list.</p>
-                        <?php endif; ?>
-                    </div>
+                            </div>
+                        </div>
+                    <?php endif; ?>
                 </div>
 
                 <!-- Floor Plans -->
@@ -218,118 +286,44 @@ $videosList = json_decode($property['videos'], true) ?: [];
                     </div>
                 <?php endif; ?>
 
-                <!-- Google Maps & Nearby Places -->
-                <div class="mb-5">
-                    <h4 class="font-cinzel text-white fw-bold mb-4"><i class="fa-solid fa-map-location-dot text-warning me-3"></i>Geographic Location</h4>
-                    <?php if (!empty($property['google_map_embed'])): ?>
-                        <div class="ratio ratio-21x9 rounded-4 overflow-hidden border border-secondary border-opacity-15 shadow-xl mb-4">
-                            <?php echo $property['google_map_embed']; ?>
-                        </div>
-                    <?php endif; ?>
-                    
-                    <h5 class="font-cinzel text-gold-accent mb-3 mt-4 small uppercase tracking-widest"><i class="fa-solid fa-location-arrow me-2 text-warning"></i>Nearby Establishments</h5>
-                    <div class="row g-3">
-                        <div class="col-sm-4 col-6">
-                            <div class="p-3 rounded-3 glass-card-dark border-secondary border-opacity-10">
-                                <h6 class="text-white mb-1"><i class="fa-solid fa-graduation-cap text-warning me-2"></i>Private School</h6>
-                                <p class="text-secondary small mb-0">1.2 Miles away</p>
-                            </div>
-                        </div>
-                        <div class="col-sm-4 col-6">
-                            <div class="p-3 rounded-3 glass-card-dark border-secondary border-opacity-10">
-                                <h6 class="text-white mb-1"><i class="fa-solid fa-umbrella-beach text-warning me-2"></i>Private Cove</h6>
-                                <p class="text-secondary small mb-0">0.4 Miles away</p>
-                            </div>
-                        </div>
-                        <div class="col-sm-4 col-6">
-                            <div class="p-3 rounded-3 glass-card-dark border-secondary border-opacity-10">
-                                <h6 class="text-white mb-1"><i class="fa-solid fa-plane-up text-warning me-2"></i>Regional Heliport</h6>
-                                <p class="text-secondary small mb-0">3.5 Miles away</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-            <!-- Right Sidebar Action Cards -->
-            <div class="col-lg-4">
-                <div class="sticky-lg-top" style="top: 100px; z-index: 9;">
-                    
-                    <!-- Call details & brochure downloads -->
-                    <div class="glass-card-dark p-4 rounded-4 border-secondary border-opacity-15 mb-4 text-center">
-                        <h4 class="font-cinzel text-white fw-bold mb-4">Broker Desk</h4>
-                        
-                        <!-- RERA verified stamp -->
-                        <?php if (!empty($property['rera_number'])): ?>
-                            <div class="p-3 rounded-3 mb-4 text-center bg-dark bg-opacity-70 border border-success border-opacity-25">
-                                <i class="fa-solid fa-shield-halved text-success display-6 mb-2"></i>
-                                <h6 class="text-white mb-1 font-cinzel">RERA Verified</h6>
-                                <p class="text-secondary small mb-0">Registration ID: <strong><?php echo htmlspecialchars($property['rera_number']); ?></strong></p>
-                            </div>
-                        <?php endif; ?>
-                        
-                        <!-- Dynamic Buttons -->
-                        <div class="d-flex flex-column gap-2 mb-4">
-                            <?php if ($whatsapp): ?>
-                                <a href="https://wa.me/<?php echo preg_replace('/[^0-9]/', '', $whatsapp); ?>?text=I am interested in <?php echo urlencode($property['title']); ?>" target="_blank" class="btn btn-success-luxury py-3 w-100 d-flex align-items-center justify-content-center">
-                                    <i class="fa-brands fa-whatsapp me-3"></i>WhatsApp Broker
-                                </a>
-                            <?php endif; ?>
-                            <?php if ($phone): ?>
-                                <a href="tel:<?php echo preg_replace('/[^0-9+]/', '', $phone); ?>" class="btn btn-outline-light py-3 w-100 d-flex align-items-center justify-content-center">
-                                    <i class="fa-solid fa-phone me-3"></i>Call Concierge
-                                </a>
-                            <?php endif; ?>
-                            <?php if (!empty($property['pdf_brochure'])): ?>
-                                <a href="<?php echo BASE_URL . $property['pdf_brochure']; ?>" target="_blank" class="btn btn-gold-solid py-3 w-100 d-flex align-items-center justify-content-center">
-                                    <i class="fa-solid fa-file-pdf me-3"></i>Download Brochure
-                                </a>
-                            <?php endif; ?>
-                        </div>
-                    </div>
-
                     <!-- Contact Form -->
                     <div class="glass-card-dark p-4 rounded-4 border-secondary border-opacity-15 shadow-lg">
-                        <h5 class="font-cinzel text-white fw-bold mb-4">Bespoke Inquiry</h5>
+                        <h5 class="font-cinzel text-white fw-bold mb-4">Inquire About Property</h5>
                         <form action="<?php echo BASE_URL; ?>property/<?php echo $property['slug']; ?>/enquiry" method="POST" class="ajax-enquiry-form">
                             <?php echo CSRFHelper::getTokenField(); ?>
                             
                             <div class="mb-3">
-                                <label class="form-label text-secondary small fw-bold">Name</label>
-                                <input type="text" name="name" class="form-control luxury-input-text-sm" required placeholder="Marcus Vance">
+                                <label class="form-label text-secondary small fw-bold">Your Name *</label>
+                                <input type="text" name="name" class="form-control luxury-input-text-sm" required placeholder="e.g. Vikramaditya Rathore">
                             </div>
                             <div class="mb-3">
-                                <label class="form-label text-secondary small fw-bold">Email</label>
+                                <label class="form-label text-secondary small fw-bold">Email Address *</label>
                                 <input type="email" name="email" class="form-control luxury-input-text-sm" required placeholder="name@domain.com">
                             </div>
                             <div class="mb-3">
-                                <label class="form-label text-secondary small fw-bold">Phone</label>
-                                <input type="tel" name="phone" class="form-control luxury-input-text-sm" placeholder="+1 (555) 000-0000">
+                                <label class="form-label text-secondary small fw-bold">Phone / WhatsApp Number *</label>
+                                <input type="tel" name="phone" class="form-control luxury-input-text-sm" placeholder="e.g. +91 98765 43210">
                             </div>
                             <div class="mb-3">
-                                <label class="form-label text-secondary small fw-bold">Bespoke Message</label>
-                                <textarea name="message" rows="4" class="form-control luxury-input-text-sm" required placeholder="I am interested in scheduling a viewing for <?php echo htmlspecialchars($property['title']); ?>..."></textarea>
+                                <label class="form-label text-secondary small fw-bold">Message *</label>
+                                <textarea name="message" rows="4" class="form-control luxury-input-text-sm" required placeholder="I am interested in scheduling a private site visit for <?php echo htmlspecialchars($property['title']); ?>..."></textarea>
                             </div>
                             <div class="form-response-message my-3" style="display: none;"></div>
                             <button type="submit" class="btn btn-gold-solid w-100 py-3 font-cinzel tracking-wider uppercase small fw-bold">
-                                Request Private Tour
+                                Submit Property Inquiry
                             </button>
                         </form>
                     </div>
-
                 </div>
             </div>
-
         </div>
-    </div>
-</section>
+    </section>
 
 <!-- Related Properties -->
 <?php if (!empty($relatedProperties)): ?>
     <section class="py-5 bg-dark-deep text-white border-top border-secondary border-opacity-10">
         <div class="container py-5">
-            <h3 class="font-cinzel text-white fw-bold mb-5 text-center text-md-start">Related <span class="text-gold-gradient">Masterpieces</span></h3>
+            <h3 class="font-cinzel text-white fw-bold mb-5 text-center text-md-start">Related <span class="text-gold-gradient">Properties</span></h3>
             <div class="row g-4">
                 <?php foreach ($relatedProperties as $rel): ?>
                     <div class="col-lg-4 col-md-6 scroll-reveal-fade">
@@ -355,4 +349,21 @@ $videosList = json_decode($property['videos'], true) ?: [];
         </div>
     </section>
 <?php endif; ?>
+
+<!-- Fullscreen Photo Modal -->
+<div class="modal fade" id="galleryPhotoModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content bg-black border border-secondary border-opacity-25 rounded-4 overflow-hidden shadow-2xl">
+            <div class="modal-header border-bottom border-secondary border-opacity-15 py-3 px-4 d-flex justify-content-between align-items-center bg-dark bg-opacity-75">
+                <h6 class="modal-title font-cinzel text-white mb-0" id="galleryModalTitle"><i class="fa-regular fa-image text-warning me-2"></i><?php echo htmlspecialchars($property['title']); ?></h6>
+                <button type="button" class="modal-video-close-btn" data-bs-dismiss="modal" aria-label="Close">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div class="modal-body p-2 text-center bg-black d-flex align-items-center justify-content-center" style="min-height: 480px;">
+                <img src="" id="galleryModalImage" alt="<?php echo htmlspecialchars($property['title']); ?>" class="img-fluid rounded-3" style="max-height: 82vh; object-fit: contain;">
+            </div>
+        </div>
+    </div>
+</div>
 

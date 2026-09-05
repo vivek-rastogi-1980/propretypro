@@ -8,7 +8,7 @@ use App\Helpers\CSRFHelper;
     <div class="video-overlay-tint"></div>
     
     <div class="container position-relative z-1 text-center py-5">
-        <h1 class="display-3 font-cinzel fw-bold" style="color:white; margin-top:2em;"><?php echo htmlspecialchars($globalSettings['contact_hero_title'] ?? 'HAVE QUESTIONS?'); ?></h1>
+        <h1 class="display-3 font-cinzel fw-bold" style="color:white;"><?php echo htmlspecialchars($globalSettings['contact_hero_title'] ?? 'HAVE QUESTIONS?'); ?></h1>
         <p class="lead mx-auto" style="max-width: 600px; color: white;"><?php echo htmlspecialchars($globalSettings['contact_hero_desc'] ?? 'Connect with our luxury real estate advisors for prime residential villas, estates, and investment land across Uttarakhand and North India.'); ?></p>
     </div>
 </section>

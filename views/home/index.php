@@ -28,12 +28,12 @@
                     <div class="container h-100 position-relative z-2 d-flex align-items-center">
                         <div class="row w-100">
                             <div class="col-lg-8 text-white select-none hero-content-col">
-                                <h1 class="display-2 font-cinzel fw-bold mb-4 animated-hero-item">
-                                    <?php echo htmlspecialchars($slide['title']); ?>
+                                <h1 class="hero-top-h1 font-cinzel fw-bold mb-3 animated-hero-item" style="font-size: 14px;">
+                                    Premium Land for Sale &amp; Investment in Uttarakhand
                                 </h1>
-                                <p class="lead mb-5 fs-5 text-light-muted animated-hero-item" style="max-width: 600px;">
-                                    <?php echo htmlspecialchars($slide['short_description']); ?>
-                                </p>
+                                <h2 class="display-2 font-cinzel fw-bold mb-4 animated-hero-item text-white">
+                                    <?php echo htmlspecialchars($slide['title']); ?>
+                                </h2>
                                 <div class="d-flex flex-wrap align-items-center gap-3 animated-hero-item">
                                     <a href="<?php echo BASE_URL . 'property/' . $slide['slug']; ?>" class="btn btn-premium px-5 py-3 d-inline-flex align-items-center justify-content-center">
                                         <span>Explore Listing</span><i class="fa-solid fa-arrow-right ms-3 text-warning"></i>
@@ -271,7 +271,7 @@
         <div class="row g-4">
             <div class="col-md-3 col-6">
                 <div class="stat-luxury-box">
-                    <i class="fa-solid fa-dollar-sign text-warning display-5 mb-3"></i>
+                    <i class="fa-solid fa-indian-rupee-sign text-warning display-5 mb-3"></i>
                     <h3 class="display-4 font-cinzel fw-bold text-white stat-counter" data-count="<?php echo htmlspecialchars($globalSettings['home_stat1_num'] ?? '4.2'); ?>">0</h3>
                     <p class="text-gold-accent small uppercase tracking-wider mb-0"><?php echo htmlspecialchars($globalSettings['home_stat1_lbl'] ?? 'Sales Volume (Billion)'); ?></p>
                 </div>

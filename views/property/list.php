@@ -4,8 +4,8 @@
     <div class="video-overlay-tint"></div>
     
     <div class="container position-relative z-1 text-center py-5">
-        <h1 class="display-3 font-cinzel fw-bold" style="color:white">Bespoke Properties</h1>
-        <p class="lead mx-auto" style="max-width: 600px; color: white;">Explore our certified portfolio of architectural masterpieces and private sanctuaries.</p>
+        <h1 class="display-3 font-cinzel fw-bold" style="color:white">Curated Living Spaces</h1>
+        <p class="lead mx-auto" style="max-width: 600px; color: white;">Explore our RERA-verified portfolio of signature architectural landmarks and bespoke private retreats.</p>
     </div>
 </section>
 

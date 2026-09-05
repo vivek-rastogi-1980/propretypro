@@ -2170,11 +2170,44 @@ html.theme-sand-beige .hero-main-swiper .video-overlay-tint {
 
 /* Enforce high-legibility white text over dark cinematic overlay for all themes in hero */
 html.theme-blue-white .hero-content-col h1,
+html.theme-blue-white .hero-content-col h2,
 html.theme-green .hero-content-col h1,
+html.theme-green .hero-content-col h2,
 html.theme-sand-beige .hero-content-col h1,
-.hero-content-col h1 {
+html.theme-sand-beige .hero-content-col h2,
+.hero-content-col h1,
+.hero-content-col h2 {
     color: #FFFFFF !important;
     text-shadow: 0 2px 15px rgba(0, 0, 0, 0.6) !important;
+}
+
+/* Hero Top H1 Tagline (14px font size on all slides) */
+.hero-content-col .hero-top-h1,
+.hero-top-h1 {
+    font-size: 14px !important;
+    line-height: 1.5 !important;
+    font-weight: 700 !important;
+    letter-spacing: 2px !important;
+    text-transform: uppercase !important;
+    color: #F59E0B !important;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.8) !important;
+    margin-bottom: 0.75rem !important;
+    display: inline-block;
+}
+
+html.theme-blue-white .hero-content-col .hero-top-h1,
+html.theme-blue-white .hero-top-h1 {
+    color: #93C5FD !important;
+}
+
+html.theme-green .hero-content-col .hero-top-h1,
+html.theme-green .hero-top-h1 {
+    color: #BEF264 !important;
+}
+
+html.theme-sand-beige .hero-content-col .hero-top-h1,
+html.theme-sand-beige .hero-top-h1 {
+    color: #FDE68A !important;
 }
 
 html.theme-blue-white .hero-content-col p.lead,

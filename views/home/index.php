@@ -26,7 +26,7 @@
                     <div class="video-overlay-tint"></div>
                     
                     <div class="container h-100 position-relative z-2 d-flex align-items-center">
-                        <div class="row w-100">
+                        <div class="row">
                             <div class="col-lg-8 text-white select-none hero-content-col">
                                 <h2 class="hero-top-h1 font-cinzel fw-bold mb-3 animated-hero-item" style="font-size: 14px;">
                                     Real Estate Investment in Uttarakhand
@@ -169,7 +169,7 @@
 </section>
 
 <!-- Featured Properties (Swiper Slider) -->
-<section id="featured-listings" class="py-5 bg-dark-deep">
+<section id="featured-listings" class="py-5 bg-dark-deep overflow-hidden">
     <div class="container py-5">
         <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-end mb-5">
             <div class="scroll-reveal-left">
@@ -224,7 +224,7 @@
 </section>
 
 <!-- Latest Properties -->
-<section class="py-5 bg-black">
+<section class="py-5 bg-black overflow-hidden">
     <div class="container py-5">
         <div class="text-center mb-5 scroll-reveal-fade">
             <span class="text-gold-accent uppercase tracking-widest fw-bold d-block mb-3 fs-xs"><i class="fa-solid fa-clock me-2"></i>JUST ADDED</span>
@@ -267,7 +267,7 @@
 </section>
 
 <!-- Luxury Statistics -->
-<section class="py-5 section-dark-luxe stat-scroll-trigger">
+<section class="py-5 section-dark-luxe stat-scroll-trigger overflow-hidden">
     <div class="container py-5 text-center">
         <div class="row g-4">
             <div class="col-md-3 col-6">
@@ -303,7 +303,7 @@
 </section>
 
 <!-- Customer Testimonials & Video Testimonials -->
-<section class="py-5 bg-dark-deep">
+<section class="py-5 bg-dark-deep overflow-hidden">
     <div class="container py-5">
         <div class="text-center mb-5 scroll-reveal-fade">
             <span class="text-gold-accent uppercase tracking-widest fw-bold d-block mb-3 fs-xs"><i class="fa-solid fa-comments me-2"></i><?php echo htmlspecialchars($globalSettings['home_testimonials_badge'] ?? 'ENDORSEMENTS'); ?></span>
@@ -363,7 +363,7 @@
 </section>
 
 <!-- Services & Investment Benefits -->
-<section class="py-5 bg-black">
+<section class="py-5 bg-black overflow-hidden">
     <div class="container py-5">
         <div class="text-center mb-5 scroll-reveal-fade">
             <span class="text-gold-accent uppercase tracking-widest fw-bold d-block mb-3 fs-xs"><i class="fa-solid fa-crown me-2"></i><?php echo htmlspecialchars($globalSettings['home_services_badge'] ?? 'OUR EXPERTISE'); ?></span>
@@ -410,7 +410,7 @@
 </section>
 
 <!-- Luxury FAQ & Awards -->
-<section class="py-5 bg-dark-deep">
+<section class="py-5 bg-dark-deep overflow-hidden">
     <div class="container py-5">
         <div class="row py-3">
             <!-- FAQ Section -->

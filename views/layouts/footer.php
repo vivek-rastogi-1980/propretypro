@@ -71,7 +71,7 @@ $twitter = htmlspecialchars($globalSettings['social_twitter'] ?? '');
                     <p class="text-secondary small mb-0"><?php echo $footerContent ?: "© " . date('Y') . " {$companyName}. All rights reserved."; ?></p>
                 </div>
                 <div class="col-md-5 col-lg-4 text-md-end">
-                    <span class="text-secondary small">Developed by <a href="#" class="text-decoration-none text-gold-accent fw-bold"><i class="fa-solid fa-award me-1"></i><a href="https://thrusture.com" class="text-decoration-none text-gold-accent fw-bold" target="_blank"/>Thrusture Pvt. Ltd.</a> Tech Partner <a href="https://www.digitallogicindia.com" class="text-decoration-none text-gold-accent fw-bold" target="_blank"/>DigitalLogicIndia</a></span>
+                    <span class="text-secondary small">Developed by <a href="https://thrusture.com" class="text-decoration-none text-gold-accent fw-bold" target="_blank"><i class="fa-solid fa-award me-1"></i>Thrusture Pvt. Ltd.</a> &bull; Tech Partner <a href="https://www.digitallogicindia.com" class="text-decoration-none text-gold-accent fw-bold" target="_blank">DigitalLogicIndia</a></span>
                 </div>
             </div>
         </div>

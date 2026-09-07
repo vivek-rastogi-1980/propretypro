@@ -63,9 +63,12 @@ $(document).ready(function () {
             delay: 0.3
         });
 
+        const isMobileScreen = window.innerWidth <= 768;
+        const revealOffset = isMobileScreen ? 20 : 60;
+
         // Scroll reveals: Left translation
         document.querySelectorAll('.scroll-reveal-left').forEach(el => {
-            gsap.fromTo(el, { opacity: 0, x: -60 }, {
+            gsap.fromTo(el, { opacity: 0, x: -revealOffset }, {
                 opacity: 1,
                 x: 0,
                 duration: 1.2,
@@ -80,7 +83,7 @@ $(document).ready(function () {
 
         // Scroll reveals: Right translation
         document.querySelectorAll('.scroll-reveal-right').forEach(el => {
-            gsap.fromTo(el, { opacity: 0, x: 60 }, {
+            gsap.fromTo(el, { opacity: 0, x: revealOffset }, {
                 opacity: 1,
                 x: 0,
                 duration: 1.2,

@@ -5,6 +5,10 @@ $price = (float)$property['price'];
 $area = (float)$property['area'];
 $bedrooms = (int)$property['bedrooms'];
 $bathrooms = (int)$property['bathrooms'];
+$category_name = htmlspecialchars($property['category_name'] ?? '');
+$listingStatus = htmlspecialchars($property['status'] ?? '');
+
+
 $whatsapp = htmlspecialchars($globalSettings['whatsapp_number'] ?? '');
 $phone = htmlspecialchars($globalSettings['company_phone'] ?? '');
 
@@ -98,7 +102,7 @@ $videosList = json_decode($property['videos'], true) ?: [];
                     </p>
                 </div>
                 <div class="col-lg-4 text-lg-end border-lg-start border-secondary border-opacity-15 ps-lg-4">
-                    <span class="text-secondary small uppercase tracking-wider d-block mb-1">Acquisition Price</span>
+                    <span class="text-secondary small uppercase tracking-wider d-block mb-1">Price</span>
                     <h2 class="text-warning font-cinzel fw-bold mb-0 display-6 property-price-val">₹<?php echo number_format($price); ?></h2>
                     <?php if ($area > 0): ?>
                         <span class="text-secondary small mt-1 d-block">
@@ -129,11 +133,31 @@ $videosList = json_decode($property['videos'], true) ?: [];
                                 <h5 class="font-cinzel text-white fw-bold mb-0"><?php echo $bedrooms; ?></h5>
                             </div>
                         <?php endif; ?>
+                        <?php if ($bathrooms): ?>
                         <div class="col-4 border-end border-secondary border-opacity-15">
                             <i class="fa-solid fa-bath text-warning fs-3 mb-2"></i>
                             <h6 class="text-secondary small mb-1">Bathrooms</h6>
                             <h5 class="font-cinzel text-white fw-bold mb-0"><?php echo $bathrooms; ?></h5>
                         </div>
+                        <?php endif; ?>
+
+                        <?php if ($listingStatus): ?>
+                        <div class="col-4 border-end border-secondary border-opacity-15">
+                            <i class="fa-solid fa-bath text-warning fs-3 mb-2"></i>
+                            <h6 class="text-secondary small mb-1">Status</h6>
+                            <h5 class="font-cinzel text-white fw-bold mb-0"><?php echo $listingStatus; ?></h5>
+                        </div>
+                        <?php endif; ?>
+
+                        <?php if ($category_name): ?>
+                        <div class="col-4 border-end border-secondary border-opacity-15">
+                            <i class="fa-solid fa-bath text-warning fs-3 mb-2"></i>
+                            <h6 class="text-secondary small mb-1">Category</h6>
+                            <h5 class="font-cinzel text-white fw-bold mb-0"><?php echo $category_name; ?></h5>
+                        </div>
+                        <?php endif; ?>
+                        
+
                         <div class="col-4">
                             <i class="fa-solid fa-maximize text-warning fs-3 mb-2"></i>
                             <h6 class="text-secondary small mb-1">Total Area</h6>

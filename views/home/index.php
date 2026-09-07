@@ -28,9 +28,9 @@
                     <div class="container h-100 position-relative z-2 d-flex align-items-center">
                         <div class="row w-100">
                             <div class="col-lg-8 text-white select-none hero-content-col">
-                                <h1 class="hero-top-h1 font-cinzel fw-bold mb-3 animated-hero-item" style="font-size: 14px;">
-                                    Premium Land for Sale &amp; Investment in Uttarakhand
-                                </h1>
+                                <h2 class="hero-top-h1 font-cinzel fw-bold mb-3 animated-hero-item" style="font-size: 14px;">
+                                    Real Estate Investment in Uttarakhand
+                                </h2>
                                 <h2 class="display-2 font-cinzel fw-bold mb-4 animated-hero-item text-white">
                                     <?php echo htmlspecialchars($slide['title']); ?>
                                 </h2>
@@ -135,7 +135,8 @@
         <div class="row align-items-center py-5">
             <div class="col-lg-6 mb-5 mb-lg-0 scroll-reveal-left">
                 <span class="text-gold-accent uppercase tracking-widest fw-bold d-block mb-3 fs-xs"><i class="fa-solid fa-feather-pointed me-2"></i><?php echo htmlspecialchars($globalSettings['home_overview_badge'] ?? 'ABOUT VIGTEZ REALTY'); ?></span>
-                <h2 class="display-5 font-cinzel text-white fw-bold mb-4"><?php echo htmlspecialchars($globalSettings['home_overview_title'] ?? 'Shaping Masterpieces of Luxury Living'); ?></h2>
+                <!--<h2 class="display-5 font-cinzel text-white fw-bold mb-4"><?php echo htmlspecialchars($globalSettings['home_overview_title'] ?? 'Shaping Masterpieces of Luxury Living'); ?></h2>-->    
+                <h1 class="display-5 font-cinzel text-white fw-bold mb-4">Premium Land for Sale & Investment in Uttarakhand</h1>
                 <p class="text-light-muted mb-4 fs-6 lh-lg">
                     <?php echo nl2br(htmlspecialchars($globalSettings['home_overview_desc_1'] ?? 'Vigtez Realty Pvt. Ltd. is a Uttarakhand-based real estate company specializing in premium land, villas, and second-home projects. We create investment opportunities in strategically located destinations across Uttarakhand with a focus on quality, transparency, and long-term value.')); ?>
                 </p>

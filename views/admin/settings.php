@@ -42,7 +42,7 @@ $favicon = htmlspecialchars($settings['company_favicon'] ?? '');
     </div>
 <?php endif; ?>
 
-<form action="<?php echo BASE_URL; ?>admin/settings" method="POST" enctype="multipart/form-data">
+<form action="<?php echo BASE_URL; ?>admin/settings/" method="POST" enctype="multipart/form-data">
     <!-- CSRF Field -->
     <?php echo CSRFHelper::getField(); ?>
 

@@ -41,9 +41,9 @@ $twitter = htmlspecialchars($globalSettings['social_twitter'] ?? '');
                     <h6 class="text-uppercase mb-4 font-weight-bold text-white small tracking-widest text-gold-accent">Quick Navigation</h6>
                     <ul class="list-unstyled footer-link-list">
                         <li class="mb-2"><a href="<?php echo BASE_URL; ?>" class="footer-link">Home</a></li>
-                        <li class="mb-2"><a href="<?php echo BASE_URL; ?>about" class="footer-link">About</a></li>
-                        <li class="mb-2"><a href="<?php echo BASE_URL; ?>properties" class="footer-link">Properties</a></li>
-                        <li class="mb-2"><a href="<?php echo BASE_URL; ?>contact" class="footer-link">Contact Us</a></li>
+                        <li class="mb-2"><a href="<?php echo BASE_URL; ?>about/" class="footer-link">About</a></li>
+                        <li class="mb-2"><a href="<?php echo BASE_URL; ?>properties/" class="footer-link">Properties</a></li>
+                        <li class="mb-2"><a href="<?php echo BASE_URL; ?>contact/" class="footer-link">Contact Us</a></li>
                     </ul>
                 </div>
 

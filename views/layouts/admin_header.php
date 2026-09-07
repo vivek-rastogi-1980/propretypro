@@ -57,25 +57,25 @@ $companyName = htmlspecialchars($globalSettings['company_name'] ?? 'Vigtez Reali
             </div>
 
             <nav class="nav flex-column px-2 admin-nav-links">
-                <a class="nav-link <?php echo str_contains($_SERVER['REQUEST_URI'], 'admin/dashboard') || (trim(substr($_SERVER['REQUEST_URI'], strlen(BASE_PATH)), '/') === 'admin') ? 'active' : ''; ?>" href="<?php echo BASE_URL; ?>admin/dashboard">
+                <a class="nav-link <?php echo str_contains($_SERVER['REQUEST_URI'], 'admin/dashboard') || (trim(substr($_SERVER['REQUEST_URI'], strlen(BASE_PATH)), '/') === 'admin') ? 'active' : ''; ?>" href="<?php echo BASE_URL; ?>admin/dashboard/">
                     <i class="fa-solid fa-chart-pie me-3"></i> Dashboard
                 </a>
-                <a class="nav-link <?php echo str_contains($_SERVER['REQUEST_URI'], 'admin/properties') ? 'active' : ''; ?>" href="<?php echo BASE_URL; ?>admin/properties">
+                <a class="nav-link <?php echo str_contains($_SERVER['REQUEST_URI'], 'admin/properties') ? 'active' : ''; ?>" href="<?php echo BASE_URL; ?>admin/properties/">
                     <i class="fa-solid fa-hotel me-3"></i> Properties
                 </a>
-                <a class="nav-link d-flex justify-content-between align-items-center <?php echo str_contains($_SERVER['REQUEST_URI'], 'admin/enquiries') ? 'active' : ''; ?>" href="<?php echo BASE_URL; ?>admin/enquiries">
+                <a class="nav-link d-flex justify-content-between align-items-center <?php echo str_contains($_SERVER['REQUEST_URI'], 'admin/enquiries') ? 'active' : ''; ?>" href="<?php echo BASE_URL; ?>admin/enquiries/">
                     <span><i class="fa-solid fa-envelope-open-text me-3"></i> Enquiries</span>
                     <?php if ($unreadCount > 0): ?>
                         <span class="badge bg-danger rounded-pill px-2 py-1 admin-badge-unread"><?php echo $unreadCount; ?></span>
                     <?php endif; ?>
                 </a>
-                <a class="nav-link <?php echo str_contains($_SERVER['REQUEST_URI'], 'admin/media') ? 'active' : ''; ?>" href="<?php echo BASE_URL; ?>admin/media">
+                <a class="nav-link <?php echo str_contains($_SERVER['REQUEST_URI'], 'admin/media') ? 'active' : ''; ?>" href="<?php echo BASE_URL; ?>admin/media/">
                     <i class="fa-solid fa-photo-film me-3"></i> Media Library
                 </a>
-                <a class="nav-link <?php echo str_contains($_SERVER['REQUEST_URI'], 'admin/pages') ? 'active' : ''; ?>" href="<?php echo BASE_URL; ?>admin/pages">
+                <a class="nav-link <?php echo str_contains($_SERVER['REQUEST_URI'], 'admin/pages') ? 'active' : ''; ?>" href="<?php echo BASE_URL; ?>admin/pages/">
                     <i class="fa-solid fa-file-pen me-3"></i> Manage Pages
                 </a>
-                <a class="nav-link <?php echo str_contains($_SERVER['REQUEST_URI'], 'admin/settings') ? 'active' : ''; ?>" href="<?php echo BASE_URL; ?>admin/settings">
+                <a class="nav-link <?php echo str_contains($_SERVER['REQUEST_URI'], 'admin/settings') ? 'active' : ''; ?>" href="<?php echo BASE_URL; ?>admin/settings/">
                     <i class="fa-solid fa-gears me-3"></i> Settings
                 </a>
                 
@@ -84,7 +84,7 @@ $companyName = htmlspecialchars($globalSettings['company_name'] ?? 'Vigtez Reali
                 <a class="nav-link text-info" href="<?php echo BASE_URL; ?>" target="_blank">
                     <i class="fa-solid fa-globe me-3"></i> Public Site
                 </a>
-                <a class="nav-link text-danger" href="<?php echo BASE_URL; ?>admin/logout">
+                <a class="nav-link text-danger" href="<?php echo BASE_URL; ?>admin/logout/">
                     <i class="fa-solid fa-right-from-bracket me-3"></i> Logout
                 </a>
             </nav>
@@ -109,14 +109,14 @@ $companyName = htmlspecialchars($globalSettings['company_name'] ?? 'Vigtez Reali
                         <i class="fa-solid fa-bars me-2"></i> Menu
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end glass-card border-secondary border-opacity-15 shadow-lg">
-                        <li><a class="dropdown-item fw-semibold" href="<?php echo BASE_URL; ?>admin/dashboard"><i class="fa-solid fa-chart-pie me-2"></i>Dashboard</a></li>
-                        <li><a class="dropdown-item fw-semibold" href="<?php echo BASE_URL; ?>admin/properties"><i class="fa-solid fa-hotel me-2"></i>Properties</a></li>
-                        <li><a class="dropdown-item fw-semibold" href="<?php echo BASE_URL; ?>admin/enquiries"><i class="fa-solid fa-envelope-open-text me-2"></i>Enquiries</a></li>
-                        <li><a class="dropdown-item fw-semibold" href="<?php echo BASE_URL; ?>admin/media"><i class="fa-solid fa-photo-film me-2"></i>Media</a></li>
-                        <li><a class="dropdown-item fw-semibold" href="<?php echo BASE_URL; ?>admin/pages"><i class="fa-solid fa-file-pen me-2"></i>Manage Pages</a></li>
-                        <li><a class="dropdown-item fw-semibold" href="<?php echo BASE_URL; ?>admin/settings"><i class="bi bi-gear me-2"></i>Settings</a></li>
+                        <li><a class="dropdown-item fw-semibold" href="<?php echo BASE_URL; ?>admin/dashboard/"><i class="fa-solid fa-chart-pie me-2"></i>Dashboard</a></li>
+                        <li><a class="dropdown-item fw-semibold" href="<?php echo BASE_URL; ?>admin/properties/"><i class="fa-solid fa-hotel me-2"></i>Properties</a></li>
+                        <li><a class="dropdown-item fw-semibold" href="<?php echo BASE_URL; ?>admin/enquiries/"><i class="fa-solid fa-envelope-open-text me-2"></i>Enquiries</a></li>
+                        <li><a class="dropdown-item fw-semibold" href="<?php echo BASE_URL; ?>admin/media/"><i class="fa-solid fa-photo-film me-2"></i>Media</a></li>
+                        <li><a class="dropdown-item fw-semibold" href="<?php echo BASE_URL; ?>admin/pages/"><i class="fa-solid fa-file-pen me-2"></i>Manage Pages</a></li>
+                        <li><a class="dropdown-item fw-semibold" href="<?php echo BASE_URL; ?>admin/settings/"><i class="bi bi-gear me-2"></i>Settings</a></li>
                         <li><hr class="dropdown-divider border-secondary border-opacity-10"></li>
-                        <li><a class="dropdown-item fw-semibold text-danger" href="<?php echo BASE_URL; ?>admin/logout"><i class="fa-solid fa-right-from-bracket me-2"></i>Logout</a></li>
+                        <li><a class="dropdown-item fw-semibold text-danger" href="<?php echo BASE_URL; ?>admin/logout/"><i class="fa-solid fa-right-from-bracket me-2"></i>Logout</a></li>
                     </ul>
                 </div>
             </div>

@@ -19,10 +19,10 @@
                 <div class="glass-card-dark p-4 rounded-4 border-secondary border-opacity-15 sticky-lg-top" style="top: 100px; z-index: 9;">
                     <h5 class="font-cinzel text-white fw-bold mb-4 d-flex justify-content-between align-items-center">
                         <span><i class="fa-solid fa-sliders text-warning me-2"></i>Filters</span>
-                        <a href="<?php echo BASE_URL; ?>properties" class="text-gold-accent small text-decoration-none" style="font-size: 11px;">Reset All</a>
+                        <a href="<?php echo BASE_URL; ?>properties/" class="text-gold-accent small text-decoration-none" style="font-size: 11px;">Reset All</a>
                     </h5>
                     
-                    <form action="<?php echo BASE_URL; ?>properties" method="GET" class="row g-3">
+                    <form action="<?php echo BASE_URL; ?>properties/" method="GET" class="row g-3">
                         <div class="col-12">
                             <label class="form-label text-secondary small fw-bold">Keywords</label>
                             <input type="text" name="keywords" class="form-control luxury-input-text-sm" placeholder="e.g. penthouse, pool" value="<?php echo htmlspecialchars($filters['keywords'] ?? ''); ?>">
@@ -90,7 +90,7 @@
                         </div>
                         <div class="col-12 mt-4">
                             <button type="submit" class="btn btn-premium w-100 py-2"><i class="fa-solid fa-filter me-2"></i>Apply Filters</button>
-                            <a href="<?php echo BASE_URL; ?>properties" class="btn btn-outline-secondary w-100 py-2 mt-2 fs-xs">Reset All</a>
+                            <a href="<?php echo BASE_URL; ?>properties/" class="btn btn-outline-secondary w-100 py-2 mt-2 fs-xs">Reset All</a>
                         </div>
                     </form>
                 </div>
@@ -109,7 +109,7 @@
                         <i class="fa-solid fa-magnifying-glass-chart fs-1 text-gold-accent mb-3"></i>
                         <h4 class="font-cinzel text-white fw-bold mb-2">No Properties Found</h4>
                         <p class="text-light-muted mb-4">No estates matched the specified search filters. Try refining your keywords or budget limits.</p>
-                        <a href="<?php echo BASE_URL; ?>properties" class="btn btn-outline-gold px-4 py-2">View All Collection</a>
+                        <a href="<?php echo BASE_URL; ?>properties/" class="btn btn-outline-gold px-4 py-2">View All Collection</a>
                     </div>
                 <?php else: ?>
                     <div class="row g-4">
@@ -146,7 +146,7 @@
                                                 <span><i class="fa-solid fa-maximize text-gold-accent me-1"></i><?php echo number_format($prop['area']); ?> <?php echo htmlspecialchars($prop['area_unit'] ?? 'Sq. Ft.'); ?></span>
                                             </div>
                                         </div>
-                                        <a href="<?php echo BASE_URL; ?>property/<?php echo $prop['slug']; ?>" class="stretched-link"></a>
+                                        <a href="<?php echo BASE_URL; ?>property/<?php echo $prop['slug']; ?>/" class="stretched-link"></a>
                                     </div>
                                 </div>
                             </div>

@@ -9,13 +9,13 @@ use App\Helpers\CSRFHelper;
     </div>
     <div>
         <!-- Export to CSV Button -->
-        <a href="<?php echo BASE_URL; ?>admin/enquiries/export?search=<?php echo urlencode($search ?? ''); ?>" class="btn btn-gold-solid px-4 py-2 small fw-bold font-cinzel"><i class="fa-solid fa-file-csv me-2"></i>Export CSV</a>
+        <a href="<?php echo BASE_URL; ?>admin/enquiries/export/?search=<?php echo urlencode($search ?? ''); ?>" class="btn btn-gold-solid px-4 py-2 small fw-bold font-cinzel"><i class="fa-solid fa-file-csv me-2"></i>Export CSV</a>
     </div>
 </div>
 
 <!-- Search Panel -->
 <div class="glass-card-dark p-4 rounded-4 border-secondary border-opacity-15 mb-4">
-    <form action="<?php echo BASE_URL; ?>admin/enquiries" method="GET">
+    <form action="<?php echo BASE_URL; ?>admin/enquiries/" method="GET">
         <div class="row g-3">
             <div class="col-md-10">
                 <input type="text" name="search" class="form-control luxury-input-text-sm" placeholder="Search by name, email, phone, message content..." value="<?php echo htmlspecialchars($search ?? ''); ?>">
@@ -78,7 +78,7 @@ use App\Helpers\CSRFHelper;
                             <td class="text-end">
                                 <div class="d-inline-flex gap-2">
                                     <?php if (!$enq['is_read']): ?>
-                                        <button type="button" class="btn btn-sm btn-outline-success admin-mark-read-btn" data-id="<?php echo $enq['id']; ?>" data-url="<?php echo BASE_URL; ?>admin/enquiries/mark-read" title="Mark as Read"><i class="fa-solid fa-envelope-open"></i></button>
+                                        <button type="button" class="btn btn-sm btn-outline-success admin-mark-read-btn" data-id="<?php echo $enq['id']; ?>" data-url="<?php echo BASE_URL; ?>admin/enquiries/mark-read/" title="Mark as Read"><i class="fa-solid fa-envelope-open"></i></button>
                                     <?php endif; ?>
                                     
                                     <!-- View Modal Trigger -->
@@ -88,7 +88,7 @@ use App\Helpers\CSRFHelper;
                                     <button type="button" class="btn btn-sm btn-outline-warning" data-bs-toggle="modal" data-bs-target="#replyModal<?php echo $enq['id']; ?>" title="Reply to client"><i class="fa-solid fa-reply"></i></button>
                                     
                                     <!-- Delete button -->
-                                    <button type="button" class="btn btn-sm btn-outline-danger admin-delete-enquiry-btn" data-id="<?php echo $enq['id']; ?>" data-url="<?php echo BASE_URL; ?>admin/enquiries/delete" title="Delete message"><i class="fa-solid fa-trash-can"></i></button>
+                                    <button type="button" class="btn btn-sm btn-outline-danger admin-delete-enquiry-btn" data-id="<?php echo $enq['id']; ?>" data-url="<?php echo BASE_URL; ?>admin/enquiries/delete/" title="Delete message"><i class="fa-solid fa-trash-can"></i></button>
                                 </div>
                             </td>
                         </tr>
@@ -172,7 +172,7 @@ use App\Helpers\CSRFHelper;
                                 <span class="text-gold-accent small uppercase tracking-wider fw-bold">Property Context:</span>
                                 <div>
                                     <?php if (!empty($enq['property_title'])): ?>
-                                        <a href="<?php echo BASE_URL; ?>property/<?php echo $enq['property_slug']; ?>" target="_blank" class="text-warning text-decoration-none fw-semibold">
+                                        <a href="<?php echo BASE_URL; ?>property/<?php echo $enq['property_slug']; ?>/" target="_blank" class="text-warning text-decoration-none fw-semibold">
                                             <i class="fa-solid fa-building me-1"></i><?php echo htmlspecialchars($enq['property_title']); ?>
                                         </a>
                                     <?php else: ?>
@@ -212,7 +212,7 @@ use App\Helpers\CSRFHelper;
         <div class="modal fade" id="replyModal<?php echo $enq['id']; ?>" tabindex="-1" aria-labelledby="replyModalLabel<?php echo $enq['id']; ?>" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-lg">
                 <div class="modal-content admin-modal-card text-start">
-                    <form class="ajax-reply-form" action="<?php echo BASE_URL; ?>admin/enquiries/reply" method="POST">
+                    <form class="ajax-reply-form" action="<?php echo BASE_URL; ?>admin/enquiries/reply/" method="POST">
                         <?php echo CSRFHelper::getTokenField(); ?>
                         <input type="hidden" name="id" value="<?php echo $enq['id']; ?>">
                         

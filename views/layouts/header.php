@@ -2,21 +2,40 @@
 use App\Helpers\SEOHelper;
 use App\Helpers\AuthHelper;
 
-$title = $pageTitle ?? null;
+$title = $pageTitle ?? null; 
+$titleOverride = $pageTitleOverride ?? null;
 $metaDesc = $pageDesc ?? null;
 $metaKeywords = $pageKeywords ?? null;
 $ogImage = $pageOgImage ?? null;
 
 // Dynamic title, description and keywords with fallback to DB settings
-$seoTitle = SEOHelper::getTitle($title);
-if ($seoTitle === DEFAULT_SEO_TITLE && !empty($globalSettings['seo_title'])) {
-    $seoTitle = $globalSettings['seo_title'];
-    if (!empty($title)) {
-        $seoTitle = $title . ' | ' . $globalSettings['company_name'];
+if (!empty($titleOverride)) {
+    $seoTitle = $titleOverride;
+} else {
+    $seoTitle = SEOHelper::getTitle($title);
+    if ($seoTitle === DEFAULT_SEO_TITLE && !empty($globalSettings['seo_title'])) {
+        $seoTitle = $globalSettings['seo_title'];
+        if (!empty($title)) {
+            $seoTitle = $title . ' | ' . $globalSettings['company_name'];
+        }
     }
 }
+//echo $seoTitle; // For debugging purposes, you can remove this line in production 
 $seoDesc = !empty($metaDesc) ? $metaDesc : ($globalSettings['seo_meta_description'] ?? DEFAULT_SEO_DESC);
 $seoKeywords = !empty($metaKeywords) ? $metaKeywords : ($globalSettings['seo_meta_keywords'] ?? DEFAULT_SEO_KEYWORDS);
+
+if($seoTitle === 'About Us | Vigtez Reality Estates') {
+    $seoTitle = "About Vigtez Realty – Premium Real Estate Company in Uttarakhand";
+    $seoDesc = "Know Vigtez Realty, a premium real estate company and real estate developer in Rishikesh, committed to delivering trusted property solutions across Uttarakhand.";
+    $seoKeywords = "real estate in dehradun uttarakhand, real estate in rishikesh uttarakhand, properties for sale in Uttarakhand";
+}
+
+if($seoTitle === 'Contact Us | Vigtez Reality Estates') {
+    $seoTitle = "Contact Vigtez Realty | Real Estate Company in Uttarakhand";
+    $seoDesc = "Contact Vigtez Realty for trusted real estate solutions in Uttarakhand and Rishikesh. Get in touch with our team for premium properties, land and investment opportunities.";
+    $seoKeywords = "Contact real estate company in Rishikesh, Vigtez Realty Uttarakhand contact";
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -38,23 +57,70 @@ $seoKeywords = !empty($metaKeywords) ? $metaKeywords : ($globalSettings['seo_met
     <meta name="keywords" content="<?php echo htmlspecialchars($seoKeywords); ?>">
     
     <!-- Canonical URL -->
-    <link rel="canonical" href="<?php echo htmlspecialchars($globalSettings['seo_canonical_url'] ?? BASE_URL . trim(explode('?', $_SERVER['REQUEST_URI'])[0], '/')); ?>">
+    <?php
+    if (!empty($pageCanonical)) {
+        $canonicalTagUrl = $pageCanonical;
+    } else {
+        $cleanUri = trim(explode('?', $_SERVER['REQUEST_URI'])[0], '/');
+        $basePathTrimmed = trim(BASE_PATH, '/');
+        if (!empty($basePathTrimmed) && str_starts_with($cleanUri, $basePathTrimmed)) {
+            $cleanUri = trim(substr($cleanUri, strlen($basePathTrimmed)), '/');
+        }
+        $canonicalTagUrl = !empty($globalSettings['seo_canonical_url']) 
+            ? $globalSettings['seo_canonical_url'] 
+            : (empty($cleanUri) ? BASE_URL : BASE_URL . $cleanUri . '/');
+    }
+    ?>
+    <link rel="canonical" href="<?php echo htmlspecialchars($canonicalTagUrl); ?>">
     
     <!-- Open Graph Tags -->
     <meta property="og:title" content="<?php echo htmlspecialchars($seoTitle); ?>">
     <meta property="og:description" content="<?php echo htmlspecialchars($seoDesc); ?>">
     <meta property="og:image" content="<?php echo htmlspecialchars(!empty($ogImage) ? BASE_URL . $ogImage : (!empty($globalSettings['seo_og_image']) ? BASE_URL . $globalSettings['seo_og_image'] : BASE_URL . 'assets/images/default_property.png')); ?>">
-    <meta property="og:url" content="<?php echo htmlspecialchars(BASE_URL . trim(explode('?', $_SERVER['REQUEST_URI'])[0], '/')); ?>">
+    <meta property="og:url" content="<?php echo htmlspecialchars($canonicalTagUrl); ?>">
     <meta property="og:type" content="website">
 
     <!-- Twitter Cards -->
     <meta name="twitter:card" content="<?php echo htmlspecialchars($globalSettings['seo_twitter_card'] ?? 'summary_large_image'); ?>">
     <meta name="twitter:title" content="<?php echo htmlspecialchars($seoTitle); ?>">
     <meta name="twitter:description" content="<?php echo htmlspecialchars($seoDesc); ?>">
+    <meta name="twitter:url" content="<?php echo htmlspecialchars($canonicalTagUrl); ?>">
 
     <!-- Schema Markup -->
     <?php if (!empty($globalSettings['seo_schema'])): ?>
         <?php echo $globalSettings['seo_schema']; ?>
+    <?php endif; ?>
+
+    <?php if (!empty($property) && is_array($property)): ?>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "RealEstateListing",
+      "name": <?php echo json_encode($seoTitle); ?>,
+      "description": <?php echo json_encode($seoDesc); ?>,
+      "url": <?php echo json_encode($canonicalTagUrl); ?>,
+      "identifier": <?php echo json_encode($property['slug']); ?>,
+      <?php if (!empty($property['price'])): ?>
+      "offers": {
+        "@type": "Offer",
+        "price": "<?php echo (float)$property['price']; ?>",
+        "priceCurrency": "INR",
+        "availability": "https://schema.org/<?php echo ($property['availability_status'] === 'Sold') ? 'SoldOut' : 'InStock'; ?>"
+      },
+      <?php endif; ?>
+      "about": {
+        "@type": "Accommodation",
+        "name": <?php echo json_encode($property['title']); ?>,
+        "address": <?php echo json_encode($property['location']); ?>
+        <?php if (!empty($property['bedrooms'])): ?>,
+        "numberOfBedrooms": <?php echo (int)$property['bedrooms']; ?>
+        <?php endif; ?>
+        <?php if (!empty($property['bathrooms'])): ?>,
+        "numberOfBathroomsTotal": <?php echo (int)$property['bathrooms']; ?>
+        <?php endif; ?>
+      }
+    }
+    </script>
     <?php endif; ?>
 
     <!-- Robots Meta -->
@@ -138,13 +204,13 @@ $seoKeywords = !empty($metaKeywords) ? $metaKeywords : ($globalSettings['seo_met
                         <a class="nav-link nav-link-luxury <?php echo $homeActive; ?>" href="<?php echo BASE_URL; ?>">Home</a>
                     </li>
                     <li class="nav-item px-3">
-                        <a class="nav-link nav-link-luxury <?php echo $aboutActive; ?>" href="<?php echo BASE_URL; ?>about">About</a>
+                        <a class="nav-link nav-link-luxury <?php echo $aboutActive; ?>" href="<?php echo BASE_URL; ?>about/">About</a>
                     </li>
                     <li class="nav-item px-3">
-                        <a class="nav-link nav-link-luxury <?php echo $propertiesActive; ?>" href="<?php echo BASE_URL; ?>properties">Properties</a>
+                        <a class="nav-link nav-link-luxury <?php echo $propertiesActive; ?>" href="<?php echo BASE_URL; ?>properties/">Properties</a>
                     </li>
                     <li class="nav-item px-3">
-                        <a class="nav-link nav-link-luxury <?php echo $contactActive; ?>" href="<?php echo BASE_URL; ?>contact">Contact</a>
+                        <a class="nav-link nav-link-luxury <?php echo $contactActive; ?>" href="<?php echo BASE_URL; ?>contact/">Contact</a>
                     </li>
                     
                     <?php if (AuthHelper::isLoggedIn()): ?>
@@ -153,11 +219,11 @@ $seoKeywords = !empty($metaKeywords) ? $metaKeywords : ($globalSettings['seo_met
                                 <i class="fa-solid fa-circle-user me-2 text-warning"></i> Admin
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end border-0 glass-card shadow mt-2">
-                                <li><a class="dropdown-item fw-semibold py-2" href="<?php echo BASE_URL; ?>admin/dashboard"><i class="fa-solid fa-chart-line me-2 text-primary"></i>Dashboard</a></li>
-                                <li><a class="dropdown-item fw-semibold py-2" href="<?php echo BASE_URL; ?>admin/properties"><i class="fa-solid fa-city me-2 text-success"></i>Properties</a></li>
-                                <li><a class="dropdown-item fw-semibold py-2" href="<?php echo BASE_URL; ?>admin/settings"><i class="fa-solid fa-sliders me-2 text-warning"></i>Settings</a></li>
+                                <li><a class="dropdown-item fw-semibold py-2" href="<?php echo BASE_URL; ?>admin/dashboard/"><i class="fa-solid fa-chart-line me-2 text-primary"></i>Dashboard</a></li>
+                                <li><a class="dropdown-item fw-semibold py-2" href="<?php echo BASE_URL; ?>admin/properties/"><i class="fa-solid fa-city me-2 text-success"></i>Properties</a></li>
+                                <li><a class="dropdown-item fw-semibold py-2" href="<?php echo BASE_URL; ?>admin/settings/"><i class="fa-solid fa-sliders me-2 text-warning"></i>Settings</a></li>
                                 <li><hr class="dropdown-divider border-secondary border-opacity-20"></li>
-                                <li><a class="dropdown-item fw-semibold text-danger py-2" href="<?php echo BASE_URL; ?>admin/logout"><i class="fa-solid fa-power-off me-2"></i>Logout</a></li>
+                                <li><a class="dropdown-item fw-semibold text-danger py-2" href="<?php echo BASE_URL; ?>admin/logout/"><i class="fa-solid fa-power-off me-2"></i>Logout</a></li>
                             </ul>
                         </li>
                     <?php else: ?>

@@ -29,7 +29,7 @@ class AuthHelper {
     public static function requireLogin(): void {
         if (!self::isLoggedIn()) {
             // Store redirect URL if needed
-            header("Location: " . BASE_URL . "admin/login");
+            header("Location: " . BASE_URL . "admin/login/");
             exit;
         }
     }

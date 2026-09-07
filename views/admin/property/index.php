@@ -8,7 +8,7 @@ use App\Helpers\CSRFHelper;
         <p class="text-secondary small mb-0">Manage premium portfolios, images, brochures, and status configurations</p>
     </div>
     <div>
-        <a href="<?php echo BASE_URL; ?>admin/properties/create" class="btn btn-gold-solid px-4 py-2 small fw-bold font-cinzel"><i class="fa-solid fa-plus me-2"></i>Add Listing</a>
+        <a href="<?php echo BASE_URL; ?>admin/properties/create/" class="btn btn-gold-solid px-4 py-2 small fw-bold font-cinzel"><i class="fa-solid fa-plus me-2"></i>Add Listing</a>
     </div>
 </div>
 
@@ -31,7 +31,7 @@ use App\Helpers\CSRFHelper;
 
 <!-- Search Bar -->
 <div class="glass-card-dark p-4 rounded-4 border-secondary border-opacity-15 mb-4">
-    <form action="<?php echo BASE_URL; ?>admin/properties" method="GET">
+    <form action="<?php echo BASE_URL; ?>admin/properties/" method="GET">
         <div class="row g-3">
             <div class="col-md-10">
                 <input type="text" name="search" class="form-control luxury-input-text-sm" placeholder="Search by title, location, RERA ID..." value="<?php echo htmlspecialchars($search ?? ''); ?>">
@@ -102,16 +102,16 @@ use App\Helpers\CSRFHelper;
                             </td>
                             <td class="text-end">
                                 <div class="d-inline-flex gap-2">
-                                    <a href="<?php echo BASE_URL; ?>admin/properties/edit/<?php echo $prop['id']; ?>" class="btn btn-sm btn-outline-light d-flex align-items-center" title="Edit Listing"><i class="fa-solid fa-pen-to-square"></i></a>
+                                    <a href="<?php echo BASE_URL; ?>admin/properties/edit/<?php echo $prop['id']; ?>/" class="btn btn-sm btn-outline-light d-flex align-items-center" title="Edit Listing"><i class="fa-solid fa-pen-to-square"></i></a>
                                     
                                     <!-- Duplicate Form -->
-                                    <form action="<?php echo BASE_URL; ?>admin/properties/duplicate/<?php echo $prop['id']; ?>" method="POST" class="d-inline-block" onsubmit="return confirm('Are you sure you want to duplicate this listing?');">
+                                    <form action="<?php echo BASE_URL; ?>admin/properties/duplicate/<?php echo $prop['id']; ?>/" method="POST" class="d-inline-block" onsubmit="return confirm('Are you sure you want to duplicate this listing?');">
                                         <?php echo CSRFHelper::getTokenField(); ?>
                                         <button type="submit" class="btn btn-sm btn-outline-warning d-flex align-items-center" title="Duplicate Listing"><i class="fa-solid fa-clone"></i></button>
                                     </form>
 
                                     <!-- Delete Form -->
-                                    <form action="<?php echo BASE_URL; ?>admin/properties/delete/<?php echo $prop['id']; ?>" method="POST" class="d-inline-block" onsubmit="return confirm('Are you sure you want to delete this property and all associated media?');">
+                                    <form action="<?php echo BASE_URL; ?>admin/properties/delete/<?php echo $prop['id']; ?>/" method="POST" class="d-inline-block" onsubmit="return confirm('Are you sure you want to delete this property and all associated media?');">
                                         <?php echo CSRFHelper::getTokenField(); ?>
                                         <button type="submit" class="btn btn-sm btn-outline-danger d-flex align-items-center" title="Delete Listing"><i class="fa-solid fa-trash-can"></i></button>
                                     </form>

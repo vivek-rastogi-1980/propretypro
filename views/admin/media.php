@@ -11,7 +11,7 @@ use App\Helpers\CSRFHelper;
 
 <!-- Search Bar -->
 <div class="glass-card-dark p-4 rounded-4 border-secondary border-opacity-15 mb-4">
-    <form action="<?php echo BASE_URL; ?>admin/media" method="GET">
+    <form action="<?php echo BASE_URL; ?>admin/media/" method="GET">
         <div class="row g-3">
             <div class="col-md-10">
                 <input type="text" name="search" class="form-control luxury-input-text-sm" placeholder="Search files by name..." value="<?php echo htmlspecialchars($search ?? ''); ?>">
@@ -53,7 +53,7 @@ use App\Helpers\CSRFHelper;
                             <div class="media-hover-overlay position-absolute w-100 h-100 top-0 start-0 flex-center bg-black bg-opacity-60" style="opacity: 0; transition: opacity 0.2s;">
                                 <div class="d-flex gap-2">
                                     <button type="button" class="btn btn-sm btn-outline-warning copy-media-path-btn" data-path="<?php echo htmlspecialchars($file['relative_path']); ?>" title="Copy relative path"><i class="fa-solid fa-copy"></i></button>
-                                    <button type="button" class="btn btn-sm btn-outline-danger delete-media-file-btn" data-path="<?php echo htmlspecialchars($file['relative_path']); ?>" data-url="<?php echo BASE_URL; ?>admin/media/delete" title="Delete permanently"><i class="fa-solid fa-trash-can"></i></button>
+                                    <button type="button" class="btn btn-sm btn-outline-danger delete-media-file-btn" data-path="<?php echo htmlspecialchars($file['relative_path']); ?>" data-url="<?php echo BASE_URL; ?>admin/media/delete/" title="Delete permanently"><i class="fa-solid fa-trash-can"></i></button>
                                 </div>
                             </div>
                         </div>

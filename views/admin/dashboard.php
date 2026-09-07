@@ -66,19 +66,19 @@
         <div class="glass-card-dark p-4 rounded-4 border-secondary border-opacity-15 h-100">
             <h5 class="font-cinzel text-white fw-bold mb-4"><i class="fa-solid fa-rocket text-warning me-2"></i>Quick Actions</h5>
             <div class="d-flex flex-column gap-3">
-                <a href="<?php echo BASE_URL; ?>admin/properties/create" class="btn btn-premium py-3 text-start px-4 d-flex align-items-center justify-content-between">
+                <a href="<?php echo BASE_URL; ?>admin/properties/create/" class="btn btn-premium py-3 text-start px-4 d-flex align-items-center justify-content-between">
                     <span><i class="fa-solid fa-plus text-warning me-3"></i>Add New Property</span>
                     <i class="fa-solid fa-chevron-right text-secondary small"></i>
                 </a>
-                <a href="<?php echo BASE_URL; ?>admin/enquiries" class="btn btn-premium py-3 text-start px-4 d-flex align-items-center justify-content-between">
+                <a href="<?php echo BASE_URL; ?>admin/enquiries/" class="btn btn-premium py-3 text-start px-4 d-flex align-items-center justify-content-between">
                     <span><i class="fa-solid fa-envelope-open-text text-warning me-3"></i>View Enquiries</span>
                     <i class="fa-solid fa-chevron-right text-secondary small"></i>
                 </a>
-                <a href="<?php echo BASE_URL; ?>admin/media" class="btn btn-premium py-3 text-start px-4 d-flex align-items-center justify-content-between">
+                <a href="<?php echo BASE_URL; ?>admin/media/" class="btn btn-premium py-3 text-start px-4 d-flex align-items-center justify-content-between">
                     <span><i class="fa-solid fa-photo-film text-warning me-3"></i>Browse Media</span>
                     <i class="fa-solid fa-chevron-right text-secondary small"></i>
                 </a>
-                <a href="<?php echo BASE_URL; ?>admin/settings" class="btn btn-premium py-3 text-start px-4 d-flex align-items-center justify-content-between">
+                <a href="<?php echo BASE_URL; ?>admin/settings/" class="btn btn-premium py-3 text-start px-4 d-flex align-items-center justify-content-between">
                     <span><i class="fa-solid fa-gears text-warning me-3"></i>System Settings</span>
                     <i class="fa-solid fa-chevron-right text-secondary small"></i>
                 </a>
@@ -94,7 +94,7 @@
         <div class="glass-card-dark p-4 rounded-4 border-secondary border-opacity-15 h-100">
             <h5 class="font-cinzel text-white fw-bold mb-4 d-flex justify-content-between align-items-center">
                 <span><i class="fa-solid fa-envelope-open-text text-warning me-2"></i>Recent Messages</span>
-                <a href="<?php echo BASE_URL; ?>admin/enquiries" class="text-gold-accent small text-decoration-none" style="font-size: 11px;">View All</a>
+                <a href="<?php echo BASE_URL; ?>admin/enquiries/" class="text-gold-accent small text-decoration-none" style="font-size: 11px;">View All</a>
             </h5>
             <div class="table-responsive">
                 <table class="table table-dark table-hover table-borderless align-middle mb-0">
@@ -137,7 +137,7 @@
         <div class="glass-card-dark p-4 rounded-4 border-secondary border-opacity-15 h-100">
             <h5 class="font-cinzel text-white fw-bold mb-4 d-flex justify-content-between align-items-center">
                 <span><i class="fa-solid fa-hotel text-warning me-2"></i>Recent Listings</span>
-                <a href="<?php echo BASE_URL; ?>admin/properties" class="text-gold-accent small text-decoration-none" style="font-size: 11px;">View All</a>
+                <a href="<?php echo BASE_URL; ?>admin/properties/" class="text-gold-accent small text-decoration-none" style="font-size: 11px;">View All</a>
             </h5>
             <div class="table-responsive">
                 <table class="table table-dark table-hover table-borderless align-middle mb-0">

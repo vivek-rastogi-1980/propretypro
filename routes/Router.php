@@ -44,15 +44,25 @@ class Router {
      */
     public function dispatch(): void {
         $requestMethod = $_SERVER['REQUEST_METHOD'] ?? 'GET';
-        $requestUri = $_SERVER['REQUEST_URI'] ?? '/';
+        $fullUri = $_SERVER['REQUEST_URI'] ?? '/';
 
-        // Strip query parameters
-        $requestUri = explode('?', $requestUri)[0];
+        // Separate path and query string
+        $uriParts = explode('?', $fullUri);
+        $requestPath = $uriParts[0];
+        $queryString = isset($uriParts[1]) ? '?' . $uriParts[1] : '';
 
-        // Strip base path subdirectory (e.g. /real-estate-version-one-antigravity/)
+        // Enforce trailing slash on GET requests for SEO consistency (unless it's a static file)
+        if ($requestMethod === 'GET' && !str_ends_with($requestPath, '/') && !preg_match('/\.[a-zA-Z0-9]{2,5}$/', $requestPath)) {
+            header("Location: " . $requestPath . '/' . $queryString, true, 301);
+            exit;
+        }
+
+        // Strip base path subdirectory (e.g. /property-pro/)
         $basePath = BASE_PATH;
-        if (str_starts_with($requestUri, $basePath)) {
-            $requestUri = substr($requestUri, strlen($basePath));
+        if (str_starts_with($requestPath, $basePath)) {
+            $requestUri = substr($requestPath, strlen($basePath));
+        } else {
+            $requestUri = $requestPath;
         }
 
         $requestUri = trim($requestUri, '/');

@@ -20,7 +20,7 @@ $videosList = json_decode($property['videos'], true) ?: [];
         <p class="text-secondary small mb-0">Update listing details, media assets, and status settings</p>
     </div>
     <div>
-        <a href="<?php echo BASE_URL; ?>admin/properties" class="btn btn-outline-light px-4 py-2 small fw-bold font-cinzel"><i class="fa-solid fa-arrow-left-long me-2"></i>Back to List</a>
+        <a href="<?php echo BASE_URL; ?>admin/properties/" class="btn btn-outline-light px-4 py-2 small fw-bold font-cinzel"><i class="fa-solid fa-arrow-left-long me-2"></i>Back to List</a>
     </div>
 </div>
 
@@ -30,7 +30,7 @@ $videosList = json_decode($property['videos'], true) ?: [];
     </div>
 <?php endif; ?>
 
-<form action="<?php echo BASE_URL; ?>admin/properties/edit/<?php echo $property['id']; ?>" method="POST" enctype="multipart/form-data">
+<form action="<?php echo BASE_URL; ?>admin/properties/edit/<?php echo $property['id']; ?>/" method="POST" enctype="multipart/form-data">
     <?php echo CSRFHelper::getTokenField(); ?>
 
     <div class="glass-card-dark p-4 rounded-4 border-secondary border-opacity-15">
@@ -133,9 +133,9 @@ $videosList = json_decode($property['videos'], true) ?: [];
                                     <div class="admin-gallery-item rounded-3 overflow-hidden position-relative" style="height: 120px; border: 1px solid rgba(255,255,255,0.15);">
                                         <img src="<?php echo BASE_URL . $img['image_path']; ?>" onerror="this.onerror=null; this.src='<?php echo BASE_URL; ?>assets/images/default_property.png';" class="w-100 h-100 object-fit-cover">
                                         <div class="admin-gallery-actions">
-                                            <button type="button" class="btn btn-xs btn-primary admin-set-featured-img" data-property-id="<?php echo $property['id']; ?>" data-image-id="<?php echo $img['id']; ?>" data-action="<?php echo BASE_URL; ?>admin/properties/set-featured-image" title="Set Featured Thumbnail"><i class="fa-solid fa-star"></i></button>
-                                            <button type="button" class="btn btn-xs btn-warning admin-set-slider-img" data-property-id="<?php echo $property['id']; ?>" data-image-id="<?php echo $img['id']; ?>" data-action="<?php echo BASE_URL; ?>admin/properties/set-slider-image" title="Set Slider Image"><i class="fa-solid fa-images text-dark"></i></button>
-                                            <button type="button" class="btn btn-xs btn-danger admin-delete-gallery-img" data-image-id="<?php echo $img['id']; ?>" data-action="<?php echo BASE_URL; ?>admin/properties/delete-image" title="Remove image"><i class="fa-solid fa-trash-can"></i></button>
+                                            <button type="button" class="btn btn-xs btn-primary admin-set-featured-img" data-property-id="<?php echo $property['id']; ?>" data-image-id="<?php echo $img['id']; ?>" data-action="<?php echo BASE_URL; ?>admin/properties/set-featured-image/" title="Set Featured Thumbnail"><i class="fa-solid fa-star"></i></button>
+                                            <button type="button" class="btn btn-xs btn-warning admin-set-slider-img" data-property-id="<?php echo $property['id']; ?>" data-image-id="<?php echo $img['id']; ?>" data-action="<?php echo BASE_URL; ?>admin/properties/set-slider-image/" title="Set Slider Image"><i class="fa-solid fa-images text-dark"></i></button>
+                                            <button type="button" class="btn btn-xs btn-danger admin-delete-gallery-img" data-image-id="<?php echo $img['id']; ?>" data-action="<?php echo BASE_URL; ?>admin/properties/delete-image/" title="Remove image"><i class="fa-solid fa-trash-can"></i></button>
                                         </div>
                                         <?php if ($img['is_featured'] == 1): ?>
                                             <span class="admin-gallery-badge bg-primary text-white"><i class="fa-solid fa-star text-warning me-1"></i>Featured</span>

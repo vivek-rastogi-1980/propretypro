@@ -87,14 +87,30 @@ $videosList = json_decode($property['videos'], true) ?: [];
 <section class="property-detail-header-section py-4 py-md-5 bg-dark-deep border-bottom border-secondary border-opacity-10">
     <div class="container">
         <div class="property-header-card glass-card-dark p-4 p-md-5 rounded-4 border-secondary border-opacity-15 shadow-2xl">
+            <!-- Breadcrumb Navigation -->
+            <nav aria-label="breadcrumb" class="mb-3">
+                <ol class="breadcrumb luxury-breadcrumb mb-0 small">
+                    <li class="breadcrumb-item"><a href="<?php echo BASE_URL; ?>" class="text-gold-accent text-decoration-none"><i class="fa-solid fa-house me-1"></i>Home</a></li>
+                    <li class="breadcrumb-item"><a href="<?php echo BASE_URL; ?>properties/" class="text-gold-accent text-decoration-none">Properties</a></li>
+                    <?php if (!empty($property['category_name'])): ?>
+                        <li class="breadcrumb-item"><a href="<?php echo BASE_URL; ?>properties/?category=<?php echo urlencode($property['category_name']); ?>" class="text-gold-accent text-decoration-none"><?php echo htmlspecialchars($property['category_name']); ?></a></li>
+                    <?php endif; ?>
+                    <li class="breadcrumb-item text-secondary active font-monospace" aria-current="page"><?php echo htmlspecialchars($property['slug']); ?></li>
+                </ol>
+            </nav>
+
             <div class="row align-items-center g-4">
                 <div class="col-lg-8">
                     <div class="d-flex flex-wrap align-items-center gap-2 mb-3">
                         <span class="property-badge-category font-cinzel uppercase"><?php echo htmlspecialchars($property['category_name']); ?></span>
                         <span class="property-badge-available font-cinzel uppercase"><?php echo htmlspecialchars($property['availability_status']); ?></span>
+                        <span class="property-badge-slug font-cinzel uppercase" title="Unique Property Identifier / SEO Slug"><i class="fa-solid fa-fingerprint me-1 text-gold-accent"></i>ID: <?php echo htmlspecialchars($property['slug']); ?></span>
                         <?php if (!empty($property['rera_number'])): ?>
                             <span class="property-badge-rera font-cinzel uppercase"><i class="fa-solid fa-shield-halved me-2"></i>RERA Verified</span>
                         <?php endif; ?>
+                        <button type="button" class="btn btn-xs btn-outline-warning rounded-pill px-3 py-1 ms-sm-auto copy-property-url-btn" data-url="<?php echo BASE_URL; ?>property/<?php echo $property['slug']; ?>/" title="Copy Direct Listing Link">
+                            <i class="fa-solid fa-share-nodes me-1"></i>Share Listing
+                        </button>
                     </div>
                     <h1 class="display-6 font-cinzel text-white fw-bold mb-2 property-main-title"><?php echo htmlspecialchars($property['title']); ?></h1>
                     <p class="text-secondary mb-0 fs-6">
@@ -126,15 +142,20 @@ $videosList = json_decode($property['videos'], true) ?: [];
                 <!-- Core Spec Icons -->
                 <div class="glass-card-dark p-4 rounded-4 border-secondary border-opacity-15 mb-5">
                     <div class="row text-center g-3">
+                        <div class="col-6 col-md-2 border-end border-secondary border-opacity-15">
+                            <i class="fa-solid fa-fingerprint text-warning fs-3 mb-2"></i>
+                            <h6 class="text-secondary small mb-1">Property ID</h6>
+                            <h6 class="font-cinzel text-white fw-bold mb-0 font-monospace text-truncate" title="<?php echo htmlspecialchars($property['slug']); ?>">#<?php echo htmlspecialchars($property['slug']); ?></h6>
+                        </div>
                         <?php if ($bedrooms): ?>
-                            <div class="col-4 border-end border-secondary border-opacity-15">
+                            <div class="col-6 col-md-2 border-end border-secondary border-opacity-15">
                                 <i class="fa-solid fa-bed text-warning fs-3 mb-2"></i>
                                 <h6 class="text-secondary small mb-1">Bedrooms</h6>
                                 <h5 class="font-cinzel text-white fw-bold mb-0"><?php echo $bedrooms; ?></h5>
                             </div>
                         <?php endif; ?>
                         <?php if ($bathrooms): ?>
-                        <div class="col-4 border-end border-secondary border-opacity-15">
+                        <div class="col-6 col-md-2 border-end border-secondary border-opacity-15">
                             <i class="fa-solid fa-bath text-warning fs-3 mb-2"></i>
                             <h6 class="text-secondary small mb-1">Bathrooms</h6>
                             <h5 class="font-cinzel text-white fw-bold mb-0"><?php echo $bathrooms; ?></h5>
@@ -142,23 +163,22 @@ $videosList = json_decode($property['videos'], true) ?: [];
                         <?php endif; ?>
 
                         <?php if ($listingStatus): ?>
-                        <div class="col-4 border-end border-secondary border-opacity-15">
-                            <i class="fa-solid fa-bath text-warning fs-3 mb-2"></i>
+                        <div class="col-6 col-md-2 border-end border-secondary border-opacity-15">
+                            <i class="fa-solid fa-tag text-warning fs-3 mb-2"></i>
                             <h6 class="text-secondary small mb-1">Status</h6>
                             <h5 class="font-cinzel text-white fw-bold mb-0"><?php echo $listingStatus; ?></h5>
                         </div>
                         <?php endif; ?>
 
                         <?php if ($category_name): ?>
-                        <div class="col-4 border-end border-secondary border-opacity-15">
-                            <i class="fa-solid fa-bath text-warning fs-3 mb-2"></i>
+                        <div class="col-6 col-md-2 border-end border-secondary border-opacity-15">
+                            <i class="fa-solid fa-hotel text-warning fs-3 mb-2"></i>
                             <h6 class="text-secondary small mb-1">Category</h6>
                             <h5 class="font-cinzel text-white fw-bold mb-0"><?php echo $category_name; ?></h5>
                         </div>
                         <?php endif; ?>
-                        
 
-                        <div class="col-4">
+                        <div class="col-6 col-md-2">
                             <i class="fa-solid fa-maximize text-warning fs-3 mb-2"></i>
                             <h6 class="text-secondary small mb-1">Total Area</h6>
                             <h5 class="font-cinzel text-white fw-bold mb-0"><?php echo number_format($area); ?> <?php echo htmlspecialchars($property['area_unit'] ?? 'Sq. Ft.'); ?></h5>
@@ -313,7 +333,7 @@ $videosList = json_decode($property['videos'], true) ?: [];
                     <!-- Contact Form -->
                     <div class="glass-card-dark p-4 rounded-4 border-secondary border-opacity-15 shadow-lg">
                         <h5 class="font-cinzel text-white fw-bold mb-4">Inquire About Property</h5>
-                        <form action="<?php echo BASE_URL; ?>property/<?php echo $property['slug']; ?>/enquiry" method="POST" class="ajax-enquiry-form">
+                        <form action="<?php echo BASE_URL; ?>property/<?php echo $property['slug']; ?>/enquiry/" method="POST" class="ajax-enquiry-form">
                             <?php echo CSRFHelper::getTokenField(); ?>
                             
                             <div class="mb-3">
@@ -364,7 +384,7 @@ $videosList = json_decode($property['videos'], true) ?: [];
                                     <h6 class="text-warning font-cinzel mb-0 fw-bold">₹<?php echo number_format($rel['price']); ?></h6>
                                     <span class="text-secondary small" style="font-size: 11px;"><i class="fa-solid fa-maximize text-gold-accent me-1"></i><?php echo number_format($rel['area']); ?> <?php echo htmlspecialchars($rel['area_unit'] ?? 'Sq. Ft.'); ?></span>
                                 </div>
-                                <a href="<?php echo BASE_URL; ?>property/<?php echo $rel['slug']; ?>" class="stretched-link"></a>
+                                <a href="<?php echo BASE_URL; ?>property/<?php echo $rel['slug']; ?>/" class="stretched-link"></a>
                             </div>
                         </div>
                     </div>

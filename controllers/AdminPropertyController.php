@@ -249,7 +249,7 @@ class AdminPropertyController extends Controller {
                 }
 
                 $_SESSION['property_success'] = "Property listing created successfully.";
-                header("Location: " . BASE_URL . "admin/properties");
+                header("Location: " . BASE_URL . "admin/properties/");
                 exit;
             }
         } catch (\Throwable $e) {
@@ -271,7 +271,7 @@ class AdminPropertyController extends Controller {
         $property = Property::find($id);
         if (!$property) {
             $_SESSION['property_error'] = "Property not found.";
-            header("Location: " . BASE_URL . "admin/properties");
+            header("Location: " . BASE_URL . "admin/properties/");
             exit;
         }
 
@@ -297,7 +297,7 @@ class AdminPropertyController extends Controller {
         $property = Property::find($id);
         if (!$property) {
             $_SESSION['property_error'] = "Property not found.";
-            header("Location: " . BASE_URL . "admin/properties");
+            header("Location: " . BASE_URL . "admin/properties/");
             exit;
         }
 
@@ -507,7 +507,7 @@ class AdminPropertyController extends Controller {
                 }
                 
                 $_SESSION['property_success'] = "Property listing updated successfully.";
-                header("Location: " . BASE_URL . "admin/properties");
+                header("Location: " . BASE_URL . "admin/properties/");
                 exit;
             }
         } catch (\Throwable $e) {
@@ -546,7 +546,7 @@ class AdminPropertyController extends Controller {
             $_SESSION['property_error'] = "Property not found.";
         }
 
-        header("Location: " . BASE_URL . "admin/properties");
+        header("Location: " . BASE_URL . "admin/properties/");
         exit;
     }
 
@@ -622,7 +622,7 @@ class AdminPropertyController extends Controller {
             $_SESSION['property_error'] = "Error duplicating listing: " . $e->getMessage();
         }
 
-        header("Location: " . BASE_URL . "admin/properties");
+        header("Location: " . BASE_URL . "admin/properties/");
         exit;
     }
 }

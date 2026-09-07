@@ -70,7 +70,7 @@ class AdminController extends Controller {
      */
     public function login(): void {
         if (AuthHelper::isLoggedIn()) {
-            header("Location: " . BASE_URL . "admin/dashboard");
+            header("Location: " . BASE_URL . "admin/dashboard/");
             exit;
         }
 
@@ -94,7 +94,7 @@ class AdminController extends Controller {
             $admin = Admin::authenticate($username, $password);
             if ($admin) {
                 AuthHelper::login($admin);
-                header("Location: " . BASE_URL . "admin/dashboard");
+                header("Location: " . BASE_URL . "admin/dashboard/");
                 exit;
             } else {
                 $errors['auth'] = "Invalid username/email or password.";
@@ -113,7 +113,7 @@ class AdminController extends Controller {
      */
     public function logout(): void {
         AuthHelper::logout();
-        header("Location: " . BASE_URL . "admin/login");
+        header("Location: " . BASE_URL . "admin/login/");
         exit;
     }
 
@@ -276,7 +276,7 @@ class AdminController extends Controller {
             $_SESSION['settings_error'] = implode('<br>', $errors);
         }
 
-        header("Location: " . BASE_URL . "admin/settings");
+        header("Location: " . BASE_URL . "admin/settings/");
         exit;
     }
 
@@ -463,7 +463,7 @@ class AdminController extends Controller {
             $_SESSION['pages_error'] = implode('<br>', $errors);
         }
 
-        header("Location: " . BASE_URL . "admin/pages");
+        header("Location: " . BASE_URL . "admin/pages/");
         exit;
     }
 

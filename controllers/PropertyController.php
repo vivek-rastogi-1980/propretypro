@@ -91,8 +91,25 @@ class PropertyController extends Controller {
             $amenities = json_decode($property['amenities'], true) ?: [];
         }
 
+        // SEO metadata from property settings
+        $slug = strtolower(trim($slug, '/'));
+        $titleOverride = !empty($property['meta_title']) ? $property['meta_title'] : null;
+        $metaDescription = !empty($property['meta_description']) 
+            ? $property['meta_description'] 
+            : (!empty($property['short_description']) ? $property['short_description'] : null);
+        $metaKeywords = !empty($property['meta_keywords']) ? $property['meta_keywords'] : null;
+        $canonicalUrl = BASE_URL . 'property/' . $property['slug'] . '/';
+        $ogImage = !empty($property['slider_image']) 
+            ? $property['slider_image'] 
+            : (!empty($images[0]['image_path']) ? $images[0]['image_path'] : null);
+
         $this->render('property/detail', [
             'pageTitle' => $property['title'],
+            'pageTitleOverride' => $titleOverride,
+            'pageDesc' => $metaDescription,
+            'pageKeywords' => $metaKeywords,
+            'pageCanonical' => $canonicalUrl,
+            'pageOgImage' => $ogImage,
             'property' => $property,
             'images' => $images,
             'relatedProperties' => $related,

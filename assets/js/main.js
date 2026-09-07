@@ -979,5 +979,29 @@ $(document).ready(function () {
         });
     });
 
+    // --- Copy Property URL / Share Listing ---
+    $(document).on('click', '.copy-property-url-btn', function (e) {
+        e.preventDefault();
+        const btn = $(this);
+        const urlToCopy = btn.data('url') || window.location.href;
+        
+        if (navigator.clipboard && window.isSecureContext) {
+            navigator.clipboard.writeText(urlToCopy);
+        } else {
+            const tempInput = document.createElement('input');
+            tempInput.value = urlToCopy;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+        }
+
+        const originalHtml = btn.html();
+        btn.html('<i class="fa-solid fa-check me-1 text-success"></i>Copied!');
+        setTimeout(function () {
+            btn.html(originalHtml);
+        }, 2000);
+    });
+
 });
 

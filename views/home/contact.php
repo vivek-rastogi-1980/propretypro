@@ -70,7 +70,7 @@ use App\Helpers\CSRFHelper;
                     <span class="text-gold-accent uppercase tracking-widest fw-bold d-block mb-3 fs-xs"><?php echo htmlspecialchars($globalSettings['contact_form_badge'] ?? 'SUBMIT ENQUIRY'); ?></span>
                     <h3 class="font-cinzel text-white fw-bold mb-4"><?php echo htmlspecialchars($globalSettings['contact_form_title'] ?? 'Schedule a Private Site Visit'); ?></h3>
                     
-                    <form action="<?php echo BASE_URL; ?>contact/submit" method="POST" class="ajax-enquiry-form mt-4">
+                    <form action="<?php echo BASE_URL; ?>contact/submit/" method="POST" class="ajax-enquiry-form mt-4">
                         <?php echo CSRFHelper::getTokenField(); ?>
                         
                         <div class="row g-3">

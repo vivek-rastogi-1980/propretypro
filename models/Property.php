@@ -233,11 +233,12 @@ class Property extends Model {
             $params[':rera_number'] = '%' . $filters['rera_number'] . '%';
         }
 
-        // 11. Keywords search (checks title, short description, description, location, RERA)
+        // 11. Keywords search (checks title, slug, short description, description, location, RERA)
         if (!empty($filters['keywords'])) {
-            $sql .= " AND (p.title LIKE :kw_title OR p.short_description LIKE :kw_short OR p.full_description LIKE :kw_desc OR p.location LIKE :kw_loc OR p.rera_number LIKE :kw_rera)";
+            $sql .= " AND (p.title LIKE :kw_title OR p.slug LIKE :kw_slug OR p.short_description LIKE :kw_short OR p.full_description LIKE :kw_desc OR p.location LIKE :kw_loc OR p.rera_number LIKE :kw_rera)";
             $kwPattern = '%' . $filters['keywords'] . '%';
             $params[':kw_title'] = $kwPattern;
+            $params[':kw_slug'] = $kwPattern;
             $params[':kw_short'] = $kwPattern;
             $params[':kw_desc'] = $kwPattern;
             $params[':kw_loc'] = $kwPattern;

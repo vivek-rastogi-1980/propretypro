@@ -8,7 +8,7 @@ use App\Helpers\CSRFHelper;
         <p class="text-secondary small mb-0">Create a luxury architectural masterpiece listing</p>
     </div>
     <div>
-        <a href="<?php echo BASE_URL; ?>admin/properties" class="btn btn-outline-light px-4 py-2 small fw-bold font-cinzel"><i class="fa-solid fa-arrow-left-long me-2"></i>Back to List</a>
+        <a href="<?php echo BASE_URL; ?>admin/properties/" class="btn btn-outline-light px-4 py-2 small fw-bold font-cinzel"><i class="fa-solid fa-arrow-left-long me-2"></i>Back to List</a>
     </div>
 </div>
 
@@ -18,7 +18,7 @@ use App\Helpers\CSRFHelper;
     </div>
 <?php endif; ?>
 
-<form action="<?php echo BASE_URL; ?>admin/properties/create" method="POST" enctype="multipart/form-data">
+<form action="<?php echo BASE_URL; ?>admin/properties/create/" method="POST" enctype="multipart/form-data">
     <?php echo CSRFHelper::getTokenField(); ?>
 
     <div class="glass-card-dark p-4 rounded-4 border-secondary border-opacity-15">

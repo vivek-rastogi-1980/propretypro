@@ -27,7 +27,7 @@ function val(array $settings, string $key, string $default = ''): string {
     </div>
 <?php endif; ?>
 
-<form action="<?php echo BASE_URL; ?>admin/pages" method="POST" enctype="multipart/form-data">
+<form action="<?php echo BASE_URL; ?>admin/pages/" method="POST" enctype="multipart/form-data">
     <?php echo CSRFHelper::getField(); ?>
 
     <!-- Navigation Tabs -->

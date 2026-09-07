@@ -37,7 +37,7 @@ use App\Helpers\CSRFHelper;
             </div>
         <?php endif; ?>
 
-        <form action="<?php echo BASE_URL; ?>admin/forgot-password" method="POST">
+        <form action="<?php echo BASE_URL; ?>admin/forgot-password/" method="POST">
             <?php echo CSRFHelper::getTokenField(); ?>
 
             <div class="mb-4">
@@ -50,7 +50,7 @@ use App\Helpers\CSRFHelper;
             </button>
 
             <div class="text-center">
-                <a href="<?php echo BASE_URL; ?>admin/login" class="text-secondary small text-decoration-none"><i class="fa-solid fa-arrow-left-long me-2"></i>Return to Login</a>
+                <a href="<?php echo BASE_URL; ?>admin/login/" class="text-secondary small text-decoration-none"><i class="fa-solid fa-arrow-left-long me-2"></i>Return to Login</a>
             </div>
         </form>
     </div>

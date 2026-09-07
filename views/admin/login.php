@@ -31,7 +31,7 @@ use App\Helpers\CSRFHelper;
             </div>
         <?php endif; ?>
 
-        <form action="<?php echo BASE_URL; ?>admin/login" method="POST">
+        <form action="<?php echo BASE_URL; ?>admin/login/" method="POST">
             <?php echo CSRFHelper::getTokenField(); ?>
 
             <div class="mb-4">
@@ -55,7 +55,7 @@ use App\Helpers\CSRFHelper;
                     <input class="form-check-input text-warning" type="checkbox" id="rememberMe" style="cursor: pointer;">
                     <label class="form-check-label text-secondary" for="rememberMe" style="cursor: pointer;">Remember Key</label>
                 </div>
-                <a href="<?php echo BASE_URL; ?>admin/forgot-password" class="text-gold-accent text-decoration-none">Reset Key?</a>
+                <a href="<?php echo BASE_URL; ?>admin/forgot-password/" class="text-gold-accent text-decoration-none">Reset Key?</a>
             </div>
 
             <button type="submit" class="btn btn-gold-solid w-100 py-3 uppercase tracking-wider small fw-bold font-cinzel">

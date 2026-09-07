@@ -35,7 +35,7 @@
                                     <?php echo htmlspecialchars($slide['title']); ?>
                                 </h2>
                                 <div class="d-flex flex-wrap align-items-center gap-3 animated-hero-item">
-                                    <a href="<?php echo BASE_URL . 'property/' . $slide['slug']; ?>" class="btn btn-premium px-5 py-3 d-inline-flex align-items-center justify-content-center">
+                                    <a href="<?php echo BASE_URL . 'property/' . $slide['slug'] . '/'; ?>" class="btn btn-premium px-5 py-3 d-inline-flex align-items-center justify-content-center">
                                         <span>Explore Listing</span><i class="fa-solid fa-arrow-right ms-3 text-warning"></i>
                                     </a>
                                 </div>
@@ -80,7 +80,7 @@
 <!-- Animated Search Panel -->
 <div class="container position-relative z-2">
     <div class="search-panel-wrapper glass-card-luxury p-4 rounded-4" style="margin-top: -80px;">
-        <form action="<?php echo BASE_URL; ?>properties" method="GET">
+        <form action="<?php echo BASE_URL; ?>properties/" method="GET">
             <div class="row g-3 align-items-end">
                 <div class="col-md-3">
                     <label class="form-label text-gold-accent small uppercase tracking-wider fw-bold"><i class="fa-solid fa-location-dot me-2"></i>Location</label>
@@ -176,7 +176,7 @@
                 <span class="text-gold-accent uppercase tracking-widest fw-bold d-block mb-3 fs-xs"><i class="fa-solid fa-star me-2"></i>CURATED PORTFOLIO</span>
                 <h2 class="display-5 font-cinzel text-white fw-bold">Featured <span class="text-gold-gradient">Properties</span></h2>
             </div>
-            <a href="<?php echo BASE_URL; ?>properties" class="btn btn-outline-gold px-4 py-2 scroll-reveal-right mt-3 mt-md-0">
+            <a href="<?php echo BASE_URL; ?>properties/" class="btn btn-outline-gold px-4 py-2 scroll-reveal-right mt-3 mt-md-0">
                 View All Listings<i class="fa-solid fa-chevron-right ms-2 fs-xs"></i>
             </a>
         </div>
@@ -211,7 +211,7 @@
                                         <span><i class="fa-solid fa-maximize text-gold-accent me-1"></i><?php echo number_format($prop['area']); ?> <?php echo htmlspecialchars($prop['area_unit'] ?? 'Sq. Ft.'); ?></span>
                                     </div>
                                 </div>
-                                <a href="<?php echo BASE_URL; ?>property/<?php echo $prop['slug']; ?>" class="stretched-link"></a>
+                                <a href="<?php echo BASE_URL; ?>property/<?php echo $prop['slug']; ?>/" class="stretched-link"></a>
                             </div>
                         </div>
                     </div>
@@ -257,7 +257,7 @@
                                     <span><i class="fa-solid fa-maximize text-gold-accent me-1"></i><?php echo number_format($prop['area']); ?> <?php echo htmlspecialchars($prop['area_unit'] ?? 'Sq. Ft.'); ?></span>
                                 </div>
                             </div>
-                            <a href="<?php echo BASE_URL; ?>property/<?php echo $prop['slug']; ?>" class="stretched-link"></a>
+                            <a href="<?php echo BASE_URL; ?>property/<?php echo $prop['slug']; ?>/" class="stretched-link"></a>
                         </div>
                     </div>
                 </div>
@@ -515,7 +515,7 @@
                 <p class="lead text-light-muted fs-5 mb-5 mx-auto" style="max-width: 600px;">
                     <?php echo htmlspecialchars($globalSettings['home_cta_desc'] ?? 'Experience beautifully crafted spaces where elegant design meets comfort and timeless appeal.'); ?>
                 </p>
-                <a href="<?php echo BASE_URL; ?>contact" class="btn btn-premium px-5 py-3 btn-lg">
+                <a href="<?php echo BASE_URL; ?>contact/" class="btn btn-premium px-5 py-3 btn-lg">
                     Schedule Private Tour<i class="fa-solid fa-headset ms-3 text-warning"></i>
                 </a>
             </div>

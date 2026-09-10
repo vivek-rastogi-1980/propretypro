@@ -115,8 +115,15 @@
                     <div class="row g-4">
                         <?php foreach ($properties as $prop): ?>
                             <div class="col-md-6 scroll-reveal-fade">
-                                <div class="property-luxury-card rounded-4 overflow-hidden glass-card-dark position-relative h-100">
-                                    <span class="property-status-tag"><?php echo htmlspecialchars($prop['status']); ?></span>
+                                <div class="property-luxury-card rounded-4 overflow-hidden glass-card-dark position-relative h-100 <?php echo (($prop['availability_status'] ?? '') === 'Sold') ? 'is-sold' : ''; ?>">
+                                    <?php if (($prop['availability_status'] ?? '') === 'Sold'): ?>
+                                        <span class="property-status-tag property-status-sold"><i class="fa-solid fa-circle-check me-1"></i>SOLD</span>
+                                        <div class="property-sold-badge-overlay font-cinzel"><span>SOLD</span></div>
+                                    <?php elseif (($prop['availability_status'] ?? '') === 'Upcoming'): ?>
+                                        <span class="property-status-tag property-status-upcoming"><i class="fa-solid fa-clock me-1"></i>UPCOMING</span>
+                                    <?php else: ?>
+                                        <span class="property-status-tag"><?php echo htmlspecialchars($prop['status']); ?></span>
+                                    <?php endif; ?>
                                     <?php if ($prop['is_featured']): ?>
                                         <span class="property-featured-tag"><i class="fa-solid fa-award me-1"></i>FEATURED</span>
                                     <?php endif; ?>

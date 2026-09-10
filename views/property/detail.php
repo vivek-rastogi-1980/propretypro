@@ -103,7 +103,7 @@ $videosList = json_decode($property['videos'], true) ?: [];
                 <div class="col-lg-8">
                     <div class="d-flex flex-wrap align-items-center gap-2 mb-3">
                         <span class="property-badge-category font-cinzel uppercase"><?php echo htmlspecialchars($property['category_name']); ?></span>
-                        <span class="property-badge-available font-cinzel uppercase"><?php echo htmlspecialchars($property['availability_status']); ?></span>
+                        <span class="property-badge-available <?php echo (($property['availability_status'] ?? '') === 'Sold') ? 'property-badge-sold' : ''; ?> font-cinzel uppercase"><?php echo htmlspecialchars($property['availability_status']); ?></span>
                         <span class="property-badge-slug font-cinzel uppercase" title="Unique Property Identifier / SEO Slug"><i class="fa-solid fa-fingerprint me-1 text-gold-accent"></i>ID: <?php echo htmlspecialchars($property['slug']); ?></span>
                         <?php if (!empty($property['rera_number'])): ?>
                             <span class="property-badge-rera font-cinzel uppercase"><i class="fa-solid fa-shield-halved me-2"></i>RERA Verified</span>
@@ -120,11 +120,6 @@ $videosList = json_decode($property['videos'], true) ?: [];
                 <div class="col-lg-4 text-lg-end border-lg-start border-secondary border-opacity-15 ps-lg-4">
                     <span class="text-secondary small uppercase tracking-wider d-block mb-1">Price</span>
                     <h2 class="text-warning font-cinzel fw-bold mb-0 display-6 property-price-val">₹<?php echo number_format($price); ?></h2>
-                    <?php if ($area > 0): ?>
-                        <span class="text-secondary small mt-1 d-block">
-                            Approx. ₹<?php echo number_format(round($price / $area)); ?> per <?php echo htmlspecialchars($property['area_unit'] ?? 'Sq. Ft.'); ?>
-                        </span>
-                    <?php endif; ?>
                 </div>
             </div>
         </div>
@@ -371,8 +366,15 @@ $videosList = json_decode($property['videos'], true) ?: [];
             <div class="row g-4">
                 <?php foreach ($relatedProperties as $rel): ?>
                     <div class="col-lg-4 col-md-6 scroll-reveal-fade">
-                        <div class="property-luxury-card rounded-4 overflow-hidden glass-card-dark position-relative h-100">
-                            <span class="property-status-tag"><?php echo htmlspecialchars($rel['status']); ?></span>
+                        <div class="property-luxury-card rounded-4 overflow-hidden glass-card-dark position-relative h-100 <?php echo (($rel['availability_status'] ?? '') === 'Sold') ? 'is-sold' : ''; ?>">
+                            <?php if (($rel['availability_status'] ?? '') === 'Sold'): ?>
+                                <span class="property-status-tag property-status-sold"><i class="fa-solid fa-circle-check me-1"></i>SOLD</span>
+                                <div class="property-sold-badge-overlay font-cinzel"><span>SOLD</span></div>
+                            <?php elseif (($rel['availability_status'] ?? '') === 'Upcoming'): ?>
+                                <span class="property-status-tag property-status-upcoming"><i class="fa-solid fa-clock me-1"></i>UPCOMING</span>
+                            <?php else: ?>
+                                <span class="property-status-tag"><?php echo htmlspecialchars($rel['status']); ?></span>
+                            <?php endif; ?>
                             <div class="property-image-holder" style="height: 200px;">
                                 <img src="<?php echo BASE_URL . ($rel['image_path'] ?? 'assets/images/default_property.png'); ?>" onerror="this.onerror=null; this.src='<?php echo BASE_URL; ?>assets/images/default_property.png';" alt="<?php echo htmlspecialchars($rel['title']); ?>" class="w-100 h-100 object-fit-cover">
                                 <div class="image-gradient-shade"></div>

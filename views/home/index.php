@@ -28,6 +28,9 @@
                     <div class="container h-100 position-relative z-2 d-flex align-items-center">
                         <div class="row">
                             <div class="col-lg-8 text-white select-none hero-content-col">
+                                <?php if (($slide['availability_status'] ?? '') === 'Sold'): ?>
+                                    <span class="badge bg-danger text-white px-3 py-1 font-cinzel fw-bold mb-3 d-inline-block tracking-wider"><i class="fa-solid fa-circle-check me-1"></i>SOLD OUT</span>
+                                <?php endif; ?>
                                 <h2 class="hero-top-h1 font-cinzel fw-bold mb-3 animated-hero-item" style="font-size: 14px;">
                                     Real Estate Investment in Uttarakhand
                                 </h2>
@@ -185,9 +188,16 @@
             <div class="swiper-wrapper">
                 <?php foreach ($featuredProperties as $prop): ?>
                     <div class="swiper-slide">
-                        <div class="property-luxury-card rounded-4 overflow-hidden glass-card-dark position-relative">
+                        <div class="property-luxury-card rounded-4 overflow-hidden glass-card-dark position-relative <?php echo (($prop['availability_status'] ?? '') === 'Sold') ? 'is-sold' : ''; ?>">
                             <!-- Overlay links/icons -->
-                            <span class="property-status-tag"><?php echo htmlspecialchars($prop['status']); ?></span>
+                            <?php if (($prop['availability_status'] ?? '') === 'Sold'): ?>
+                                <span class="property-status-tag property-status-sold"><i class="fa-solid fa-circle-check me-1"></i>SOLD</span>
+                                <div class="property-sold-badge-overlay font-cinzel"><span>SOLD</span></div>
+                            <?php elseif (($prop['availability_status'] ?? '') === 'Upcoming'): ?>
+                                <span class="property-status-tag property-status-upcoming"><i class="fa-solid fa-clock me-1"></i>UPCOMING</span>
+                            <?php else: ?>
+                                <span class="property-status-tag"><?php echo htmlspecialchars($prop['status']); ?></span>
+                            <?php endif; ?>
                             <?php if ($prop['is_featured']): ?>
                                 <span class="property-featured-tag"><i class="fa-solid fa-award me-1"></i>FEATURED</span>
                             <?php endif; ?>
@@ -235,8 +245,15 @@
         <div class="row g-4">
             <?php foreach ($latestProperties as $prop): ?>
                 <div class="col-lg-4 col-md-6 scroll-reveal-fade">
-                    <div class="property-luxury-card rounded-4 overflow-hidden glass-card-dark position-relative">
-                        <span class="property-status-tag"><?php echo htmlspecialchars($prop['status']); ?></span>
+                    <div class="property-luxury-card rounded-4 overflow-hidden glass-card-dark position-relative <?php echo (($prop['availability_status'] ?? '') === 'Sold') ? 'is-sold' : ''; ?>">
+                        <?php if (($prop['availability_status'] ?? '') === 'Sold'): ?>
+                            <span class="property-status-tag property-status-sold"><i class="fa-solid fa-circle-check me-1"></i>SOLD</span>
+                            <div class="property-sold-badge-overlay font-cinzel"><span>SOLD</span></div>
+                        <?php elseif (($prop['availability_status'] ?? '') === 'Upcoming'): ?>
+                            <span class="property-status-tag property-status-upcoming"><i class="fa-solid fa-clock me-1"></i>UPCOMING</span>
+                        <?php else: ?>
+                            <span class="property-status-tag"><?php echo htmlspecialchars($prop['status']); ?></span>
+                        <?php endif; ?>
                         
                         <div class="property-image-holder">
                             <img src="<?php echo BASE_URL . ($prop['image_path'] ?? 'assets/images/default_property.png'); ?>" onerror="this.onerror=null; this.src='<?php echo BASE_URL; ?>assets/images/default_property.png';" alt="<?php echo htmlspecialchars($prop['title']); ?>" class="w-100 h-100 object-fit-cover">

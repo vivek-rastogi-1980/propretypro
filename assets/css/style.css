@@ -688,6 +688,70 @@ h6 {
     -webkit-backdrop-filter: var(--glass-blur);
 }
 
+/* Sold and Upcoming Status Tags on Cards */
+.property-status-tag.property-status-sold {
+    background: #DC2626 !important;
+    color: #FFFFFF !important;
+    -webkit-text-fill-color: #FFFFFF !important;
+    border: 1px solid rgba(255, 255, 255, 0.4) !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.8px !important;
+    text-transform: uppercase !important;
+    box-shadow: 0 4px 14px rgba(220, 38, 38, 0.45) !important;
+    z-index: 5 !important;
+}
+
+.property-status-tag.property-status-upcoming {
+    background: #D97706 !important;
+    color: #FFFFFF !important;
+    -webkit-text-fill-color: #FFFFFF !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.8px !important;
+    text-transform: uppercase !important;
+    box-shadow: 0 4px 14px rgba(217, 119, 6, 0.4) !important;
+    z-index: 5 !important;
+}
+
+/* Sold Luxury Diagonal Badge Overlay */
+.property-sold-badge-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-10deg);
+    background: rgba(220, 38, 38, 0.92);
+    color: #FFFFFF;
+    -webkit-text-fill-color: #FFFFFF;
+    font-family: var(--font-serif, 'Cinzel', serif);
+    font-weight: 900;
+    font-size: 1.35rem;
+    letter-spacing: 3px;
+    padding: 6px 24px;
+    border: 2px solid rgba(255, 255, 255, 0.7);
+    border-radius: 8px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6), 0 0 16px rgba(220, 38, 38, 0.5);
+    z-index: 4;
+    pointer-events: none;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+}
+
+.property-luxury-card.is-sold .property-image-holder img {
+    filter: grayscale(20%) brightness(0.92);
+}
+
+/* Detail Page Sold Badge */
+.property-badge-available.property-badge-sold {
+    background: #DC2626 !important;
+    color: #FFFFFF !important;
+    -webkit-text-fill-color: #FFFFFF !important;
+    border: 1.5px solid rgba(255, 255, 255, 0.4) !important;
+    box-shadow: 0 4px 14px rgba(220, 38, 38, 0.4) !important;
+}
+.property-badge-available.property-badge-sold * {
+    color: #FFFFFF !important;
+    -webkit-text-fill-color: #FFFFFF !important;
+}
+
 /* --- WhatsApp Float Button --- */
 .whatsapp-float-luxury {
     position: fixed;

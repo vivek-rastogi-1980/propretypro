@@ -51,7 +51,7 @@ use App\Helpers\CSRFHelper;
                 <tr class="text-secondary small uppercase border-bottom border-secondary border-opacity-15">
                     <th>Property Title</th>
                     <th>Category</th>
-                    <th>Budget</th>
+                    <th>Price / Area</th>
                     <th>Mode</th>
                     <th>Availability</th>
                     <th>Status</th>
@@ -86,7 +86,10 @@ use App\Helpers\CSRFHelper;
                                 </div>
                             </td>
                             <td class="text-light-muted small"><?php echo htmlspecialchars($prop['category_name']); ?></td>
-                            <td class="text-warning font-cinzel small fw-bold">₹<?php echo number_format($prop['price']); ?></td>
+                            <td class="text-warning font-cinzel small fw-bold">
+                                <div>₹<?php echo number_format($prop['price']); ?></div>
+                                <div class="text-secondary fs-xs fw-normal font-sans" style="font-size: 11px;"><i class="fa-solid fa-maximize me-1 text-gold-accent"></i><?php echo number_format($prop['area']); ?> <?php echo htmlspecialchars($prop['area_unit'] ?? 'Sq. Ft.'); ?></div>
+                            </td>
                             <td class="small"><?php echo htmlspecialchars($prop['status']); ?></td>
                             <td>
                                 <span class="badge <?php 

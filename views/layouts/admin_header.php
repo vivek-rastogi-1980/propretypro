@@ -45,8 +45,13 @@ $companyName = htmlspecialchars($globalSettings['company_name'] ?? 'Vigtez Reali
         <!-- Sidebar Navigation -->
         <aside class="col-md-3 col-lg-2 px-0 position-fixed start-0 top-0 d-md-block d-none admin-sidebar-luxury">
             <div class="px-4 py-4 border-bottom border-secondary border-opacity-10 mb-4 text-center">
-                <a href="<?php echo BASE_URL; ?>" class="text-decoration-none">
-                    <span class="fs-4 fw-extrabold text-gradient-light"><i class="fa-solid fa-hotel me-2"></i>Vigtez Reality</span>
+                <a href="<?php echo BASE_URL; ?>" class="text-decoration-none d-inline-block">
+                    <?php if (!empty($globalSettings['company_logo'])): ?>
+                        <img src="<?php echo BASE_URL . $globalSettings['company_logo']; ?>" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';" alt="<?php echo $companyName; ?>" class="admin-brand-logo" style="max-height: 48px; max-width: 100%; object-fit: contain;">
+                        <span class="fs-4 fw-extrabold text-gradient-light" style="display:none;"><i class="fa-solid fa-hotel me-2"></i><?php echo $companyName; ?></span>
+                    <?php else: ?>
+                        <span class="fs-4 fw-extrabold text-gradient-light"><i class="fa-solid fa-hotel me-2"></i><?php echo $companyName; ?></span>
+                    <?php endif; ?>
                 </a>
                 <div class="small text-muted mt-2 tracking-widest uppercase fs-xs">System Console</div>
                 <div class="mt-3">
@@ -93,8 +98,13 @@ $companyName = htmlspecialchars($globalSettings['company_name'] ?? 'Vigtez Reali
         <!-- Main Workspace Area -->
         <main class="col-md-9 col-lg-10 ms-auto px-md-4 px-3" style="padding-top: 30px; min-height: 100vh;">
             <header class="d-md-none d-flex justify-content-between align-items-center mb-4 py-3 px-3 glass-card rounded-4 border-secondary border-opacity-15">
-                <a href="<?php echo BASE_URL; ?>" class="text-decoration-none">
-                    <span class="fs-4 fw-bold text-gradient-light"><i class="fa-solid fa-hotel me-2"></i>Vigtez Reality</span>
+                <a href="<?php echo BASE_URL; ?>" class="text-decoration-none d-inline-block">
+                    <?php if (!empty($globalSettings['company_logo'])): ?>
+                        <img src="<?php echo BASE_URL . $globalSettings['company_logo']; ?>" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';" alt="<?php echo $companyName; ?>" class="admin-brand-logo" style="max-height: 38px; max-width: 160px; object-fit: contain;">
+                        <span class="fs-4 fw-bold text-gradient-light" style="display:none;"><i class="fa-solid fa-hotel me-2"></i><?php echo $companyName; ?></span>
+                    <?php else: ?>
+                        <span class="fs-4 fw-bold text-gradient-light"><i class="fa-solid fa-hotel me-2"></i><?php echo $companyName; ?></span>
+                    <?php endif; ?>
                 </a>
                 
                 <div class="d-flex align-items-center gap-2">

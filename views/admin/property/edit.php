@@ -100,22 +100,41 @@ $videosList = json_decode($property['videos'], true) ?: [];
                         <?php endif; ?>
                     </div>
                     <div class="col-md-4">
-                        <label class="form-label text-secondary small fw-bold">RERA Registered ID</label>
-                        <input type="text" name="rera_number" class="form-control luxury-input-text" placeholder="e.g. RERA-987654" value="<?php echo htmlspecialchars($reraNumber); ?>">
-                    </div>
-                    <div class="col-md-6">
-                        <label class="form-label text-secondary small fw-bold">Construction Status</label>
-                        <select name="construction_status" class="form-select luxury-input">
-                            <option value="Ready To Move" <?php echo ($constructionStatus === 'Ready To Move') ? 'selected' : ''; ?>>Ready To Move</option>
-                            <option value="Under Construction" <?php echo ($constructionStatus === 'Under Construction') ? 'selected' : ''; ?>>Under Construction</option>
-                        </select>
-                    </div>
-                    <div class="col-md-6">
                         <label class="form-label text-secondary small fw-bold">Availability Status</label>
                         <select name="availability_status" class="form-select luxury-input">
                             <option value="Available" <?php echo ($availabilityStatus === 'Available') ? 'selected' : ''; ?>>Available</option>
                             <option value="Sold" <?php echo ($availabilityStatus === 'Sold') ? 'selected' : ''; ?>>Sold</option>
                             <option value="Upcoming" <?php echo ($availabilityStatus === 'Upcoming') ? 'selected' : ''; ?>>Upcoming</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label text-secondary small fw-bold">Area / Land Size *</label>
+                        <input type="number" step="0.01" name="area" class="form-control luxury-input-text" placeholder="e.g. 4500" required value="<?php echo htmlspecialchars($property['area']); ?>">
+                        <?php if (!empty($errors['area'])): ?>
+                            <div class="text-danger small fw-bold mt-1"><?php echo $errors['area']; ?></div>
+                        <?php endif; ?>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label text-secondary small fw-bold">Area Unit *</label>
+                        <select name="area_unit" class="form-select luxury-input" required>
+                            <?php
+                            $units = ['Sq. Ft.', 'Sq. Yard', 'Nali', 'Bigha', 'Acres'];
+                            $selectedUnit = $property['area_unit'] ?? 'Sq. Ft.';
+                            foreach ($units as $u):
+                            ?>
+                                <option value="<?php echo $u; ?>" <?php echo $selectedUnit === $u ? 'selected' : ''; ?>><?php echo $u; ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label text-secondary small fw-bold">RERA Registered ID</label>
+                        <input type="text" name="rera_number" class="form-control luxury-input-text" placeholder="e.g. RERA-987654" value="<?php echo htmlspecialchars($reraNumber); ?>">
+                    </div>
+                    <div class="col-md-12">
+                        <label class="form-label text-secondary small fw-bold">Construction Status</label>
+                        <select name="construction_status" class="form-select luxury-input">
+                            <option value="Ready To Move" <?php echo ($constructionStatus === 'Ready To Move') ? 'selected' : ''; ?>>Ready To Move</option>
+                            <option value="Under Construction" <?php echo ($constructionStatus === 'Under Construction') ? 'selected' : ''; ?>>Under Construction</option>
                         </select>
                     </div>
                 </div>
@@ -245,32 +264,13 @@ $videosList = json_decode($property['videos'], true) ?: [];
             <!-- 3. Specs & Amenities Tab -->
             <div class="tab-pane fade" id="details" role="tabpanel" aria-labelledby="details-tab">
                 <div class="row g-4">
-                    <div class="col-md-3">
+                    <div class="col-md-6">
                         <label class="form-label text-secondary small fw-bold">Bedrooms Count</label>
                         <input type="number" name="bedrooms" class="form-control luxury-input-text" placeholder="e.g. 3" value="<?php echo htmlspecialchars($property['bedrooms']); ?>">
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-6">
                         <label class="form-label text-secondary small fw-bold">Bathrooms Count</label>
                         <input type="number" name="bathrooms" class="form-control luxury-input-text" placeholder="e.g. 4" value="<?php echo htmlspecialchars($property['bathrooms']); ?>">
-                    </div>
-                    <div class="col-md-3">
-                        <label class="form-label text-secondary small fw-bold">Area / Land Size *</label>
-                        <input type="number" step="0.01" name="area" class="form-control luxury-input-text" placeholder="e.g. 4500" required value="<?php echo htmlspecialchars($property['area']); ?>">
-                        <?php if (!empty($errors['area'])): ?>
-                            <div class="text-danger small fw-bold mt-1"><?php echo $errors['area']; ?></div>
-                        <?php endif; ?>
-                    </div>
-                    <div class="col-md-3">
-                        <label class="form-label text-secondary small fw-bold">Area Unit *</label>
-                        <select name="area_unit" class="form-select luxury-input" required>
-                            <?php
-                            $units = ['Sq. Ft.', 'Sq. Yard', 'Nali', 'Bigha', 'Acres'];
-                            $selectedUnit = $property['area_unit'] ?? 'Sq. Ft.';
-                            foreach ($units as $u):
-                            ?>
-                                <option value="<?php echo $u; ?>" <?php echo $selectedUnit === $u ? 'selected' : ''; ?>><?php echo $u; ?></option>
-                            <?php endforeach; ?>
-                        </select>
                     </div>
                     <div class="col-md-12">
                         <label class="form-label text-secondary small fw-bold">Short Snippet Description *</label>

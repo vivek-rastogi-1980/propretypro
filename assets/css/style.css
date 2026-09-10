@@ -688,29 +688,61 @@ h6 {
     -webkit-backdrop-filter: var(--glass-blur);
 }
 
-/* Sold and Upcoming Status Tags on Cards */
-.property-status-tag.property-status-sold {
+/* Sold and Upcoming Status Tags on Cards (Guaranteed across all themes) */
+.property-status-tag.property-status-sold,
+html.theme-blue-white .property-status-tag.property-status-sold,
+html.theme-green .property-status-tag.property-status-sold,
+html.theme-sand-beige .property-status-tag.property-status-sold {
     background: #DC2626 !important;
+    background-color: #DC2626 !important;
+    color: #FFFFFF !important;
+    -webkit-text-fill-color: #FFFFFF !important;
+    border: 1px solid rgba(255, 255, 255, 0.5) !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.8px !important;
+    text-transform: uppercase !important;
+    box-shadow: 0 4px 14px rgba(220, 38, 38, 0.5) !important;
+    z-index: 5 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 5px !important;
+}
+
+.property-status-tag.property-status-sold i,
+.property-status-tag.property-status-sold *,
+html.theme-blue-white .property-status-tag.property-status-sold *,
+html.theme-green .property-status-tag.property-status-sold *,
+html.theme-sand-beige .property-status-tag.property-status-sold * {
+    color: #FFFFFF !important;
+    -webkit-text-fill-color: #FFFFFF !important;
+}
+
+.property-status-tag.property-status-upcoming,
+html.theme-blue-white .property-status-tag.property-status-upcoming,
+html.theme-green .property-status-tag.property-status-upcoming,
+html.theme-sand-beige .property-status-tag.property-status-upcoming {
+    background: #D97706 !important;
+    background-color: #D97706 !important;
     color: #FFFFFF !important;
     -webkit-text-fill-color: #FFFFFF !important;
     border: 1px solid rgba(255, 255, 255, 0.4) !important;
     font-weight: 800 !important;
     letter-spacing: 0.8px !important;
     text-transform: uppercase !important;
-    box-shadow: 0 4px 14px rgba(220, 38, 38, 0.45) !important;
+    box-shadow: 0 4px 14px rgba(217, 119, 6, 0.45) !important;
     z-index: 5 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 5px !important;
 }
 
-.property-status-tag.property-status-upcoming {
-    background: #D97706 !important;
+.property-status-tag.property-status-upcoming i,
+.property-status-tag.property-status-upcoming *,
+html.theme-blue-white .property-status-tag.property-status-upcoming *,
+html.theme-green .property-status-tag.property-status-upcoming *,
+html.theme-sand-beige .property-status-tag.property-status-upcoming * {
     color: #FFFFFF !important;
     -webkit-text-fill-color: #FFFFFF !important;
-    border: 1px solid rgba(255, 255, 255, 0.3) !important;
-    font-weight: 800 !important;
-    letter-spacing: 0.8px !important;
-    text-transform: uppercase !important;
-    box-shadow: 0 4px 14px rgba(217, 119, 6, 0.4) !important;
-    z-index: 5 !important;
 }
 
 /* Sold Luxury Diagonal Badge Overlay */
@@ -740,14 +772,21 @@ h6 {
 }
 
 /* Detail Page Sold Badge */
-.property-badge-available.property-badge-sold {
+.property-badge-available.property-badge-sold,
+html.theme-blue-white .property-badge-available.property-badge-sold,
+html.theme-green .property-badge-available.property-badge-sold,
+html.theme-sand-beige .property-badge-available.property-badge-sold {
     background: #DC2626 !important;
+    background-color: #DC2626 !important;
     color: #FFFFFF !important;
     -webkit-text-fill-color: #FFFFFF !important;
-    border: 1.5px solid rgba(255, 255, 255, 0.4) !important;
+    border: 1.5px solid rgba(255, 255, 255, 0.5) !important;
     box-shadow: 0 4px 14px rgba(220, 38, 38, 0.4) !important;
 }
-.property-badge-available.property-badge-sold * {
+.property-badge-available.property-badge-sold *,
+html.theme-blue-white .property-badge-available.property-badge-sold *,
+html.theme-green .property-badge-available.property-badge-sold *,
+html.theme-sand-beige .property-badge-available.property-badge-sold * {
     color: #FFFFFF !important;
     -webkit-text-fill-color: #FFFFFF !important;
 }
@@ -2475,7 +2514,7 @@ html.theme-sand-beige .form-control:focus {
 
 
 /* Badges on property card */
-html.theme-blue-white .property-status-tag {
+html.theme-blue-white .property-status-tag:not(.property-status-sold):not(.property-status-upcoming) {
     background: rgba(255, 255, 255, 0.9) !important;
     color: #0F172A !important;
     border-color: #E2E8F0 !important;
@@ -2493,7 +2532,7 @@ html.theme-blue-white .property-construction-tag {
     border-color: rgba(37, 99, 235, 0.25) !important;
 }
 
-html.theme-green .property-status-tag {
+html.theme-green .property-status-tag:not(.property-status-sold):not(.property-status-upcoming) {
     background: rgba(255, 255, 255, 0.9) !important;
     color: #1A1A1A !important;
     border-color: #D8E8C8 !important;
@@ -2511,7 +2550,7 @@ html.theme-green .property-construction-tag {
     border-color: rgba(45, 80, 22, 0.25) !important;
 }
 
-html.theme-sand-beige .property-status-tag {
+html.theme-sand-beige .property-status-tag:not(.property-status-sold):not(.property-status-upcoming) {
     background: rgba(255, 255, 255, 0.9) !important;
     color: #3A322C !important;
     border-color: #EADEC9 !important;
@@ -3590,12 +3629,12 @@ html.theme-sand-beige .luxury-breadcrumb .breadcrumb-item + .breadcrumb-item::be
 }
 
 /* Enforce pure white text for Available and RERA Verified across ALL light themes */
-html.theme-blue-white .property-badge-available,
-html.theme-blue-white .property-badge-available *,
-html.theme-green .property-badge-available,
-html.theme-green .property-badge-available *,
-html.theme-sand-beige .property-badge-available,
-html.theme-sand-beige .property-badge-available * {
+html.theme-blue-white .property-badge-available:not(.property-badge-sold),
+html.theme-blue-white .property-badge-available:not(.property-badge-sold) *,
+html.theme-green .property-badge-available:not(.property-badge-sold),
+html.theme-green .property-badge-available:not(.property-badge-sold) *,
+html.theme-sand-beige .property-badge-available:not(.property-badge-sold),
+html.theme-sand-beige .property-badge-available:not(.property-badge-sold) * {
     background: #0F172A !important;
     color: #FFFFFF !important;
     -webkit-text-fill-color: #FFFFFF !important;

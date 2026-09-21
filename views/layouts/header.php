@@ -122,6 +122,16 @@ if($seoTitle === 'Contact Us | Vigtez Reality Estates') {
     }
     </script>
     <?php endif; ?>
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JG3GZ81T9W"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-JG3GZ81T9W');
+    </script>
 
     <!-- Robots Meta -->
     <meta name="robots" content="<?php echo htmlspecialchars($globalSettings['seo_robots'] ?? 'index, follow'); ?>">
